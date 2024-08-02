@@ -1,3 +1,4 @@
+--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.
 repeat task.wait() until game:IsLoaded()
 local GuiLibrary
 local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
@@ -75,7 +76,7 @@ local vapeAssetTable = {
 	["vape/assets/ToggleArrow.png"] = "rbxassetid://13350792786",
 	["vape/assets/UpArrow.png"] = "rbxassetid://13350793386",
 	["vape/assets/UtilityIcon.png"] = "rbxassetid://13350793918",
-	["vape/assets/WarningNotification.png"] = "rbxassetid://13350794868",
+	["vape/assets/WarningNotification.png"] = "rbxassetid://18660748484",
 	["vape/assets/WindowBlur.png"] = "rbxassetid://13350795660",
 	["vape/assets/WorldIcon.png"] = "rbxassetid://13350796199",
 	["vape/assets/VapeIcon.png"] = "rbxassetid://13350808582",
@@ -143,7 +144,7 @@ local function vapeGithubRequest(scripturl)
 				displayErrorPopup("The connection to github is taking a while, Please be patient.")
 			end
 		end)
-		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		if not suc or res == "404: Not Found" then
 			displayErrorPopup("Failed to connect to github : vape/"..scripturl.." : "..res)
 			error(res)
@@ -227,7 +228,7 @@ if not isfile("vape/CustomModules/cachechecked.txt") then
 				if isfile(v) and not readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
 					local last = v:split('\\')
 					last = last[#last]
-					local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..last) end)
+					local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..last) end)
 					if suc and publicrepo and publicrepo ~= "404: Not Found" then
 						writefile("vape/CustomModules/"..last, "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..publicrepo)
 					end
@@ -298,6 +299,11 @@ local World = GuiLibrary.CreateWindow({
 	Icon = "vape/assets/WorldIcon.png",
 	IconSize = 16
 })
+local Exploits = GuiLibrary.CreateWindow({
+	Name = "Exploits",
+	Icon = "vape/assets/BlatantIcon.png",
+	IconSize = 16
+})
 local Friends = GuiLibrary.CreateWindow2({
 	Name = "Friends",
 	Icon = "vape/assets/FriendsIcon.png",
@@ -342,6 +348,12 @@ GUI.CreateButton({
 	Name = "World",
 	Function = function(callback) World.SetVisible(callback) end,
 	Icon = "vape/assets/WorldIcon.png",
+	IconSize = 16
+})
+GUI.CreateButton({
+	Name = "Exploits",
+	Function = function(callback) Exploits.SetVisible(callback) end,
+	Icon = "vape/assets/BlatantIcon.png",
 	IconSize = 16
 })
 GUI.CreateDivider("MISC")
@@ -713,13 +725,13 @@ OnlineProfilesButton.MouseButton1Click:Connect(function()
 		local onlineprofiles = {}
 		local saveplaceid = tostring(shared.CustomSaveVape or game.PlaceId)
         local success, result = pcall(function()
-            return game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt", true))
+            return game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/sstvskids/VapeProfiles/main/Profiles/"..saveplaceid.."/profilelist.txt", true))
         end)
 		for i,v in pairs(success and result or {}) do
 			onlineprofiles[i] = v
 		end
 		for i2,v2 in pairs(onlineprofiles) do
-			local profileurl = "https://raw.githubusercontent.com/7GrandDadPGN/VapeProfiles/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
+			local profileurl = "https://raw.githubusercontent.com/sstvskids/VapeProfiles/main/Profiles/"..saveplaceid.."/"..v2.OnlineProfileName
 			local profilebox = Instance.new("Frame")
 			profilebox.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
 			profilebox.Parent = OnlineProfilesList
@@ -1353,16 +1365,16 @@ TargetInfoMainFrame.Size = UDim2.new(0, 220, 0, 72)
 TargetInfoMainFrame.Position = UDim2.new(0, 0, 0, 5)
 TargetInfoMainFrame.Parent = TargetInfo.GetCustomChildren()
 local TargetInfoMainInfo = Instance.new("Frame")
-TargetInfoMainInfo.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
+TargetInfoMainInfo.BackgroundColor3 = Color3.fromRGB(25, 26, 25)
 TargetInfoMainInfo.Size = UDim2.new(0, 220, 0, 80)
-TargetInfoMainInfo.BackgroundTransparency = 0.25
+TargetInfoMainInfo.BackgroundTransparency = 0.33
 TargetInfoMainInfo.Position = UDim2.new(0, 0, 0, 0)
 TargetInfoMainInfo.Name = "MainInfo"
 TargetInfoMainInfo.Parent = TargetInfoMainFrame
 local TargetInfoName = Instance.new("TextLabel")
 TargetInfoName.TextSize = 14
 TargetInfoName.Font = Enum.Font.Arial
-TargetInfoName.TextColor3 = Color3.fromRGB(162, 162, 162)
+TargetInfoName.TextColor3 = Color3.fromRGB(255, 255, 255)
 TargetInfoName.Position = UDim2.new(0, 70, 0, 10)
 TargetInfoName.TextStrokeTransparency = 1
 TargetInfoName.BackgroundTransparency = 1
@@ -1374,7 +1386,7 @@ TargetInfoName.TextYAlignment = Enum.TextYAlignment.Top
 TargetInfoName.Parent = TargetInfoMainInfo
 local TargetInfoNameShadow = TargetInfoName:Clone()
 TargetInfoNameShadow.Size = UDim2.new(1, 0, 1, 0)
-TargetInfoNameShadow.TextTransparency = 0.5
+TargetInfoNameShadow.TextTransparency = 0.68
 TargetInfoNameShadow.TextColor3 = Color3.new()
 TargetInfoNameShadow.ZIndex = 1
 TargetInfoNameShadow.Position = UDim2.new(0, 1, 0, 1)
@@ -1400,7 +1412,7 @@ TargetInfoHealthBackgroundShadow.ScaleType = Enum.ScaleType.Slice
 TargetInfoHealthBackgroundShadow.SliceCenter = Rect.new(10, 10, 118, 118)
 TargetInfoHealthBackgroundShadow.Parent = TargetInfoHealthBackground
 local TargetInfoHealth = Instance.new("Frame")
-TargetInfoHealth.BackgroundColor3 = Color3.fromRGB(40, 137, 109)
+TargetInfoHealth.BackgroundColor3 = Color3.fromRGB(23, 209, 87)
 TargetInfoHealth.Size = UDim2.new(1, 0, 1, 0)
 TargetInfoHealth.ZIndex = 3
 TargetInfoHealth.BorderSizePixel = 0
@@ -1420,19 +1432,19 @@ TargetInfoImage.Image = 'rbxthumb://type=AvatarHeadShot&id='..playersService.Loc
 TargetInfoImage.Position = UDim2.new(0, 10, 0, 16)
 TargetInfoImage.Parent = TargetInfoMainInfo
 local TargetInfoMainInfoCorner = Instance.new("UICorner")
-TargetInfoMainInfoCorner.CornerRadius = UDim.new(0, 4)
+TargetInfoMainInfoCorner.CornerRadius = UDim.new(0, 16)
 TargetInfoMainInfoCorner.Parent = TargetInfoMainInfo
 local TargetInfoHealthBackgroundCorner = Instance.new("UICorner")
-TargetInfoHealthBackgroundCorner.CornerRadius = UDim.new(0, 2048)
+TargetInfoHealthBackgroundCorner.CornerRadius = UDim.new(0, 4092)
 TargetInfoHealthBackgroundCorner.Parent = TargetInfoHealthBackground
 local TargetInfoHealthCorner = Instance.new("UICorner")
-TargetInfoHealthCorner.CornerRadius = UDim.new(0, 2048)
+TargetInfoHealthCorner.CornerRadius = UDim.new(0, 4092)
 TargetInfoHealthCorner.Parent = TargetInfoHealth
 local TargetInfoHealthCorner2 = Instance.new("UICorner")
-TargetInfoHealthCorner2.CornerRadius = UDim.new(0, 2048)
+TargetInfoHealthCorner2.CornerRadius = UDim.new(0, 4092)
 TargetInfoHealthCorner2.Parent = TargetInfoHealthExtra
 local TargetInfoHealthExtraCorner = Instance.new("UICorner")
-TargetInfoHealthExtraCorner.CornerRadius = UDim.new(0, 4)
+TargetInfoHealthExtraCorner.CornerRadius = UDim.new(0, 8)
 TargetInfoHealthExtraCorner.Parent = TargetInfoImage
 TargetInfo.CreateDropdown({
 	Name = "Font",
@@ -1573,11 +1585,12 @@ local windowSortOrder = {
 	RenderButton = 3,
 	UtilityButton = 4,
 	WorldButton = 5,
-	FriendsButton = 6,
-	TargetsButton = 7,
-	ProfilesButton = 8
+	ExploitsButton = 6,
+	FriendsButton = 7,
+	TargetsButton = 8,
+	ProfilesButton = 9
 }
-local windowSortOrder2 = {"Combat", "Blatant", "Render", "Utility", "World"}
+local windowSortOrder2 = {"Combat", "Blatant", "Render", "Utility", "World", "Exploits"}
 
 local function getVapeSaturation(val)
 	local sat = 0.9
@@ -1715,7 +1728,7 @@ GuiLibrary.UpdateUI = function(h, s, val, bypass)
 	end)
 end
 
-GUISettings.CreateToggle({
+--[[GUISettings.CreateToggle({
 	Name = "Blur Background",
 	Function = function(callback)
 		GuiLibrary.MainBlur.Size = (callback and 25 or 0)
@@ -1723,7 +1736,7 @@ GUISettings.CreateToggle({
 	end,
 	Default = true,
 	HoverText = "Blur the background of the GUI"
-})
+})]]
 local welcomeMessage = GUISettings.CreateToggle({
 	Name = "GUI bind indicator",
 	Function = function() end,
@@ -1795,7 +1808,7 @@ local teleportConnection = playersService.LocalPlayer.OnTeleport:Connect(functio
 			if shared.VapeDeveloper then
 				loadstring(readfile("vape/NewMainScript.lua"))()
 			else
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/NewMainScript.lua", true))()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/NewMainScript.lua", true))()
 			end
 		]]
 		if shared.VapeDeveloper then
@@ -1898,12 +1911,13 @@ GUISettings.CreateButton2({
 			RenderWindow = 4,
 			UtilityWindow = 5,
 			WorldWindow = 6,
-			FriendsWindow = 7,
-			TargetsWindow = 8,
-			ProfilesWindow = 9,
-			["Text GUICustomWindow"] = 10,
-			TargetInfoCustomWindow = 11,
-			RadarCustomWindow = 12,
+			ExploitsWindow = 7,
+			FriendsWindow = 8,
+			TargetsWindow = 9,
+			ProfilesWindow = 10,
+			["Text GUICustomWindow"] = 11,
+			TargetInfoCustomWindow = 12,
+			RadarCustomWindow = 13,
 		}
 		local storedpos = {}
 		local num = 6
@@ -1936,6 +1950,13 @@ GeneralSettings.CreateButton2({
 	Name = "UNINJECT",
 	Function = GuiLibrary.SelfDestruct
 })
+GeneralSettings.CreateButton2({
+	Name = "REINJECT",
+	Function = function(calling)
+		GuiLibrary.SelfDestruct()
+		loadfile("vape/NewMainScript.lua")
+	end
+})
 
 local function loadVape()
 	if not shared.VapeIndependent then
@@ -1944,7 +1965,7 @@ local function loadVape()
 			loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
 		else
 			if not shared.VapeDeveloper then
-				local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..game.PlaceId..".lua") end)
+				local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..game.PlaceId..".lua") end)
 				if suc and publicrepo and publicrepo ~= "404: Not Found" then
 					writefile("vape/CustomModules/"..game.PlaceId..".lua", "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..publicrepo)
 					loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
@@ -1977,7 +1998,7 @@ local function loadVape()
 		if BlatantModeToggle.Enabled then
 			pcall(function()
 				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
-				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
+				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
 			end)
 		end
 		GuiLibrary.LoadedAnimation(welcomeMessage.Enabled)

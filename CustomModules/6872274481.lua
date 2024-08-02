@@ -20,6 +20,7 @@ local vapeEvents = setmetatable({}, {
 })
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
+local SkidWareVersion = "Next-Gen"
 
 local bedwars = {}
 local store = {
@@ -103,7 +104,7 @@ end
 
 local function vapeGithubRequest(scripturl)
 	if not isfile("vape/"..scripturl) then
-		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		assert(suc, res)
 		assert(res ~= "404: Not Found", res)
 		if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
@@ -142,7 +143,7 @@ end
 local function warningNotification(title, text, delay)
 	local suc, res = pcall(function()
 		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/WarningNotification.png")
-		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
+		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
 		return frame
 	end)
 	return (suc and res)
@@ -214,8 +215,8 @@ local function predictGravity(playerPosition, vel, bulletTime, targetPart, Gravi
 			estimatedVelocity = estimatedVelocity - (Gravity * physicsUpdate)
 		else
 			estimatedVelocity = 0
-			playerPosition = playerPosition + Vector3.new(0, -0.03, 0) -- bw hitreg is so bad that I have to add this LOL
-			rootSize = rootSize - 0.03
+			playerPosition = playerPosition + Vector3.new(0, -0.035, 0) -- bw hitreg is so bad that I have to add this LOL
+			rootSize = rootSize - 0.035
 		end
 
 		local floorDetection = workspace:Raycast(playerPosition, Vector3.new(vel.X, (estimatedVelocity * physicsUpdate) - rootSize, vel.Z), store.blockRaycast)
@@ -397,7 +398,9 @@ local function getSpeed()
 			speed = speed + 90
 		end
 		if store.scythe > tick() then
-			speed = speed + 5
+			if entityLibrary.isAlive and entityLibrary.character.Head.Transparency ~= 0 then
+				speed = speed + 67
+			end
 		end
 		if lplr.Character:GetAttribute("GrimReaperChannel") then
 			speed = speed + 20
@@ -1667,7 +1670,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "The current version of vape is no longer being maintained, join the discord (click the discord icon) to get updates on the latest release."
+	textlabel.Text = "Skid-Ware | version nextgen"
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
@@ -1772,7 +1775,7 @@ run(function()
 				RunLoops:BindToRenderStep("AimAssist", function(dt)
 					vapeTargetInfo.Targets.AimAssist = nil
 					if ((not AimAssistClickAim.Enabled) or (tick() - bedwars.SwordController.lastSwing) < 0.4) then
-						local plr = EntityNearPosition(18)
+						local plr = EntityNearPosition(19)
 						if plr then
 							vapeTargetInfo.Targets.AimAssist = {
 								Humanoid = {
@@ -1830,12 +1833,12 @@ run(function()
 
 	local function isNotHoveringOverGui()
 		local mousepos = inputService:GetMouseLocation() - Vector2.new(0, 36)
-		for i,v in pairs(lplr.PlayerGui:GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
+		for i,v in pairs(game.PlayerGui:GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
 			if v.Active then
 				return false
 			end
 		end
-		for i,v in pairs(game:GetService("CoreGui"):GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
+		for i,v in pairs(game:GetService("PlayerGui"):GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
 			if v.Parent:IsA("ScreenGui") and v.Parent.Enabled then
 				if v.Active then
 					return false
@@ -1894,8 +1897,8 @@ run(function()
 			if callback then
 				if inputService.TouchEnabled then
 					pcall(function()
-						table.insert(autoclicker.Connections, lplr.PlayerGui.MobileUI['2'].MouseButton1Down:Connect(AutoClick))
-						table.insert(autoclicker.Connections, lplr.PlayerGui.MobileUI['2'].MouseButton1Up:Connect(function()
+						table.insert(autoclicker.Connections, game.PlayerGui.MobileUI['2'].MouseButton1Down:Connect(AutoClick))
+						table.insert(autoclicker.Connections, game.PlayerGui.MobileUI['2'].MouseButton1Up:Connect(function()
 							if AutoClickerThread then
 								task.cancel(AutoClickerThread)
 								AutoClickerThread = nil
@@ -1980,7 +1983,7 @@ run(function()
 		Function = function(callback)
 			if callback then
 				if inputService.TouchEnabled then
-					pcall(function() lplr.PlayerGui.MobileUI["4"].Visible = false end)
+					pcall(function() game.PlayerGui.MobileUI["4"].Visible = false end)
 				end
 				oldSprintFunction = bedwars.SprintController.stopSprinting
 				bedwars.SprintController.stopSprinting = function(...)
@@ -1998,7 +2001,7 @@ run(function()
 				end)
 			else
 				if inputService.TouchEnabled then
-					pcall(function() lplr.PlayerGui.MobileUI["4"].Visible = true end)
+					pcall(function() game.PlayerGui.MobileUI["4"].Visible = true end)
 				end
 				bedwars.SprintController.stopSprinting = oldSprintFunction
 				bedwars.SprintController:stopSprinting()
@@ -2246,7 +2249,7 @@ run(function()
 							Size = UDim2.new(0, 0, 1, 0),
 							BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 							BackgroundTransparency = 0.5
-						}) }) }), lplr:FindFirstChild("PlayerGui"))
+						}) }) }), game:FindFirstChild("PlayerGui"))
 					p5.handle = countdown
 					local sizetween = tweenService:Create(p5.wrapperRef:getValue(), TweenInfo.new(0.1), {
 						Size = UDim2.new(0.11, 0, 0.005, 0)
@@ -2356,7 +2359,7 @@ run(function()
 				end))
 				if inputService.TouchEnabled then
 					pcall(function()
-						local jumpButton = lplr.PlayerGui.TouchGui.TouchControlFrame.JumpButton
+						local jumpButton = game.PlayerGui.TouchGui.TouchControlFrame.JumpButton
 						table.insert(Fly.Connections, jumpButton:GetPropertyChangedSignal("ImageRectOffset"):Connect(function()
 							FlyUp = jumpButton.ImageRectOffset.X == 146
 						end))
@@ -2757,6 +2760,7 @@ run(function()
 		oldcloneroot.CFrame = CFrame.new(unpack(origcf))
 		oldcloneroot = nil
 		warningNotification("InfiniteFly", "Landed!", 3)
+
 	end
 
 	InfiniteFly = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
@@ -2791,7 +2795,7 @@ run(function()
 				end))
 				if inputService.TouchEnabled then
 					pcall(function()
-						local jumpButton = lplr.PlayerGui.TouchGui.TouchControlFrame.JumpButton
+						local jumpButton = game.PlayerGui.TouchGui.TouchControlFrame.JumpButton
 						table.insert(InfiniteFly.Connections, jumpButton:GetPropertyChangedSignal("ImageRectOffset"):Connect(function()
 							InfiniteFlyUp = jumpButton.ImageRectOffset.X == 146
 						end))
@@ -3050,6 +3054,10 @@ run(function()
 			{CFrame = CFrame.new(0.69, -0.7, 0.1) * CFrame.Angles(math.rad(-65), math.rad(55), math.rad(-51)), Time = 0.1},
 			{CFrame = CFrame.new(0.16, -1.16, 0.5) * CFrame.Angles(math.rad(-179), math.rad(54), math.rad(33)), Time = 0.1}
 		},
+		Smoking = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.1) * CFrame.Angles(math.rad(-67), math.rad(60), math.rad(-50)), Time = 0.13},
+			{CFrame = CFrame.new(0.16, -1.16, 0.5) * CFrame.Angles(math.rad(-175), math.rad(61), math.rad(31)), Time = 0.26}
+		},
 		["Vertical Spin"] = {
 			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(-90), math.rad(8), math.rad(5)), Time = 0.1},
 			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(180), math.rad(3), math.rad(13)), Time = 0.1},
@@ -3066,6 +3074,89 @@ run(function()
 			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.1},
 			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.05},
 			{CFrame = CFrame.new(0.63, -0.1, 1.37) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.15}
+		},
+		SlowAndFast = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(295), math.rad(55), math.rad(290)), Time = 0.8},
+			{CFrame = CFrame.new(0.69, -0.71, 0.6) * CFrame.Angles(math.rad(200), math.rad(60), math.rad(1)), Time = 0.01}
+		},
+		SkidWare = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-65), math.rad(65), math.rad(-79)), Time = 0.1},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-98), math.rad(35), math.rad(-56)), Time = 0.2}
+		},
+		Monsoon = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-45), math.rad(70), math.rad(-90)), Time = 0.07},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-89), math.rad(70), math.rad(-38)), Time = 0.13}
+		},
+		N1san1StopFuckingAnnoyingMe = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-89), math.rad(68), math.rad(-56)), Time = 0.12},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-65), math.rad(68), math.rad(-35)), Time = 0.19}
+		},
+		Spooky = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-65), math.rad(54), math.rad(-56)), Time = 0.08},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-98), math.rad(38), math.rad(-23)), Time = 0.15}
+		},
+		["SkidWare New"] = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-65), math.rad(98), math.rad(-354)), Time = 0.1},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-98), math.rad(65), math.rad(-68)), Time = 0.2}
+		},
+		Assura = {
+			{CFrame = CFrame.new(0.67, -0.66, 0.57) * CFrame.Angles(math.rad(-46), math.rad(45.73), math.rad(-85)), Time = 0.1},
+			{CFrame = CFrame.new(0.72, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(59), math.rad(-50)), Time = 0.2}
+		},
+		["Assura Old"] = {
+			{CFrame = CFrame.new(0.65, -0.68, 0.57) * CFrame.Angles(math.rad(-46), math.rad(45.73), math.rad(-76)), Time = 0.15},
+			{CFrame = CFrame.new(0.77, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(76), math.rad(-32)), Time = 0.17},
+			{CFrame = CFrame.new(0.63, -0.68, 0.57) * CFrame.Angles(math.rad(-46), math.rad(65), math.rad(-65)), Time = 0.21},
+			{CFrame = CFrame.new(0.73, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(49), math.rad(-25)), Time = 0.26}
+		},
+		["Assura Combined"] = {
+			{CFrame = CFrame.new(0.67, -0.66, 0.57) * CFrame.Angles(math.rad(-46), math.rad(45.73), math.rad(-85)), Time = 0.12},
+			{CFrame = CFrame.new(0.72, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(59), math.rad(-50)), Time = 0.14},
+			{CFrame = CFrame.new(0.65, -0.68, 0.57) * CFrame.Angles(math.rad(-46), math.rad(45.73), math.rad(-76)), Time = 0.15},
+			{CFrame = CFrame.new(0.77, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(76), math.rad(-32)), Time = 0.17},
+			{CFrame = CFrame.new(0.63, -0.68, 0.57) * CFrame.Angles(math.rad(-46), math.rad(65), math.rad(-65)), Time = 0.21},
+			{CFrame = CFrame.new(0.73, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(49), math.rad(-25)), Time = 0.26}
+		},
+		["Stavs Ass"] = {
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(295), math.rad(55), math.rad(290)), Time = 0.05},
+			{CFrame = CFrame.new(0.69, -0.71, 0.6) * CFrame.Angles(math.rad(200), math.rad(60), math.rad(1)), Time = 0.05},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(295), math.rad(55), math.rad(290)), Time = 0.15},
+			{CFrame = CFrame.new(0.69, -0.71, 0.6) * CFrame.Angles(math.rad(200), math.rad(60), math.rad(1)), Time = 0.15},
+			{CFrame = CFrame.new(0.69, -0.77, 1.47) * CFrame.Angles(math.rad(-33), math.rad(57), math.rad(-81)), Time = 0.12},
+			{CFrame = CFrame.new(0.74, -0.92, 0.88) * CFrame.Angles(math.rad(147), math.rad(71), math.rad(53)), Time = 0.12},
+			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(-90), math.rad(8), math.rad(5)), Time = 0.1},
+			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(180), math.rad(3), math.rad(13)), Time = 0.1},
+			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(90), math.rad(-5), math.rad(8)), Time = 0.1},
+			{CFrame = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(-0), math.rad(-0)), Time = 0.1},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.1},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.2},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.15},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-30), math.rad(50), math.rad(-90)), Time = 0.05},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.1},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.05},
+			{CFrame = CFrame.new(0.63, -0.1, 1.37) * CFrame.Angles(math.rad(-84), math.rad(50), math.rad(-38)), Time = 0.15},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(295), math.rad(55), math.rad(290)), Time = 0.8},
+			{CFrame = CFrame.new(0.69, -0.71, 0.6) * CFrame.Angles(math.rad(200), math.rad(60), math.rad(1)), Time = 0.01},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-65), math.rad(65), math.rad(-79)), Time = 0.1},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-98), math.rad(35), math.rad(-56)), Time = 0.2},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-45), math.rad(70), math.rad(-90)), Time = 0.07},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-89), math.rad(70), math.rad(-38)), Time = 0.13},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-89), math.rad(68), math.rad(-56)), Time = 0.12},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-65), math.rad(68), math.rad(-35)), Time = 0.19},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-65), math.rad(54), math.rad(-56)), Time = 0.08},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-98), math.rad(38), math.rad(-23)), Time = 0.15},
+			{CFrame = CFrame.new(0.69, -0.7, 0.6) * CFrame.Angles(math.rad(-65), math.rad(98), math.rad(-354)), Time = 0.1},
+			{CFrame = CFrame.new(0.7, -0.71, 0.59) * CFrame.Angles(math.rad(-98), math.rad(65), math.rad(-68)), Time = 0.2},
+			{CFrame = CFrame.new(0.67, -0.66, 0.57) * CFrame.Angles(math.rad(-46), math.rad(45.73), math.rad(-85)), Time = 0.1},
+			{CFrame = CFrame.new(0.72, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(59), math.rad(-50)), Time = 0.2},
+			{CFrame = CFrame.new(0.65, -0.68, 0.57) * CFrame.Angles(math.rad(-46), math.rad(45.73), math.rad(-76)), Time = 0.15},
+			{CFrame = CFrame.new(0.77, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(76), math.rad(-32)), Time = 0.17},
+			{CFrame = CFrame.new(0.63, -0.68, 0.57) * CFrame.Angles(math.rad(-46), math.rad(65), math.rad(-65)), Time = 0.21},
+			{CFrame = CFrame.new(0.73, -0.71, 0.62) * CFrame.Angles(math.rad(-73), math.rad(49), math.rad(-25)), Time = 0.26}
+		},
+		["FunnyAnim"] = {
+			{CFrame = CFrame.new(1, -1, 2) * CFrame.Angles(math.rad(295), math.rad(55), math.rad(290)), Time = 0.12},
+			{CFrame = CFrame.new(-1, 1, -2.2) * CFrame.Angles(math.rad(200), math.rad(60), math.rad(1)), Time = 0.25}
 		}
 	}
 
@@ -3208,7 +3299,7 @@ run(function()
 								end
 								if originalRootC0 and killauracframe.Enabled then
 									if targetedPlayer ~= nil then
-										local targetPos = targetedPlayer.RootPart.Position + Vector3.new(0, 2, 0)
+										local targetPos = targetedPlayer.RootPart.Position + Vector3.new(0, 3, 0)
 										local direction = (Vector3.new(targetPos.X, targetPos.Y, targetPos.Z) - entityLibrary.character.Head.Position).Unit
 										local direction2 = (Vector3.new(targetPos.X, Root.Position.Y, targetPos.Z) - Root.Position).Unit
 										local lookCFrame = (CFrame.new(Vector3.zero, (Root.CFrame):VectorToObjectSpace(direction)))
@@ -3277,12 +3368,12 @@ run(function()
 											end
 										end
 									end
-									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.02 then
+									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.0002 then
 										break
 									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
-									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 100) / 100
+									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 360) / 360
 									store.attackReachUpdate = tick() + 1
 									killaurarealremote:FireServer({
 										weapon = sword.tool,
@@ -3533,8 +3624,7 @@ run(function()
 		Name = "Range Visualizer",
 		Function = function(callback)
 			if callback then
-				--context issues moment
-			--[[	killaurarangecirclepart = Instance.new("MeshPart")
+				killaurarangecirclepart = Instance.new("MeshPart")
 				killaurarangecirclepart.MeshId = "rbxassetid://3726303797"
 				killaurarangecirclepart.Color = Color3.fromHSV(killauracolor["Hue"], killauracolor["Sat"], killauracolor.Value)
 				killaurarangecirclepart.CanCollide = false
@@ -3544,7 +3634,7 @@ run(function()
 				if Killaura.Enabled then
 					killaurarangecirclepart.Parent = gameCamera
 				end
-				bedwars.QueryUtil:setQueryIgnored(killaurarangecirclepart, true)]]
+				bedwars.QueryUtil:setQueryIgnored(killaurarangecirclepart, true)
 			else
 				if killaurarangecirclepart then
 					killaurarangecirclepart:Destroy()
@@ -5077,13 +5167,26 @@ end)
 run(function()
 	local GameFixer = {Enabled = false}
 	local GameFixerHit = {Enabled = false}
+	local RaycastFucker = {Enabled = false}
 	GameFixer = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
 		Name = "GameFixer",
 		Function = function(callback)
-			debug.setconstant(bedwars.SwordController.swingSwordAtMouse, 23, callback and 'raycast' or 'Raycast')
-			debug.setupvalue(bedwars.SwordController.swingSwordAtMouse, 4, callback and bedwars.QueryUtil or workspace)
+			task.spawn(function()
+				if RaycastFucker.Enabled then
+					debug.setconstant(bedwars.SwordController.swingSwordAtMouse, -inf, callback and 'raycast' or 'Raycast')
+					debug.setupvalue(bedwars.SwordController.swingSwordAtMouse, inf, callback and bedwars.QueryUtil or workspace)
+				else
+					debug.setconstant(bedwars.SwordController.swingSwordAtMouse, 23, callback and 'raycast' or 'Raycast')
+					debug.setupvalue(bedwars.SwordController.swingSwordAtMouse, 4, callback and bedwars.QueryUtil or workspace)
+				end
+			end)
 		end,
-		HoverText = "Fixes game bugs"
+		HoverText = "Fixes game bugs \n can also fuck the raycast"
+	})
+	RaycastFucker = GameFixer.CreateToggle({
+		Name = "RaycastFucker",
+		HoverText = "Fucks the raycast",
+		Function = function() end
 	})
 end)
 
@@ -6391,7 +6494,7 @@ run(function()
 					task.spawn(function()
 						repeat
 							task.wait()
-							local gui = lplr.PlayerGui:FindFirstChild("StatusEffectHudScreen")
+							local gui = game.lplr.PlayerGui:FindFirstChild("StatusEffectHudScreen")
 							if gui then gui.Enabled = false break end
 						until false
 					end)
@@ -8825,6 +8928,11 @@ end)
 
 run(function()
 	local Disabler = {Enabled = false}
+	local BypassMethod = {{Value = "MoveDirection"}}
+	local MultiplyDirection = {Value = 0.01}
+	local DivideVal = {Value = 2}
+	local TritionKit = {Enabled = false}
+	local direction
 	Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
 		Name = "FirewallBypass",
 		Function = function(callback)
@@ -8834,17 +8942,422 @@ run(function()
 						task.wait()
 						local item = getItemNear("scythe")
 						if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
-							bedwars.Client:Get("ScytheDash"):SendToServer({direction = Vector3.new(9e9, 9e9, 9e9)})
+							if BypassMethod.Value == "LookVector" then
+                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector
+                            elseif BypassMethod.Value == "MoveDirection" then
+                                direction = entityLibrary.character.Humanoid.MoveDirection
+							elseif BypassMethod.Value == "LookVector + MoveDirection" then
+                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 1.25
+							end
+							bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
 							if entityLibrary.isAlive and entityLibrary.character.Head.Transparency ~= 0 then
-								store.scythe = tick() + 1
+								store.scythe = tick() + 2
 							end
 						end
 					until (not Disabler.Enabled)
+					if TritonKit.Enabled then
+						RunLoops:BindToRenderStep(Disabler, function()
+							task.wait()
+							bedwars.Client:Get("TridentUnanchor"):SendToServer()
+						end)
+					else
+						RunLoops:UnbindFromRenderStep(Disabler)
+					end
 				end)
+			else
+				RunLoops:UnbindFromRenderStep(Disabler)
 			end
 		end,
 		HoverText = "Float disabler with scythe"
 	})
+	BypassMethod = Disabler.CreateDropdown({
+        Name = "DirectionMode",
+        List = {"LookVector", "MoveDirection", "LookVector + MoveDirection"},
+        Function = function(value)
+            BypassMethod.Value = value
+        end
+    })
+	MultiplyDirection = Disabler.CreateSlider({
+        Name = "DirectionMultiply",
+        Min = 0,
+        Max = 0.01,
+        Default = 0.001,
+        Function = function(val) 
+            MultiplyDirection.Value = val
+        end
+    })
+	TritonKit = Disabler.CreateToggle({
+        Name = "TritionKitBypass",
+        Function = function() end,
+        HoverText = "Attempts to bypass the ac \nwith the Triton kit"
+    })
+end)
+
+run(function()
+    local AnimeImages = {Enabled = false}
+    local AnimeSelection = {Value = "Waifu2"}
+
+    local animefunctions = {
+        Waifu1 = function() 
+            task.spawn(function()
+				local Anime = Instance.new("ScreenGui")
+				local ImageLabel = Instance.new("ImageLabel")
+				Anime.Name = "Anime"
+				Anime.Parent = game.CoreGui
+				Anime.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+				ImageLabel.Parent = Anime
+				ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+				ImageLabel.BackgroundTransparency = 1
+				ImageLabel.BorderColor3 = Color3.new(0, 0, 0)
+				ImageLabel.BorderSizePixel = 0
+				ImageLabel.Position = UDim2.new(0.837289751, 0, 1, 0)
+				ImageLabel.Size = UDim2.new(0, 244, 0, 410)
+				ImageLabel.Image = "rbxassetid://14417732284"
+				ImageLabel.ScaleType = Enum.ScaleType.Fit
+				Anime.ResetOnSpawn = false
+				
+				local function ICKZ_fake_script()
+					local script = Instance.new('LocalScript', ImageLabel)
+					local TweenService = game:GetService("TweenService")
+					script.Parent:TweenPosition(UDim2.new(0.89, 0,0,0),Enum.EasingDirection.Out, Enum.EasingStyle.Bounce, 2)
+				end
+				
+				coroutine.wrap(ICKZ_fake_script)()
+            end)
+        end,
+        
+        Waifu2 = function() 
+            task.spawn(function()
+                local Anime = Instance.new("ScreenGui")
+				local ImageLabel = Instance.new("ImageLabel")
+				Anime.Name = "Anime"
+				Anime.Parent = game.CoreGui
+				Anime.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+				ImageLabel.Parent = Anime
+				ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+				ImageLabel.BackgroundTransparency = 1
+				ImageLabel.BorderColor3 = Color3.new(0, 0, 0)
+				ImageLabel.BorderSizePixel = 0
+				ImageLabel.Position = UDim2.new(0.837289751, 0, 1, 0)
+				ImageLabel.Size = UDim2.new(0, 244, 0, 410)
+				ImageLabel.Image = "rbxassetid://14665237598"
+				ImageLabel.ScaleType = Enum.ScaleType.Fit
+				Anime.ResetOnSpawn = false
+				local function animefunc()
+					local script = Instance.new('LocalScript', ImageLabel)
+					local TweenService = game:GetService("TweenService")
+					script.Parent:TweenPosition(UDim2.new(0.89, 0,0,0),Enum.EasingDirection.Out, Enum.EasingStyle.Bounce, 2)
+				end
+
+				coroutine.wrap(animefunc)()
+            end)
+        end
+    }
+
+	local function updateWaifuSelection()
+		if not AnimeImages.Enabled then return end
+		local Anime = game:WaitForChild("CoreGui"):FindFirstChild("Anime")
+		if Anime then
+			Anime:Destroy()
+		end
+
+		animefunctions[AnimeSelection.Value]()
+	end
+
+    AnimeImages = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+        Name = "AnimeImages",
+        Function = function(callback) 
+            if callback then
+				updateWaifuSelection()
+            else
+                local Anime = game:WaitForChild("CoreGui"):FindFirstChild("Anime")
+                if Anime then
+                    Anime:Destroy()
+                end
+            end
+        end,
+        ExtraText = function()
+            return AnimeSelection.Value
+        end
+    })
+	AnimeSelection = AnimeImages.CreateDropdown({
+		Name = "Selection",
+		Function = function(newSelection)
+			AnimeSelection.Value = newSelection
+			updateWaifuSelection()
+		end,
+		List = {"Waifu1", "Waifu2"}
+	})	
+end)
+
+run(function()
+    local transformed = false
+    local CustomPacks = {Enabled = false}
+    local PackSelection = {Value = "VioletDreams"}
+
+    local packfunctions = {
+        VioletDreams = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/VioletsDreams.lua"))()   
+            end)
+        end,
+        
+        PastaaWare = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Enlightened.lua"))()   
+            end)
+        end,
+
+        Wichtiger = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Wichtiger.lua"))()   
+            end)
+        end,
+
+        Fury = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Fury-16X.lua"))()   
+            end)
+        end,
+
+        
+        Onyx = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Onyx.lua"))()   
+            end)
+        end,
+
+        Makima = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Makima.lua"))()   
+            end)
+        end,
+
+		Marin = function() 
+			task.spawn(function()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Marin-Kitsawaba.lua"))()   
+			end)
+		end,
+
+        Prime = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Prime.lua"))()   
+            end)
+        end,
+
+
+        MidnightCottonCandy = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/MidnightCottonCandy.lua"))()   
+            end)
+        end,
+
+        Inferno = function() 
+            task.spawn(function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Inferno.lua"))()   
+            end)
+        end
+    }
+
+    CustomPacks = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+        ["Name"] = "CustomPacks",
+        ["Function"] = function(callback) 
+            if callback then 
+                if not transformed then
+                    transformed = true
+                    packfunctions[PackSelection["Value"]]()
+                end
+            else
+                warningNotification("TexturePacks", "Pack disabled next game.", 10)
+            end
+        end,
+        ["ExtraText"] = function()
+            return PackSelection["Value"]
+        end
+    })
+    PackSelection = CustomPacks.CreateDropdown({
+        ["Name"] = "Pack",
+        ["Function"] = function() end,
+        ["List"] = {"VioletDreams", "PastaaWare", "Onyx", "Fury", "Wichtiger", "Makima", "Marin", "Prime", "MidnightCottonCandy", "Inferno"}
+    })
+end)
+
+--[[run(function()
+    local AntiDeath = {Enabled = false}
+    local HealthValue = {Value = 50}
+    local YValue = {Value = 650}
+
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+    local humanoid = character and character:FindFirstChild("Humanoid")
+	local ActionPerformed = false
+
+	local function performAntiDeath()
+		if not AntiDeath.Enabled then return end
+		if lplr.Character:GetAttribute("Health") <= (lplr.Character:GetAttribute("MaxHealth") - (100 - HealthValue.Value)) and not ActionPerformed then
+			humanoidRootPart.Velocity = Vector3.new(0, YValue.Value, 0)
+			ActionPerformed = true
+		end
+		task.wait(6.75)
+		ActionPerformed = false
+	end
+
+    AntiDeath = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+        Name = "AntiDeath",
+        HoverText = "Won't make you die (promise)",
+        Function = function(callback)
+			if callback then
+				repeat
+					task.wait()
+					performAntiDeath()
+				until (not AntiDeath.Enabled)
+			else
+				ActionPerformed = false
+			end
+        end
+    })
+    HealthValue = AntiDeath.CreateSlider({
+        Name = "Health",
+        Min = 10,
+        Max = 60,
+        Default = 30,
+        Function = function(val)
+            HealthValue.Value = val
+        end
+    })
+    YValue = AntiDeath.CreateSlider({
+        Name = "YValue",
+        Min = 200,
+        Max = 560,
+        Default = 560,
+        Function = function(val)
+            YValue.Value = val
+        end
+    })
+end)]]
+
+run(function()
+    local Annoyer = {Enabled = false}
+    local Delay = {Value = 5}
+    local DragonSound = {Enabled = false}
+    local ConfettiPopper = {Enabled = false}
+    local YuziDash = {Enabled = false}
+    Annoyer = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+        Name = "RemoteTrollage",
+        Function = function(callback)
+            if callback then
+                task.spawn(function()
+                    repeat
+                        task.wait(Delay.Value)
+                        if DragonSound.Enabled then
+                            game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.DragonBreath:FireServer(" ")
+                        end
+                        if ConfettiPopper.Enabled then
+                            game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
+                        end
+                        if YuziDash.Enabled then
+                            game:GetService("ReplicatedStorage"):FindFirstChild("events-@easy-games/game-core:shared/game-core-networking@getEvents.Events").useAbility:FireServer("dash")
+                        end
+                    until (not Annoyer.Enabled)
+                end)
+            end
+        end,
+        HoverText = "Trolls faggot legits 🤮 :trol:",
+    })
+    Delay = Annoyer.CreateSlider({
+        Name = "Delay",
+        Min = 1,
+        Max = 5,
+        Default = 0,
+        Function = function() end
+    })
+    DragonSound = Annoyer.CreateToggle({
+        Name = "DragonBreath",
+        Function = function() end,
+        HoverText = "Uses the DragonBreath remote"
+    })
+    ConfettiPopper = Annoyer.CreateToggle({
+        Name = "ConfettiPopper",
+        Function = function() end,
+        HoverText = "Uses the ConfettiPopper remote"
+    })
+    YuziDash = Annoyer.CreateToggle({
+        Name = "Yuzi",
+        Function = function() end,
+        HoverText = "Uses the Yuzi remote"
+    })
+end)
+
+run(function()
+	local MelodyExploit = {Enabled = false}
+	local Delay = {Value = 5}
+	MelodyExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+		Name = "MelodyExploit",
+		Function = function(callback)
+			if callback then
+				RunLoops:BindToHeartbeat("melody", function()
+					if getItem("guitar") then
+						if lplr.Character.Humanoid.Health < lplr.Character.Humanoid.MaxHealth then
+							task.wait(Delay.Value)
+							bedwars.Client:Get(bedwars.GuitarHealRemote):SendToServer({healTarget = lplr})
+							game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("StopPlayingGuitar"):FireServer()
+						else
+							game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("StopPlayingGuitar"):FireServer()
+						end
+					end
+				end)
+			else
+				RunLoops:UnbindFromHeartbeat("melody")
+			end
+		end
+	})
+	Delay = MelodyExploit.CreateSlider({
+		Name = "Delay",
+		Min = 0,
+		Max = 5,
+		Default = 0,
+		Function = function() end
+	})
+end)
+
+run(function()
+    local SkidRoaster = {Enabled = false}
+    local MatchCheck = {Enabled = false}
+    local SkidDelay = {Value = 5}
+    SkidRoaster = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+        Name = "SkidRoaster",
+        Function = function(callback)
+            if callback then
+                task.spawn(function()
+                    repeat
+                        if MatchCheck.Enabled then
+                            if store.matchState == 0 then return end
+                        end
+                        warningNotification("Vape", #SkidPhrases.ObjectList > 0 and SkidPhrases.ObjectList[math.random(1, #SkidPhrases.ObjectList)] or "CocoSkid? Couldn't be me 🤣", SkidDelay.Value)
+                        task.wait(SkidDelay.Value)
+                    until (not SkidRoaster.Enabled)
+                end)
+			end
+        end,
+        HoverText = "Roasts skids",
+    })
+    SkidPhrases = SkidRoaster.CreateTextList({
+        Name = "Phrases",
+        TempText = "SkidRoaster Phrases",
+    })
+    SkidDelay = SkidRoaster.CreateSlider({
+        Name = "Delay",
+        Min = 2,
+        Max = 5,
+        Default = 2,
+        Function = function() end
+    })
+    MatchCheck = SkidRoaster.CreateToggle({
+        Name = "LobbyCheck",
+        Function = function() end,
+        HoverText = "Checks the lobby and disables it while in the lobby."
+    })
 end)
 
 run(function()
@@ -9110,9 +9623,28 @@ run(function()
 	ReachCorner.Parent = ReachLabel
 end)
 
+run(function()
+	local RemoveKillFeed = {}
+	RemoveKillFeed = GuiLibrary.CreateLegitModule({
+		Name = "RemoveKillFeed",
+		Function = function(callback)
+			if callback then 
+				task.spawn(function()
+					lplr.PlayerGui.KillFeedGui.Parent = game.Workspace
+				end)
+			else
+				game.Workspace.KillFeedGui.Parent = lplr.PlayerGui
+			end
+		end,
+		HoverText = "Removes KillFeed"
+	})
+end)
+
 task.spawn(function()
 	repeat task.wait() until shared.VapeFullyLoaded
 	if not AutoLeave.Enabled then
 		AutoLeave.ToggleButton(false)
 	end
 end)
+
+warningNotification("Vape", "Skid-Ware "..SkidWareVersion.." has loaded.", 4)

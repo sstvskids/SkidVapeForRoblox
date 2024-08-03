@@ -6097,6 +6097,7 @@ run(function()
 					TextLabel_2 = Instance.new("TextLabel")
 					local UICorner = Instance.new("UICorner")
 					local UIGradient_2 = Instance.new("UIGradient")
+					local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 					WatermarkGUI.ResetOnSpawn = false
 					UIAspectRatioConstraint.Parent = WatermarkGUI
 					UIAspectRatioConstraint.AspectRatio = 2.120

@@ -52,7 +52,7 @@ end
 
 local function vapeGithubRequest(scripturl)
 	if not isfile("vape/"..scripturl) then
-		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/VapeV4ForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		assert(suc, res)
 		assert(res ~= "404: Not Found", res)
 		if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
@@ -6150,7 +6150,7 @@ run(function()
 					TextLabel_2.Position = UDim2.new(0.343, 0, 0.626, 0)
 					TextLabel_2.Size = UDim2.new(0, 275, 0, 23)
 					TextLabel_2.Font = Enum.Font[TextGUI_2.Value]
-					TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty | version: nextgen" or tostring(CreditsText.Value)
+					TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @maxlaser | version: nextgen" or tostring(CreditsText.Value)
 					TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 					TextLabel_2.TextScaled = true
 					TextLabel_2.TextSize = 14.000
@@ -6184,7 +6184,7 @@ run(function()
         FocusLost = function(enter)
             if enter then
                 if TextLabel_2 then
-                    TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty | version: nextgen" or tostring(CreditsText.Value)
+                    TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @maxlaser | version: nextgen" or tostring(CreditsText.Value)
                 end
             end
         end

@@ -9359,17 +9359,21 @@ run(function()
         HoverText = "Checks the lobby and disables it while in the lobby."
     })
 end)
-function IsAlive(plr)
-    plr = plr or lplr
-    if not plr.Character then return false end
-    if not plr.Character:FindFirstChild("Head") then return false end
-    if not plr.Character:FindFirstChild("Humanoid") then return false end
-    if plr.Character:FindFirstChild("Humanoid").Health < 0.11 then return false end
-    return true
-end
+
+
 
 run(function()
     local GodMode = {Enabled = false}
+	local AntiHit = {Value = 23}
+
+	function IsAlive(plr)
+		plr = plr or lplr
+		if not plr.Character then return false end
+		if not plr.Character:FindFirstChild("Head") then return false end
+		if not plr.Character:FindFirstChild("Humanoid") then return false end
+		if plr.Character:FindFirstChild("Humanoid").Health < 0.11 then return false end
+		return true
+	end
     GodMode = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
         Name = "AntiHit",
         Function = function(callback)
@@ -9382,7 +9386,7 @@ run(function()
 								if v.Team ~= lplr.Team and IsAlive(v) and IsAlive(lplr) then
 									if v and v ~= lplr then
 										local TargetDistance = lplr:DistanceFromCharacter(v.Character:FindFirstChild("HumanoidRootPart").CFrame.p)
-										if TargetDistance < 25 then
+										if TargetDistance < AntiHitRange.Value then
 											if not lplr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then
 												repeat task.wait() until store.matchState ~= 0
 												if not (v.Character.HumanoidRootPart.Velocity.Y < -10*5) then
@@ -9415,7 +9419,7 @@ run(function()
 													lplr.Character.HumanoidRootPart.CFrame = Clone.HumanoidRootPart.CFrame
 													gameCamera.CameraSubject = lplr.Character:FindFirstChild("Humanoid")
 													Clone:Destroy()
-													task.wait(0.15)
+													task.wait(0.075)
 												end
 											end
 										end
@@ -9428,24 +9432,12 @@ run(function()
 			end
         end
     })
-end)
-
-run(function()
-    fortniteballs = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-        Name = "BetterHighJump",
-        Function = function(callback)
-            if callback then
-                game.Workspace.Gravity = 0
-                repeat task.wait(0.01)
-                    local player = game.Players.LocalPlayer
-                    local character = player.Character or player.CharacterAdded:Wait()
-                    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-                    humanoidRootPart.CFrame = humanoidRootPart.CFrame + Vector3.new(0, 10, 0)
-                until (not fortniteballs.Enabled)
-            else
-                game.Workspace.Gravity = 196.2
-            end
-        end
+	AntiHitRange = GodMode.CreateSlider({
+        Name = "Range",
+        Min = 1,
+        Max = 23,
+        Default = 20,
+        Function = function() end
     })
 end)
 																																																																																																																																																																																																																																	

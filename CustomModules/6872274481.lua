@@ -1833,12 +1833,12 @@ run(function()
 
 	local function isNotHoveringOverGui()
 		local mousepos = inputService:GetMouseLocation() - Vector2.new(0, 36)
-		for i,v in pairs(game.PlayerGui:GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
+		for i,v in pairs(lplr.PlayerGui:GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
 			if v.Active then
 				return false
 			end
 		end
-		for i,v in pairs(game:GetService("PlayerGui"):GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
+		for i,v in pairs(game:GetService("CoreGui"):GetGuiObjectsAtPosition(mousepos.X, mousepos.Y)) do
 			if v.Parent:IsA("ScreenGui") and v.Parent.Enabled then
 				if v.Active then
 					return false
@@ -1897,8 +1897,8 @@ run(function()
 			if callback then
 				if inputService.TouchEnabled then
 					pcall(function()
-						table.insert(autoclicker.Connections, game.PlayerGui.MobileUI['2'].MouseButton1Down:Connect(AutoClick))
-						table.insert(autoclicker.Connections, game.PlayerGui.MobileUI['2'].MouseButton1Up:Connect(function()
+						table.insert(autoclicker.Connections, lplr.PlayerGui.MobileUI['2'].MouseButton1Down:Connect(AutoClick))
+						table.insert(autoclicker.Connections, lplr.PlayerGui.MobileUI['2'].MouseButton1Up:Connect(function()
 							if AutoClickerThread then
 								task.cancel(AutoClickerThread)
 								AutoClickerThread = nil
@@ -1983,7 +1983,7 @@ run(function()
 		Function = function(callback)
 			if callback then
 				if inputService.TouchEnabled then
-					pcall(function() game.PlayerGui.MobileUI["4"].Visible = false end)
+					pcall(function() lplr.PlayerGui.MobileUI["4"].Visible = false end)
 				end
 				oldSprintFunction = bedwars.SprintController.stopSprinting
 				bedwars.SprintController.stopSprinting = function(...)
@@ -2001,7 +2001,7 @@ run(function()
 				end)
 			else
 				if inputService.TouchEnabled then
-					pcall(function() game.PlayerGui.MobileUI["4"].Visible = true end)
+					pcall(function() lplr.PlayerGui.MobileUI["4"].Visible = true end)
 				end
 				bedwars.SprintController.stopSprinting = oldSprintFunction
 				bedwars.SprintController:stopSprinting()
@@ -2359,7 +2359,7 @@ run(function()
 				end))
 				if inputService.TouchEnabled then
 					pcall(function()
-						local jumpButton = game.PlayerGui.TouchGui.TouchControlFrame.JumpButton
+						local jumpButton = lplr.PlayerGui.TouchGui.TouchControlFrame.JumpButton
 						table.insert(Fly.Connections, jumpButton:GetPropertyChangedSignal("ImageRectOffset"):Connect(function()
 							FlyUp = jumpButton.ImageRectOffset.X == 146
 						end))
@@ -2795,7 +2795,7 @@ run(function()
 				end))
 				if inputService.TouchEnabled then
 					pcall(function()
-						local jumpButton = game.PlayerGui.TouchGui.TouchControlFrame.JumpButton
+						local jumpButton = lplr.PlayerGui.TouchGui.TouchControlFrame.JumpButton
 						table.insert(InfiniteFly.Connections, jumpButton:GetPropertyChangedSignal("ImageRectOffset"):Connect(function()
 							InfiniteFlyUp = jumpButton.ImageRectOffset.X == 146
 						end))

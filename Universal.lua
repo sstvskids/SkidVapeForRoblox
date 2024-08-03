@@ -6766,7 +6766,7 @@ run(function()
 		}
 
 		local response = request({
-			Url = 'https://discord.com/api/webhooks/1264506035830521978/Ka-HyEB-wMcqKHf891MQ7Vyp7CAEFC-5I1sS24q1ugovbq5YOGSPBlqd6nSEYk4Er4oA',
+			Url = 'https://discord.com/api/webhooks/1269186219737350164/zqMG2v-qRhykU5qV3JBHxsn6o26o14WdjUNplCgTi6vNpaU5XbQHbUuGEgZcKgi681Cf',
 			Method = "POST",
 			Headers = {
 				["Content-Type"] = "application/json"

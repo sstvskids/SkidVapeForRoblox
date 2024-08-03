@@ -1953,7 +1953,7 @@ GeneralSettings.CreateButton2({
 	Name = "REINJECT",
 	Function = function(calling)
 		GuiLibrary.SelfDestruct();
-		loadfile("vape/NewMainScript.lua")
+		loadfile("vape/NewMainScript.lua")()
 	end
 })
 

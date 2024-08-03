@@ -1,4 +1,3 @@
---This watermark is used to delete the file if its cached, remove it to make the file persist after commits.
 repeat task.wait() until game:IsLoaded()
 local GuiLibrary
 local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
@@ -1953,7 +1952,7 @@ GeneralSettings.CreateButton2({
 GeneralSettings.CreateButton2({
 	Name = "REINJECT",
 	Function = function(calling)
-		GuiLibrary.SelfDestruct()
+		GuiLibrary.SelfDestruct();
 		loadfile("vape/NewMainScript.lua")
 	end
 })

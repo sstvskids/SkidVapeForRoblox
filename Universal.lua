@@ -6098,6 +6098,8 @@ run(function()
 					local UICorner = Instance.new("UICorner")
 					local UIGradient_2 = Instance.new("UIGradient")
 					WatermarkGUI.ResetOnSpawn = false
+					UIAspectRatioConstraint.Parent = WatermarkGUI
+					UIAspectRatioConstraint.AspectRatio = 2.120
 			
 					WatermarkGUI.Name = "WatermarkGUI"
 					WatermarkGUI.Parent = game.CoreGui

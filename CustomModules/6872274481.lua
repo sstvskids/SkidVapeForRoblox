@@ -21,7 +21,7 @@ local vapeEvents = setmetatable({}, {
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
 local SkidWareVersion = "Next-Gen"
-local SkidwareBuild = "Release build"
+
 
 local bedwars = {}
 local store = {
@@ -9824,5 +9824,5 @@ task.spawn(function()
 end)
 
 warningNotification("Vape", "Skid-Ware "..SkidWareVersion.." has loaded.", 4)
-warningNotification("Vape", "Skid-Ware "..SkidWareBuild.." has loaded.", 4)																																																																																																																																																																																																																																					
+																																																																																																																																																																																																																																			
 																																																																																																																																																																																																																																					

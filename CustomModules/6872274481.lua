@@ -6685,8 +6685,7 @@ run(function()
 
 	local eras = {
         [1] = "iron_era",
-        [2] = "diamond_era",
-        [3] = "emerald_era"
+        [2] = "diamond_era"
 	}
 
 	task.spawn(function()

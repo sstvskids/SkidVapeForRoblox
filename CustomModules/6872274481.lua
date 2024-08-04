@@ -9308,9 +9308,6 @@ run(function()
 						if lplr.Character.Humanoid.Health < lplr.Character.Humanoid.MaxHealth then
 							task.wait(Delay.Value)
 							bedwars.Client:Get(bedwars.GuitarHealRemote):SendToServer({healTarget = lplr})
-							game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("StopPlayingGuitar"):FireServer()
-						else
-							game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("StopPlayingGuitar"):FireServer()
 						end
 					end
 				end)

@@ -6,3 +6,5 @@ reinject, better targethud, skid-roaster, better firewall bypass, antihit, melod
 in fixing:
 head-modifications
 antideath
+
+Note: Even though this is open source you **cannot** skid from it

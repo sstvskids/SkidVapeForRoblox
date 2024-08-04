@@ -9443,46 +9443,6 @@ run(function()
 end)
 
 run(function()
-	local insta = {Enabled = false}
-	insta = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-		Name = "EmberExploit",
-		Function = function(callback)
-			if callback then
-				warningNotification("EmberExploit", "Infernal saber is required for this to work", 3)
-				task.spawn(function()
-					repeat
-						task.wait()
-						game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.HellBladeRelease:FireServer({
-							["chargeTime"] = 0.999,
-							["player"] = game:GetService("Players").LocalPlayer,
-							["weapon"] =game:GetService("ReplicatedStorage").Inventories:FindFirstChild(lplr.Name.."infernal_saber"),
-						})
-					until (not insta.Enabled)
-				end)
-			end
-		end, 
-		HoverText = "🔥ember"
-	})
-end)
-
-run(function()
-	InfiniteJump = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
-		Name = "InfiniteJump",
-		Function = function(callback)
-			if callback then
-
-			end
-		end
-	})
-	game:GetService("UserInputService").JumpRequest:Connect(function()
-		if not InfiniteJump.Enabled then return end
-		if lplr.Character and lplr.Character:FindFirstChildOfClass("Humanoid") then
-			local hum = lplr.Character:FindFirstChildOfClass("Humanoid")
-			hum:ChangeState("Jumping")
-		end
-	end)         
-end)
-run(function()
 	local AutoUpgradeEra = {}
 	AutoUpgradeEra = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
 		Name = 'AutoUpgradeEra',
@@ -9490,29 +9450,9 @@ run(function()
 			if calling then 
 				task.spawn(function()
 					repeat task.wait(0.5)
-						local args = {
-							[1] = {
-								["era"] = "iron_era"
-							}
-						}
-						
-						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("RequestPurchaseEra"):InvokeServer(unpack(args))
-	
-						local args = {
-							[1] = {
-								["era"] = "diamond_era"
-							}
-						}
-						
-						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("RequestPurchaseEra"):InvokeServer(unpack(args))
-	
-						local args = {
-							[1] = {
-								["era"] = "emerald_era"
-							}
-						}
-						
-						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("RequestPurchaseEra"):InvokeServer(unpack(args))
+                                                bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = iron_era})
+                                                bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = diamond_era})
+                                                bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = emerald_era})
 					until (not AutoUpgradeEra.Enabled)
 				end)
 			end
@@ -9520,22 +9460,6 @@ run(function()
     })
 end)
 
-	run(function()
-		local InfiniteYield = {Enabled = false}
-		InfiniteYield = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-			Name = "Chat Bypass",
-			Function = function(callback)
-				if callback then
-					task.spawn(function()
-					loadstring(game:HttpGet('https://raw.githubusercontent.com/SkireScripts/Ouxie/main/Projects/simplebypass.lua'))()
-					InfiniteYield["ToggleButton"](false)
-					warningNotification("Skidware", "Loaded Chat Bypass", 5)
-					end)
-				end
-			end,
-			HoverText = "call voidware users nigga"
-		})
-	end)																																																																																																																																																																																																																																																																																																																																								
 run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString

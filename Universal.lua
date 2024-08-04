@@ -6748,18 +6748,13 @@ run(function()
 						["inline"] = false,
 					},
 					{
-						["name"] = "**Whitelisted: ✅**",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "ClientID: "..clientid.."",
+						["name"] = "**Executed Skid-Vape: ✅**",
 						["value"] = "",
 						["inline"] = false
 					}
 				},
 				["footer"] = {
-					["text"] = "Made with love by Stav 💖",
+					["text"] = "Made with love by Stav 💖 (Skid-Vape best config!)",
 					["icon_url"] = "https://media.discordapp.net/attachments/1263811329353977886/1264357231080767690/image5.png?ex=669d93ee&is=669c426e&hm=831197fe2044d0bd71d78a45c811458edb3490d449be6f39c875ae8182f62526&=&format=webp&quality=lossless"
 				}
 			}}

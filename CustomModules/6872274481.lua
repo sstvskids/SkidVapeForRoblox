@@ -6683,11 +6683,6 @@ run(function()
 		[4] = "diamond_pickaxe"
 	}
 
-	local eras = {
-        [1] = "iron_era",
-        [2] = "diamond_era"
-	}
-
 	task.spawn(function()
 		repeat task.wait() until store.matchState ~= 0 or not vapeInjected
 		for i,v in pairs(collectionService:GetTagged("BedwarsItemShop")) do
@@ -6846,7 +6841,6 @@ run(function()
 						local found, npctype, enchant, newid = nearNPC(AutoBuyRange.Value)
 						id = newid
 						if found then
-							bedwars.Client:Get(bedwars.RequestPurchaseEra):SendToServer({era = eras})
 							local inv = store.localInventory.inventory
 							local currentupgrades = bedwars.ClientStoreHandler:getState().Bedwars.teamUpgrades
 							if store.equippedKit == "dasher" then

@@ -1,3 +1,4 @@
+--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.
 local GuiLibrary = shared.GuiLibrary
 local playersService = game:GetService("Players")
 local textService = game:GetService("TextService")
@@ -9414,7 +9415,7 @@ run(function()
 													lplr.Character.HumanoidRootPart.CFrame = Clone.HumanoidRootPart.CFrame
 													gameCamera.CameraSubject = lplr.Character:FindFirstChild("Humanoid")
 													Clone:Destroy()
-													task.wait(0.075)
+													task.wait(0.135)
 												end
 											end
 										end
@@ -9724,4 +9725,3 @@ task.spawn(function()
 end)
 
 warningNotification("Vape", "Skid-Ware "..SkidWareVersion.." has loaded.", 4)
-

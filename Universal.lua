@@ -6089,78 +6089,80 @@ run(function()
         Function = function(callback)
             if callback then
                 task.spawn(function()
-					local WatermarkGUI = Instance.new("ScreenGui")
-					local Frame = Instance.new("Frame")
-					local ImageLabel = Instance.new("ImageLabel")
-					TextLabel = Instance.new("TextLabel")
-					local UIGradient = Instance.new("UIGradient")
-					TextLabel_2 = Instance.new("TextLabel")
-					local UICorner = Instance.new("UICorner")
-					local UIGradient_2 = Instance.new("UIGradient")
-					local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
-					WatermarkGUI.ResetOnSpawn = false
-					UIAspectRatioConstraint.Parent = WatermarkGUI
-					UIAspectRatioConstraint.AspectRatio = 2.120
+			local NewSkidWatermark = Instance.new("ScreenGui")
+			local Frame = Instance.new("Frame")
+			local ImageLabel = Instance.new("ImageLabel")
+			local TextLabel = Instance.new("TextLabel")
+			local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+			local TextLabel_2 = Instance.new("TextLabel")
+			local UICorner = Instance.new("UICorner")
+			local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
+			local UICorner_2 = Instance.new("UICorner")
+			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			
-					WatermarkGUI.Name = "WatermarkGUI"
-					WatermarkGUI.Parent = game.CoreGui
-					WatermarkGUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+			NewSkidWatermark.Name = "NewSkidWatermark"
+			NewSkidWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+			NewSkidWatermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 			
-					Frame.Parent = WatermarkGUI
-					Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-					Frame.BackgroundTransparency = 1.000
-					Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-					Frame.BorderSizePixel = 0
-					Frame.Position = UDim2.new(0, 0, 0.844, 0)
-					Frame.Size = UDim2.new(0, 443, 0, 154)
+			Frame.Parent = NewSkidWatermark
+			Frame.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+			Frame.BackgroundTransparency = 0.650
+			Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Frame.BorderSizePixel = 0
+			Frame.Position = UDim2.new(0.00289801694, 0, 0.879000008, 0)
+			Frame.Size = UDim2.new(0.186291724, 0, 0.138957813, 0)
 			
-					ImageLabel.Parent = Frame
-					ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-					ImageLabel.BackgroundTransparency = 1.000
-					ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-					ImageLabel.BorderSizePixel = 0
-					ImageLabel.Size = UDim2.new(0, 152, 0, 154)
-					ImageLabel.Image = "rbxassetid://1778351305"
-					ImageLabel.ScaleType = Enum.ScaleType.Fit
+			ImageLabel.Parent = Frame
+			ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			ImageLabel.BackgroundTransparency = 1.000
+			ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			ImageLabel.BorderSizePixel = 0
+			ImageLabel.Position = UDim2.new(0.00628930796, 0, 0.00892857183, 0)
+			ImageLabel.Size = UDim2.new(0.30817613, 0, 0.991071522, 0)
+			ImageLabel.Image = "rbxassetid://1778351305"
+			ImageLabel.ScaleType = Enum.ScaleType.Fit
 			
-					TextLabel.Parent = Frame
-					TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-					TextLabel.BackgroundTransparency = 1.000
-					TextLabel.BorderColor3 = Color3.fromRGB(255, 255, 255)
-					TextLabel.BorderSizePixel = 0
-					TextLabel.Position = UDim2.new(0.343, 0, 0.3, 0)
-					TextLabel.Size = UDim2.new(0, 275, 0, 50)
-					TextLabel.Font = Enum.Font[TextGUI_1.Value]
-					TextLabel.Text = WatermarkText.Value == "" and "SkidWare" or tostring(WatermarkText.Value)
-					TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-					TextLabel.TextScaled = true
-					TextLabel.TextSize = 14.000
-					TextLabel.TextWrapped = true
+			TextLabel.Parent = Frame
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(0.288212806, 0, 0.122961864, 0)
+			TextLabel.Size = UDim2.new(0.676100671, 0, 0.517857194, 0)
+			TextLabel.Font = TextLabel.Font = Enum.Font[TextGUI_1.Value]
+			TextLabel.Text = TextLabel.Text = WatermarkText.Value == "" and "Skid-Vxpe" or tostring(WatermarkText.Value)
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextScaled = true
+			TextLabel.TextSize = 42.000
+			TextLabel.TextWrapped = true
 			
-					UIGradient.Color = ColorSequence.new{
-						ColorSequenceKeypoint.new(0.00, Color3.fromRGB(94, 94, 94)),
-						ColorSequenceKeypoint.new(0.58, Color3.fromRGB(48, 48, 48)),
-						ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))
-					}
-					UIGradient.Rotation = 90
-					UIGradient.Parent = TextLabel
+			UITextSizeConstraint.Parent = TextLabel
+			UITextSizeConstraint.MaxTextSize = 42
 			
-					TextLabel_2.Parent = Frame
-					TextLabel_2.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
-					TextLabel_2.BackgroundTransparency = 0.450
-					TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-					TextLabel_2.BorderSizePixel = 0
-					TextLabel_2.Position = UDim2.new(0.343, 0, 0.626, 0)
-					TextLabel_2.Size = UDim2.new(0, 275, 0, 23)
-					TextLabel_2.Font = Enum.Font[TextGUI_2.Value]
-					TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @maxlaser | version: nextgen" or tostring(CreditsText.Value)
-					TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-					TextLabel_2.TextScaled = true
-					TextLabel_2.TextSize = 14.000
-					TextLabel_2.TextWrapped = true
+			TextLabel_2.Parent = Frame
+			TextLabel_2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+			TextLabel_2.BackgroundTransparency = 0.732
+			TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel_2.BorderSizePixel = 0
+			TextLabel_2.Position = UDim2.new(0.297646761, 0, 0.600000024, 0)
+			TextLabel_2.Size = UDim2.new(0.65408814, 0, 0.205357164, 0)
+			TextLabel_2.Font = Enum.Font[TextGUI_2.Value]
+			TextLabel_2.Text = CreditsText.Value == "" and "by @qwerty, @stav and @sys | nextgen" or tostring(CreditsText.Value)
+			TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel_2.TextScaled = true
+			TextLabel_2.TextSize = 14.000
+			TextLabel_2.TextWrapped = true
 			
-					UICorner.CornerRadius = UDim.new(0, 7)
-					UICorner.Parent = TextLabel_2
+			UICorner.Parent = TextLabel_2
+			
+			UITextSizeConstraint_2.Parent = TextLabel_2
+			UITextSizeConstraint_2.MaxTextSize = 14
+			
+			UICorner_2.CornerRadius = UDim.new(0, 36)
+			UICorner_2.Parent = Frame
+			
+			UIAspectRatioConstraint.Parent = Frame
+			UIAspectRatioConstraint.AspectRatio = 2.839
                 end)
             else
                 local WatermarkGUI = game:WaitForChild("CoreGui"):FindFirstChild("WatermarkGUI")
@@ -6176,7 +6178,7 @@ run(function()
         FocusLost = function(enter)
             if enter then
                 if TextLabel then
-                    TextLabel.Text = WatermarkText.Value == "" and "SkidWare" or tostring(WatermarkText.Value)
+                    TextLabel.Text = TextLabel.Text = WatermarkText.Value == "" and "Skid-Vxpe" or tostring(WatermarkText.Value)
                 end
             end
         end
@@ -6187,7 +6189,7 @@ run(function()
         FocusLost = function(enter)
             if enter then
                 if TextLabel_2 then
-                    TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @maxlaser | version: nextgen" or tostring(CreditsText.Value)
+                    TextLabel_2.Text = CreditsText.Value == "" and "by @qwerty, @stav and @sys | nextgen" or tostring(CreditsText.Value)
                 end
             end
         end

@@ -6082,7 +6082,6 @@ run(function()
     local CreditsText = {Value = ""}
     local TextGUI_1 = {Value = "GothamBold"}
     local TextGUI_2 = {Value = "Gotham"}
-    local TextLabel, TextLabel_2
 
     Watermark = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
         Name = "Watermark",
@@ -6101,7 +6100,7 @@ run(function()
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			
 			NewSkidWatermark.Name = "NewSkidWatermark"
-			NewSkidWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+			NewSkidWatermark.Parent = game.CoreGui
 			NewSkidWatermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 			
 			Frame.Parent = NewSkidWatermark
@@ -6165,7 +6164,7 @@ run(function()
 			UIAspectRatioConstraint.AspectRatio = 2.839
                 end)
             else
-                local WatermarkGUI = game:WaitForChild("CoreGui"):FindFirstChild("WatermarkGUI")
+                local WatermarkGUI = game:WaitForChild("CoreGui"):FindFirstChild("NewSkidWatermark")
                 if WatermarkGUI then
                     WatermarkGUI:Destroy()
                 end

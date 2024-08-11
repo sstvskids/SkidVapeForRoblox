@@ -133,15 +133,6 @@ local function getPlayerColor(plr)
 	return tostring(plr.TeamColor) ~= "White" and plr.TeamColor.Color
 end
 
---[[local HWIDTABLE = {
-	"7F19CCFB-49F8-4938-A2FA-10B712E6B36B",
-	"f5610c3a-8615-4f2d-bb3f-27252411589e",
-	"06A6A468-EF26-426C-A5C1-B9035D3D37D0",
-	"077F06B5-CE38-44DB-8671-720E78F180ED"
-}
-local HWID = game:GetService("RbxAnalyticsService"):GetClientId()
-local HWIDCHECK = table.find(HWIDTABLE, HWID)]]
-
 local whitelist = {data = {WhitelistedUsers = {}}, hashes = {}, said = {}, alreadychecked = {}, customtags = {}, loaded = false, localprio = 0, hooked = false, get = function() return 0, true end}
 local entityLibrary = loadstring(vapeGithubRequest("Libraries/entityHandler.lua"))()
 shared.vapeentity = entityLibrary

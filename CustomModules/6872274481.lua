@@ -9004,7 +9004,7 @@ run(function()
 				local Anime = Instance.new("ScreenGui")
 				local ImageLabel = Instance.new("ImageLabel")
 				Anime.Name = "Anime"
-				Anime.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+				Anime.Parent = game.CoreGui
 				Anime.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 				ImageLabel.Parent = Anime
 				ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -9032,7 +9032,7 @@ run(function()
                 local Anime = Instance.new("ScreenGui")
 				local ImageLabel = Instance.new("ImageLabel")
 				Anime.Name = "Anime"
-				Anime.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+				Anime.Parent = game.CoreGui
 				Anime.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 				ImageLabel.Parent = Anime
 				ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -9057,7 +9057,7 @@ run(function()
 
 	local function updateWaifuSelection()
 		if not AnimeImages.Enabled then return end
-		local Anime = game:WaitForChild("PlayerGui"):FindFirstChild("Anime")
+		local Anime = game:WaitForChild("CoreGui"):FindFirstChild("Anime")
 		if Anime then
 			Anime:Destroy()
 		end
@@ -9071,7 +9071,7 @@ run(function()
             if callback then
 				updateWaifuSelection()
             else
-                local Anime = game:WaitForChild("PlayerGui"):FindFirstChild("Anime")
+                local Anime = game:WaitForChild("CoreGui"):FindFirstChild("Anime")
                 if Anime then
                     Anime:Destroy()
                 end

@@ -365,7 +365,7 @@ run(function()
 			self:hook()
 			if self.localprio == 0 then
 				olduninject = GuiLibrary.SelfDestruct
-				GuiLibrary.SelfDestruct = function() warningNotification('Skid-Vape', 'No escaping the private members :)', 10) end
+				GuiLibrary.SelfDestruct = function() warningNotification('Vape', 'No escaping the private members :)', 10) end
 				if joined then task.wait(10) end
 				if textChatService.ChatVersion == Enum.ChatVersion.TextChatService then
 					local oldchannel = textChatService.ChatInputBarConfiguration.TargetTextChannel
@@ -384,8 +384,8 @@ run(function()
 		if plr == lplr and msg == 'helloimusinginhaler' then return true end
 		if self.localprio > 0 and self.said[plr.Name] == nil and msg == 'helloimusinginhaler' and plr ~= lplr then
 			self.said[plr.Name] = true
-			notif('Skid-Vape', plr.Name..' is using skid-vape!', 60)
-			self.customtags[plr.Name] = {{text = 'SKID-VAPE USER', color = Color3.new(1, 1, 0)}}
+			notif('Vape', plr.Name..' is using skid-vxpe!', 60)
+			self.customtags[plr.Name] = {{text = 'VAPE USER', color = Color3.new(1, 1, 0)}}
 			local newent = entityLibrary.getEntity(plr)
 			if newent then entityLibrary.Events.EntityUpdated:Fire(newent) end
 			return true

@@ -370,10 +370,10 @@ run(function()
 				if textChatService.ChatVersion == Enum.ChatVersion.TextChatService then
 					local oldchannel = textChatService.ChatInputBarConfiguration.TargetTextChannel
 					local newchannel = cloneref(game:GetService('RobloxReplicatedStorage')).ExperienceChat.WhisperChat:InvokeServer(v.UserId)
-					if newchannel then newchannel:SendAsync('helloimusinginhaler') end
+					if newchannel then newchannel:SendAsync('skidinhaler') end
 					textChatService.ChatInputBarConfiguration.TargetTextChannel = oldchannel
 				elseif replicatedStorage:FindFirstChild('DefaultChatSystemChatEvents') then
-					replicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer('/w '..v.Name..' helloimusinginhaler', 'All')
+					replicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer('/w '..v.Name..' skidinhaler', 'All')
 				end
 			end
 		end
@@ -381,8 +381,8 @@ run(function()
 
 	function whitelist:checkmessage(msg, plr)
 		local otherprio = self:get(plr)
-		if plr == lplr and msg == 'helloimusinginhaler' then return true end
-		if self.localprio > 0 and self.said[plr.Name] == nil and msg == 'helloimusinginhaler' and plr ~= lplr then
+		if plr == lplr and msg == 'skidinhaler' then return true end
+		if self.localprio > 0 and self.said[plr.Name] == nil and msg == 'skidinhaler' and plr ~= lplr then
 			self.said[plr.Name] = true
 			notif('Vape', plr.Name..' is using skid-vxpe!', 60)
 			self.customtags[plr.Name] = {{text = 'VAPE USER', color = Color3.new(1, 1, 0)}}
@@ -480,7 +480,7 @@ run(function()
 			local bubblechat = exp:WaitForChild('bubbleChat', 5)
 			if bubblechat then
 				table.insert(vapeConnections, bubblechat.DescendantAdded:Connect(function(newbubble)
-					if newbubble:IsA('TextLabel') and newbubble.Text:find('helloimusinginhaler') then
+					if newbubble:IsA('TextLabel') and newbubble.Text:find('skidinhaler') then
 						newbubble.Parent.Parent.Visible = false
 					end
 				end))

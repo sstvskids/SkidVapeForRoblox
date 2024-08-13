@@ -9438,6 +9438,21 @@ run(function()
 end)
 
 run(function()
+    local HostPanel = {Enabled = false}
+	HostPanel = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+		Name = "HostPanelExploit",
+		HoverText = "Allows you to get host-panel client-sided",
+        Function = function(callback)
+            if callback then
+                task.spawn(function()
+					lplr:SetAttribute("CustomMatchRole", "host")
+				end)
+			end
+		end
+	})
+end)
+
+run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
 	local Overlay = GuiLibrary.CreateCustomWindow({

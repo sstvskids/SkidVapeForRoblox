@@ -692,7 +692,7 @@ run(function()
 		end
 	}
 
-	--[[task.spawn(function()
+	task.spawn(function()
 		repeat
 			if whitelist:check(whitelist.loaded) then return end
 			task.wait(10)
@@ -703,7 +703,7 @@ run(function()
 		table.clear(whitelist.commands)
 		table.clear(whitelist.data)
 		table.clear(whitelist)
-	end})]]
+	end})
 end)
 shared.vapewhitelist = whitelist
 

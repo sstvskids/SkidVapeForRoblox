@@ -9461,6 +9461,38 @@ run(function()
 end)
 
 run(function()
+    local SemiInstantWin = {Enabled = false}
+    local PlaceIdPicker = {Value = "Squads/5v5/Doubles/Skywars"}
+    SemiInstantWin = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+        Name = "SemiInstantWin",
+        HoverText = "Sort of a instant-win (by nebula) (fuck the skids man)",
+        Function = function(callback)
+            if callback then
+                pcall(function()
+                    local TeleportService = game:GetService("TeleportService")
+                    local e2 = TeleportService:GetLocalPlayerTeleportData()
+                    local e = game.placeId
+
+                    if PlaceIdPicker.Value == "Squads/5v5/Doubles/Skywars" then
+                        game:GetService("TeleportService"):Teleport(6872274481, game.Players.LocalPlayer, e2)
+                    elseif PlaceIdPicker.Value == "30v30" then
+                        game:GetService("TeleportService"):Teleport(8444591321, game.Players.LocalPlayer, e2)
+                    elseif PlaceIdPicker.Value == "Solos" then
+                        game:GetService("TeleportService"):Teleport(8560631822, game.Players.LocalPlayer, e2)
+                    end
+                    SemiInstantWin.ToggleButton(false)
+                end)
+            end
+        end
+    })
+    PlaceIdPicker = SemiInstantWin.CreateDropdown({
+        Name = "GameMode",
+        List = {"Squads/5v5/Doubles/Skywars", "30v30", "Solos"},
+        Function = function() end
+    })
+end)
+
+run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
 	local Overlay = GuiLibrary.CreateCustomWindow({

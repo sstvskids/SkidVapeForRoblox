@@ -9465,7 +9465,7 @@ run(function()
     local PlaceIdPicker = {Value = "Squads/5v5/Doubles/Skywars"}
     SemiInstantWin = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
         Name = "SemiInstantWin",
-        HoverText = "Sort of a instant-win (by nebula) (fuck the skids man)",
+        HoverText = "Sort of a instant-win (by nebula) (fuck the skids man especially erco)",
         Function = function(callback)
             if callback then
                 pcall(function()

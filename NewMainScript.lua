@@ -97,7 +97,7 @@ if not shared.VapeDeveloper then
 	end
 end
 
-local function cheatenginecheck()
+pcall(function()
 	if identifyexecutor then
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(cheatengineexecutors) do
@@ -107,10 +107,6 @@ local function cheatenginecheck()
 	        end
 	    end
 	end
-end
-
-pcall(function()
-	cheatenginecheck()
 end)
 
 return loadstring(vapeGithubRequest("MainScript.lua"))()

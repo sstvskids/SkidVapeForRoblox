@@ -41,10 +41,6 @@ local function vapeGithubRequest(scripturl)
 		end)
 		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		if not suc or res == "404: Not Found" then
-			if identifyexecutor and ({identifyexecutor()})[1] == 'Wave' then 
-				displayErrorPopup('Stop using detected garbage, Vape will not work on such garabge until they fix BOTH HttpGet & file functions.')
-				error(res)
-			end
 			displayErrorPopup("Failed to connect to github : vape/"..scripturl.." : "..res)
 			error(res)
 		end
@@ -103,7 +99,7 @@ pcall(function()
 	    for i, v in pairs(cheatengineexecutors) do
 	        if string.find(executor, string.lower(v)) then
 	            displayErrorPopup("Executor not supported, please use a different executor.")
-	            error("Executor not supported, please use a different executor.")
+	            print("Executor not supported, please use a different executor.")
 	        end
 	    end
 	end

@@ -98,7 +98,7 @@ pcall(function()
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(cheatengineexecutors) do
 	        if string.find(executor, string.lower(v)) then
-	            print("Executor not supported, please use a different executor.")
+	            print("Cheat-engine executors are not supported, please try a different executor like Wave.")
 		end
 	    end
 	end

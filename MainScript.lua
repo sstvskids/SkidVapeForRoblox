@@ -1,3 +1,4 @@
+--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.
 repeat task.wait() until game:IsLoaded()
 local GuiLibrary
 local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
@@ -2014,6 +2015,19 @@ local function loadVape()
 	coroutine.resume(saveSettingsLoop)
 	shared.VapeFullyLoaded = true
 end
+
+run(function()
+	local cheatengineexecutors = {"solara", "celery", "feather", "mantiWPF", "octane", "appleware"}
+	if identifyexecutor then
+	    local executor = string.lower(identifyexecutor())
+	    for i, v in pairs(cheatengineexecutors) do
+	        if string.find(executor, string.lower(v)) then
+				local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. Please use a different executor. (Check console for more information)", 60, "assets/WarningNotification.png")
+				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+			end
+	    end
+	end
+end)
 
 if shared.VapeIndependent then
 	task.spawn(loadVape)

@@ -98,7 +98,6 @@ pcall(function()
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(cheatengineexecutors) do
 	        if string.find(executor, string.lower(v)) then
-	            displayErrorPopup("Executor not supported, please use a different executor.")
 	            print("Executor not supported, please use a different executor.")
 		end
 	    end

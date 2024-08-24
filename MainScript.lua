@@ -2016,7 +2016,7 @@ local function loadVape()
 	shared.VapeFullyLoaded = true
 end
 
-run(function()
+task.spawn(function()
 	local cheatengineexecutors = {"solara", "celery", "feather", "mantiWPF", "octane", "appleware"}
 	if identifyexecutor then
 	    local executor = string.lower(identifyexecutor())

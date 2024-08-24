@@ -98,7 +98,7 @@ pcall(function()
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(cheatengineexecutors) do
 	        if string.find(executor, string.lower(v)) then
-	            warn("Executors who fake their UNC, are level 3 or broke a function will NOT be supported. This means that "..identifyexecutor().." will not be supported."
+	            print("Executors who fake their UNC, are level 3 or broke a function will NOT be supported. This means that "..identifyexecutor().." will not be supported."
 		end
 	    end
 	end

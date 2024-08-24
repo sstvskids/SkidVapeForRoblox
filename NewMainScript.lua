@@ -7,6 +7,7 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
+local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Appleware"}
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()
@@ -96,14 +97,20 @@ if not shared.VapeDeveloper then
 	end
 end
 
-local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Appleware"}
-if identifyexecutor then
-    local executor = string.lower(identifyexecutor())
-    for i, v in pairs(cheatengineexecutors) do
-        if string.find(executor, string.lower(v)) then
-            displayErrorPopup("Executor not supported, please use a different executor.")
-            error("Executor not supported, please use a different executor.")
-        end
-    end
+local function cheatenginecheck()
+	if identifyexecutor then
+	    local executor = string.lower(identifyexecutor())
+	    for i, v in pairs(cheatengineexecutors) do
+	        if string.find(executor, string.lower(v)) then
+	            displayErrorPopup("Executor not supported, please use a different executor.")
+	            error("Executor not supported, please use a different executor.")
+	        end
+	    end
+	end
 end
+
+pcall(function()
+	cheatenginecheck()
+end)
+
 return loadstring(vapeGithubRequest("MainScript.lua"))()

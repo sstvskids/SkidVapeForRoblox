@@ -100,9 +100,9 @@ pcall(function()
 	        if string.find(executor, string.lower(v)) then
 	            displayErrorPopup("Executor not supported, please use a different executor.")
 	            print("Executor not supported, please use a different executor.")
-		elseif not then
-		    return loadstring(vapeGithubRequest("MainScript.lua"))()
 		end
 	    end
 	end
 end)
+
+return loadstring(vapeGithubRequest("MainScript.lua"))()

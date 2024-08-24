@@ -96,7 +96,7 @@ if not shared.VapeDeveloper then
 	end
 end
 
-if printidentity() < 6 then
+if printidentity < 6 then
     displayErrorPopup("Executor identity is lower than expected. Please use a different executor for the full experience.")
     error("Executor identity is lower than expected. Please use a different executor for the full experience.")
 end

@@ -97,8 +97,8 @@ if not shared.VapeDeveloper then
 end
 
 if printidentity() < 6 then
-	displayErrorPopup("Executor identity is lower then expected, use a different executor for the full experience.")
-	error("Executor identity is lower then expected, use a different executor for the full experience.")
+    displayErrorPopup("Executor identity is lower than expected. Please use a different executor for the full experience.")
+    error("Executor identity is lower than expected. Please use a different executor for the full experience.")
 end
 local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Appleware"}
 if identifyexecutor then

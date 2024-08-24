@@ -2018,11 +2018,12 @@ end
 
 task.spawn(function()
 	local cheatengineexecutors = {"solara", "celery", "feather", "mantiWPF", "octane", "appleware"}
+	local executorid = identifyexecutor()
 	if identifyexecutor then
-	    local executor = string.lower(identifyexecutor())
+	    local executor = string.lower(executorid)
 	    for i, v in pairs(cheatengineexecutors) do
 	        if string.find(executor, string.lower(v)) then
-				local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. Please use a different executor. (Check console for more information)", 60, "assets/WarningNotification.png")
+				local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. Check console for more information, regarding unsupported executors. ("..executorid..") ", 60, "assets/WarningNotification.png")
 				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
 			end
 	    end

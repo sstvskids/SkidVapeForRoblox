@@ -96,4 +96,18 @@ if not shared.VapeDeveloper then
 	end
 end
 
+if printidentity() < 6 then
+	displayErrorPopup("Executor identity is lower then expected, use a different executor for the full experience.")
+	error("Executor identity is lower then expected, use a different executor for the full experience.")
+end
+local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Appleware"}
+if identifyexecutor then
+    local executor = string.lower(identifyexecutor())
+    for i, v in pairs(cheatengineexecutors) do
+        if string.find(executor, string.lower(v)) then
+            displayErrorPopup("Executor not supported, please use a different executor.")
+            error("Executor not supported, please use a different executor.")
+        end
+    end
+end
 return loadstring(vapeGithubRequest("MainScript.lua"))()

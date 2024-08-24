@@ -7,7 +7,7 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
-local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Appleware"}
+local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware"}
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()
@@ -98,7 +98,7 @@ pcall(function()
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(cheatengineexecutors) do
 	        if string.find(executor, string.lower(v)) then
-	            warn("Executors who fake their UNC, are level 3 or broke a function will NOT be supported. This means that "..identifyexecutor().." will not be supported.")
+	            warn("Executors who fake their UNC (Claim to be 100% UNC), or are level 3 or whom which broke a function will NOT be supported. This means that "..identifyexecutor().." executor will not be supported.")
 		    end
 	    end
 	end

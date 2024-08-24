@@ -6371,18 +6371,6 @@ run(function()
         Default = 1.5
     })
 end)
-
-run(function()
-	local cheatengineexecutors = {"solara", "celery", "feather", "mantiWPF", "octane", "appleware"}
-	if identifyexecutor then
-	    local executor = string.lower(identifyexecutor())
-	    for i, v in pairs(cheatengineexecutors) do
-	        if string.find(executor, string.lower(v)) then
-				warningNotification("Vape", "Executor is not supported. Please use a different executor. (Check console for more information)", 14)
-			end
-	    end
-	end
-end)
 					
 run(function()
 	local FPS = {}

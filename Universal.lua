@@ -353,13 +353,14 @@ run(function()
 	function whitelist:getplayer(arg)
 		if arg == 'default' and self.localprio == 0 then return true end
 		if arg == 'private' and self.localprio == 1 then return true end
+		if arg == 'skidowner' and self.localprio == 2 then return true end
 		if arg and lplr.Name:lower():sub(1, arg:len()) == arg:lower() then return true end
 		return false
 	end
 
 	function whitelist:playeradded(v, joined)
 		if self:get(v) ~= 0 then
-			if self.alreadychecked[v.UserId] then return end
+			if self.alreadychecked[v.UserId] then return end 
 			self.alreadychecked[v.UserId] = true
 			self:hook()
 			if self.localprio == 0 then
@@ -384,7 +385,7 @@ run(function()
 		if self.localprio > 0 and self.said[plr.Name] == nil and msg == 'skidinhaler' and plr ~= lplr then
 			self.said[plr.Name] = true
 			notif('Vape', plr.Name..' is using skid-vxpe!', 60)
-			self.customtags[plr.Name] = {{text = 'VAPE USER', color = Color3.new(1, 1, 0)}}
+			self.customtags[plr.Name] = {{text = 'SKID-VXPE USER', color = Color3.new(1, 1, 0)}}
 			local newent = entityLibrary.getEntity(plr)
 			if newent then entityLibrary.Events.EntityUpdated:Fire(newent) end
 			return true

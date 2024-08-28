@@ -6889,7 +6889,7 @@ if shared.VapeExecuted then
 	GuiLibrary["LoadedAnimation"] = function(enabled)
 		if enabled then
 			--no cache but its ran 1 time so idc
-			GuiLibrary.CreateNotification("Finished Loading", inputService.TouchEnabled and GuiLibrary["GUIKeybind"] == "RightShift" and "Press the button in the top right to open GUI" or "Press "..string.upper(GuiLibrary["GUIKeybind"]).." to open GUI", 5)
+			GuiLibrary.CreateNotification("Skid-Vxpe has loaded", inputService.TouchEnabled and GuiLibrary["GUIKeybind"] == "RightShift" and "Press the button in the top right to open GUI" or "Press "..string.upper(GuiLibrary["GUIKeybind"]).." to open GUI", 5)
 		end
 	end
 
@@ -6899,7 +6899,7 @@ if shared.VapeExecuted then
 	if inputService.TouchEnabled then
 		local button = Instance.new("TextButton")
 		button.Position = UDim2.new(1, -30, 0, 0)
-		button.Text = "Vape"
+		button.Text = "Skid-Vxpe"
 		button.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
 		button.TextColor3 = Color3.new(1, 1, 1)
 		button.Size = UDim2.new(0, 30, 0, 20)

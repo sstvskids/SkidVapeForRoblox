@@ -7,7 +7,7 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
-local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware"}
+local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova"}
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()
@@ -99,7 +99,13 @@ pcall(function()
 	    for i, v in pairs(cheatengineexecutors) do
 	        if string.find(executor, string.lower(v)) then
 	            warn("Executors who fake their UNC (Claim to be 100% UNC), or are level 3 or whom which broke a function will NOT be supported. This means that "..identifyexecutor().." executor will not be supported.")
-		    end
+				game:GetService("StarterGui"):SetCore("SendNotification", {
+					Title = "Skid-Vxpe",
+					Text = ""..identifyexecutor()." not supported! Check console for more information, or wait until a warning appears for more info!".,
+					Duration = 10,
+					Icon = "rbxassetid://76015764869546"
+				})					
+			end
 	    end
 	end
 end)

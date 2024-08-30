@@ -2036,4 +2036,5 @@ if shared.VapeIndependent then
 	return GuiLibrary
 else
 	loadVape()
+	print("Skid-Vxpe | MainScript.lua")
 end

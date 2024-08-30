@@ -9780,3 +9780,4 @@ task.spawn(function()
 end)
 
 warningNotification("Vape", "Skid-Ware "..SkidWareVersion.." has loaded.", 4)
+print("Skid-Vxpe | BEDWARS.lua")

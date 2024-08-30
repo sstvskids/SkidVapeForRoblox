@@ -7,7 +7,7 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
-local cheatengineexecutors = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite"}
+local cheatengineexecutors = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/executordetector.lua", true))()
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()

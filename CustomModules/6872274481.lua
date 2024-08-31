@@ -9163,7 +9163,7 @@ run(function()
                     repeat
                         task.wait(Delay.Value)
                         if DragonSound.Enabled then
-                            game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.DragonBreath:FireServer(" ")
+                            game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.DragonBreath:FireServer(" ") -- i think i can make this better, lets see
                         end
                         if ConfettiPopper.Enabled then
                             game:GetService("ReplicatedStorage")["events-@easy-games/game-core:shared/game-core-networking@getEvents.Events"].useAbility:FireServer("PARTY_POPPER")
@@ -9447,169 +9447,85 @@ run(function()
         Function = function() end
     })
 end)
+
 run(function()
     local AutoUpgradeStats = {Enabled = false}
-    local replicatedStorage = game:GetService("ReplicatedStorage")
-    local netManaged = replicatedStorage.rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged
-    local isRunning = false  
+    local netManaged = game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged
 
     AutoUpgradeStats = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-        Name = "AutoUpgradeStats/TeamLevel", -- erco you better not fucking paste this one too 🤦
+        Name = "AutoUpgradeStats/TeamLevel",
         Function = function(callback)
-            isRunning = callback
-
-            if callback then
-		AutoUpgradeStats.ToggleButton(false)																																							
+            if callback then																																					
                 local upgrades = {
                     {"SPEED", 1}, {"SPEED", 2}, {"SPEED", 3},
                     {"DAMAGE", 1}, {"DAMAGE", 2}, {"DAMAGE", 3},
                     {"ARMOR", 1}, {"ARMOR", 2}, {"ARMOR", 3},
                     {"DESTRUCTION", 1}, {"DESTRUCTION", 2}, {"DESTRUCTION", 3}
                 }
-
                 local teamLevels = {3, 6, 5, 4, 7, 8, 9, 10, 11, 1, 2, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
-                repeat
-                    for _, upgrade in ipairs(upgrades) do
+                repeat task.wait()
+                    for i,v in pairs(upgrades) do
                         netManaged.RequestUpgradeStat:InvokeServer(unpack(upgrade))
                     end
 
-                    for _, level in ipairs(teamLevels) do
+                    for i,v in pairs(teamLevels) do
                         netManaged.RequestPurchaseTeamLevel:InvokeServer(level)
                     end
-
-                    wait(0.1)
-                until isRunning == false
+                until not AutoUpgradeStats.Enabled
             end
         end,
-        HoverText = "e"
+        HoverText = "Automatically upgrades your stats"
     })
 end)
-run(function()
-	local insta = {Enabled = false}
-	local running = false
 
-	insta = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+run(function()
+	local SkyScytheInstakill = {Enabled = false}
+	SkyScytheInstakill = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
 		Name = "SkyScytheInstakill",
 		Function = function(callback)
 			if callback then
-				if not running then
-					running = true
-					spawn(function()
-						while running do
-							game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.SkyScytheSpin:FireServer()
-							wait(0.1)
+				task.spawn(function()
+					repeat task.wait()
+						local item = getItemNear("sky_scythe")
+						if item and bedwars.CombatController then
+							bedwars.Client:Get(bedwars.SkyScytheSpin):SendToServer({})
 						end
-					end)
-				end
-			else
-				running = false
+					until not insta.Enabled
+				end)
 			end
 		end
 	})
 end)
-local controlmodule = require(lplr.PlayerScripts.PlayerModule).controls
 
-local oldmove
-local BetterBreadCrumbs = {Enabled = false}
-local BetterBreadCrumbsMode = {Value = "Optimized"}
-local lastDotTime = 0
-local dotInterval = 0.2
-local dotLifetime = 0.5
-local dotColor = Color3.fromRGB(0, 0, 255)
+--[[run(function()
+    local Desync = {Enabled = false}
+    local originalpos = lplr.HumanoidRootPart.Position
+    local DesyncDelay = {Value = 0.08}
 
-local function createDot(position, color, lifetime)
-    local part = Instance.new("Part")
-    part.Shape = Enum.PartType.Ball
-    part.Size = Vector3.new(2, 2, 2)
-    part.Position = position
-    part.Anchored = true
-    part.CanCollide = false
-    part.Color = color
-    part.Material = Enum.Material.Neon
-    part.Parent = workspace
-
-    game:GetService("Debris"):AddItem(part, lifetime)
-end
-
-BetterBreadCrumbs = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
-    Name = "BetterBreadcrumbs",
-    Function = function(callback)
-        if callback then
-            BetterBreadCrumbs.connection = game:GetService("RunService").RenderStepped:Connect(function()
-                if lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart") then
-                    local rootPart = lplr.Character.HumanoidRootPart
-                    if rootPart.Velocity.Magnitude > 0.1 then
-                        local currentTime = tick()
-                        if currentTime - lastDotTime >= dotInterval then
-                            local groundPosition = Vector3.new(rootPart.Position.X, rootPart.Position.Y - rootPart.Size.Y / 2 - 0.15, rootPart.Position.Z)
-                            createDot(groundPosition, dotColor, dotLifetime)
-                            lastDotTime = currentTime
-                        end
-                    end
-                end
-            end)
-        else
-            if BetterBreadCrumbs.connection then
-                BetterBreadCrumbs.connection:Disconnect()
-                BetterBreadCrumbs.connection = nil
-            end
-        end
-    end
-})
-run(function()
-    local BedTP = {Enabled = false}
-    local TweenService = game:GetService("TweenService")
-    local lplr = game.Players.LocalPlayer
-
-    local function findNearestBed()
-        local nearestBed = nil
-        local minDistance = math.huge
-
-        for _, v in pairs(game.Workspace:GetDescendants()) do
-            if v.Name:lower() == "bed" and v:FindFirstChild("Blanket") and v.Blanket.BrickColor ~= lplr.Team.TeamColor then
-                local distance = (v.Position - lplr.Character.HumanoidRootPart.Position).magnitude
-                if distance < minDistance then
-                    nearestBed = v
-                    minDistance = distance
-                end
-            end
-        end
-
-        return nearestBed
-    end
-
-    local function tweenToNearestBed()
-        local nearestBed = findNearestBed()
-        if nearestBed then
-            lplr.Character.Humanoid.Health = 0
-            lplr.CharacterAdded:Wait()
-
-            local character = lplr.Character or lplr.CharacterAdded:Wait()
-            local rootPart = character:WaitForChild("HumanoidRootPart")
-
-            local targetPosition = nearestBed.Position + Vector3.new(0, 5, 0)
-            local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-            local tween = TweenService:Create(rootPart, tweenInfo, {CFrame = CFrame.new(targetPosition)})
-            tween:Play()
-
-            tween.Completed:Wait()
-            rootPart.CFrame = nearestBed.CFrame + Vector3.new(0, 5, 0)
-        end
-    end
-
-    BedTP = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
-        Name = "BedTP",
+    Desync = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+        Name = "Desync",
         Function = function(callback)
             if callback then
-                BedTP.ToggleButton(false)
-                tweenToNearestBed()
+                task.spawn(function()
+                    repeat task.wait(DesyncDelay.Value)
+                        local targetPos = originalpos - Vector3.new(0, 0, 0.07)
+                        local tweenInfo = TweenInfo.new(DesyncDelay.Value, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+                        local tween = tweenService:Create(lplr.HumanoidRootPart, tweenInfo, {Position = targetPos})
+                        tween:Play()
+					until not Desync.Enabled
+                end)
             end
         end
     })
-end)
-																																						
-																																		
+    DesyncDelay = Desync.CreateSlider({
+        Name = "Range",
+        Min = 0,
+        Max = 1,
+        Default = 0.08,
+        Function = function() end
+    })
+end)]]
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil

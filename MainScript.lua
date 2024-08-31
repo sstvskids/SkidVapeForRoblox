@@ -2017,7 +2017,7 @@ local function loadVape()
 end
 
 task.spawn(function()
-	local cheatengineexecutors = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/executordetector.lua", true))()
+	local cheatengineexecutors = loadstringvapeGithubRequest("Libraries/ExecutorDetection.lua"))()
 	local executorid = identifyexecutor()
 	if identifyexecutor then
 	    local executor = string.lower(executorid)

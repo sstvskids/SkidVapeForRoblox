@@ -7,7 +7,7 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
-local cheatengineexecutors = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/executordetector.lua", true))()
+local cheatengineexecutors = loadstring(vapeGithubRequest("Libraries/ExecutorDetection.lua"))()
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()
@@ -110,5 +110,5 @@ pcall(function()
 	end
 end)
 
-return loadstring(vapeGithubRequest("MainScript.lua"))()
 print("Skid-Vxpe | NewMainScript.lua")
+return loadstring(vapeGithubRequest("MainScript.lua"))()

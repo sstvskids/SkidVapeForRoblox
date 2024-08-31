@@ -9275,7 +9275,7 @@ run(function()
 								end
 							end
 						end
-					end
+					until not BridgeDuelsExploit.Enabled
 				end)
 			end
 		end,

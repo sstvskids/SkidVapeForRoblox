@@ -9245,15 +9245,15 @@ run(function()
 						if bedwars.AbilityController:canUseAbility("electrify_jellyfish") then
 							repeat task.wait(0.1)
 								bedwars.AbilityController:useAbility("electrify_jellyfish")
-							until (not JellyfishExploit.Enabled)
+							until not JellyfishExploit.Enabled
 						end
 					end)
 				else
 					warningNotification("Vape", "You need to be in a match with Marina to use this ability", 4)
 					JellyfishExploit.ToggleButton(false)
 				end
-            end
-        end, 
+			end
+		end, 
 		HoverText = "Requires Marina kit to use"
 	})
 end)

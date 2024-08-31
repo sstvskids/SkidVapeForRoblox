@@ -2,7 +2,7 @@
 nextgen :tm:
 
 # modules skid-vape has:
-# reinject, better targethud, skid-roaster, better firewall bypass, antihit, melodyexploit (catv5, i got perms dw), raycast fucker (under gamefixer), removekillfeed, remotetrollage, CustomPacks, AnimeImages, watermark, hostpanelexploit
+# reinject, better targethud, skid-roaster, better firewall bypass, antihit, melodyexploit (catv5, i got perms dw), raycast fucker (under gamefixer), removekillfeed, remotetrollage, CustomPacks, AnimeImages, watermark, hostpanelexploit (clientsided)
 
 # in fixing:
 # head-modifications

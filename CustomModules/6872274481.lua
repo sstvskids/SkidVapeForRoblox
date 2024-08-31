@@ -9231,6 +9231,59 @@ run(function()
 end)
 
 run(function()
+	local JellyfishExploit = {Enabled = false}
+	JellyfishExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+		Name = "MarinaJellyfishExploit",
+		Function = function(callback)
+			if callback then
+				if store.equippedKit == "marina" then
+					task.spawn(function()
+						if not bedwars.AbilityController:canUseAbility("electrify_jellyfish") then
+							repeat task.wait() until bedwars.AbilityController:canUseAbility("electrify_jellyfish") or not JellyfishExploit.Enabled
+							task.wait(0.1)
+						end
+						if bedwars.AbilityController:canUseAbility("electrify_jellyfish") then
+							repeat task.wait(0.1)
+								bedwars.AbilityController:useAbility("electrify_jellyfish")
+							until (not JellyfishExploit.Enabled)
+						end
+					end)
+				else
+					warningNotification("Vape", "You need to be in a match with Marina to use this ability", 4)
+					JellyfishExploit.ToggleButton(false)
+				end
+            end
+        end, 
+		HoverText = "Requires Marina kit to use"
+	})
+end)
+
+run(function()
+	local BridgeDuelsExploit = {Enabled = false}
+	BridgeDuelsExploit = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+        Name = "BridgeDuelsExploit",
+        Function = function(callback)
+			if callback then
+				task.spawn(function()
+					repeat task.wait()
+						for i,v in workspace:GetDescendants() do
+							if v:IsA('BasePart') then
+								for i,v in v:GetChildren() do
+									if v:IsA('TouchTransmitter') then
+										firetouchinterest(humanoidRootPart, v.Parent, 1)
+									end
+								end
+							end
+						end
+					end
+				end)
+			end
+		end,
+		HoverText = "Automatically wins BridgeDuels for you"
+	})
+end)
+
+run(function()
     local SkidRoaster = {Enabled = false}
     local MatchCheck = {Enabled = false}
     local SkidDelay = {Value = 5}

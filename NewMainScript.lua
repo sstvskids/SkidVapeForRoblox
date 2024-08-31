@@ -110,4 +110,5 @@ pcall(function()
 	end
 end)
 
+print("Skid-Vxpe | NewMainScript.lua")
 return loadstring(vapeGithubRequest("MainScript.lua"))()

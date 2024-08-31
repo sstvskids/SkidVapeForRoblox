@@ -9230,7 +9230,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
 	local JellyfishExploit = {Enabled = false}
 	JellyfishExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
 		Name = "MarinaJellyfishExploit",
@@ -9256,7 +9256,7 @@ run(function()
 		end, 
 		HoverText = "Requires Marina kit to use"
 	})
-end)
+end)]]
 
 run(function()
 	local BridgeDuelsExploit = {Enabled = false}

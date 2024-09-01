@@ -9094,60 +9094,118 @@ run(function()
     })
 end)
 
---[[run(function()
+run(function()
     local AntiDeath = {Enabled = false}
-    local HealthValue = {Value = 50}
-    local YValue = {Value = 650}
-
-    local player = game.Players.LocalPlayer
-    local character = player.Character
-    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
-    local humanoid = character and character:FindFirstChild("Humanoid")
-	local ActionPerformed = false
-
-	local function performAntiDeath()
-		if not AntiDeath.Enabled then return end
-		if lplr.Character:GetAttribute("Health") <= (lplr.Character:GetAttribute("MaxHealth") - (100 - HealthValue.Value)) and not ActionPerformed then
-			humanoidRootPart.Velocity = Vector3.new(0, YValue.Value, 0)
-			ActionPerformed = true
-		end
-		task.wait(6.75)
-		ActionPerformed = false
-	end
-
+    local JumpBoostMode = {Value = "Velocity"}
+    local AntiDeathTrigger = {Value = 50}
+    local AntiDeathVelocity = {Value = 35}
+    local NotificationDuration = {Value = 5}
+    local AntiDeathCframe = {Value = 35}
+    local AntiDeathTween = {Value = 35}
+    local AutoDisable = {Enabled = true}
+    local AntiDeathNotification = {Enabled = true};
+    local AntiDeathThread;
+    local AntiDeathFunctions = {
+        Velocity = function()
+            lplr.Character.PrimaryPart.Velocity = Vector3.new(0, AntiDeathVelocity.Value, 0)
+        end,
+        CFrame = function()
+            lplr.Character.PrimaryPart.CFrame = CFrame.new(0, AntiDeathCframe.Value, 0)
+        end,
+        Tween = function()
+            tweenService:Create(character.HumanoidRootPart, TweenInfo.new(0.49, Enum.EasingStyle.Linear), {
+                CFrame = lplr.Character.PrimaryPart.CFrame + Vector3.new(0, AntiDeathTween.Value, 0)
+            }):Play()
+        end,
+        InfiniteFly = function()
+            local infinitefly = GuiLibrary.ObjectsThatCanBeSaved.InfiniteFlyOptionsButton.Api;
+            if not infinitefly.Enabled then 
+                infinitefly.ToggleButton()
+            end;
+            repeat task.wait() until entityLibrary.isAlive and lplr.Character.Humanoid.Health >= AntiDeathTrigger.Value or not entityLibrary.isAlive;
+            if AutoDisable.Enabled and infinitefly.Enabled and workspace:Raycast(lplr.Character.PrimaryPart.Position, Vector3.new(0, -2000, 0), bedwarsStore and bedwarsStore.blockRaycast or store.blockRaycast) then 
+                infinitefly.ToggleButton()
+            end; 
+        end
+    }
     AntiDeath = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
         Name = "AntiDeath",
-        HoverText = "Won't make you die (promise)",
-        Function = function(callback)
-			if callback then
-				repeat
-					task.wait()
-					performAntiDeath()
-				until (not AntiDeath.Enabled)
-			else
-				ActionPerformed = false
-			end
+        HoverText = "Automatically prevents you from dying. (by mont, he gave me perms 💋)",
+       Function = function(callback)
+            if callback then
+                AntiDeathThread = task.spawn(function()
+                    repeat 
+                        task.wait()
+                        if entityLibrary.isAlive and lplr.Character.Humanoid.Health < AntiDeathTrigger.Value then
+                            pcall(AntiDeathFunctions[JumpBoostMode.Value])
+                        end
+                    until not AntiDeath.Enabled
+                end)
+            else
+                pcall(task.cancel, AntiDeathThread)
+            end
         end
     })
-    HealthValue = AntiDeath.CreateSlider({
-        Name = "Health",
+    JumpBoostMode = AntiDeath.CreateDropdown({
+        Name = "Mode",
+        List = {
+            "Velocity",
+            "CFrame",
+            "Tween",
+            "InfiniteFly",
+        },
+        HoverText = "Mode to prevent death.",
+        Function = function() end,
+    })
+    AntiDeathTrigger = AntiDeath.CreateSlider({
+        Name = "Health Trigger",
         Min = 10,
-        Max = 60,
-        Default = 30,
-        Function = function(val)
-            HealthValue.Value = val
-        end
+        Max = 100,
+        Function = function() end,
+        Default = 50
     })
-    YValue = AntiDeath.CreateSlider({
-        Name = "YValue",
-        Min = 200,
-        Max = 560,
-        Default = 560,
-        Function = function(val)
-            YValue.Value = val
-        end
+    AutoDisable = AntiDeath.CreateSlider({
+        Name = "AutoDisable",
+        Min = 10,
+        Max = 100,
+        Function = function() end,
+        Default = 50
     })
-end)]]
+    AntiDeathVelocity = AntiDeath.CreateSlider({
+        Name = "Velocity",
+        Min = 1,
+        Max = 661,
+        Function = function() end,
+        Default = 35
+    })
+    AntiDeathCframe = AntiDeath.CreateSlider({
+        Name = "Cframe",
+        Min = 1,
+        Max = 1500,
+        Function = function() end,
+        Default = 35
+    })
+    AntiDeathTween = AntiDeath.CreateSlider({
+        Name = "Tween",
+        Min = 1,
+        Max = 1500,
+        Function = function() end,
+        Default = 1000
+    })
+    AntiDeathNotification = AntiDeath.CreateToggle({
+        Name = "Notification",
+        Default = true,
+        Function = function(callback) end
+    })
+    NotificationDuration = AntiDeath.CreateSlider({
+       	Name = "Duration",
+        HoverText = "Notification duration time",
+        Min = 1,
+        Max = 10,
+        Function = function() end,
+        Default = 5
+    })
+end)
 
 run(function()
     local Annoyer = {Enabled = false}

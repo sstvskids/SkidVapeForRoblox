@@ -8,5 +8,5 @@ reinject, better targethud, skid-roaster, better firewall bypass, antihit, melod
 head-modifications, MarinaKitExploit
 
 # Note: Even though this is open source you **cannot** skid from it
-# Devs: @nebula, @stav, @skiddedruck, @qwertyui
+# Devs: @nebula, @stav, @skiddedruck, @qwertyui, @mont
 credits to all of these amazing people for helping out with this project!

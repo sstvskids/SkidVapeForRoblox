@@ -1,4 +1,3 @@
---This watermark is used to delete the file if its cached, remove it to make the file persist after commits.
 repeat task.wait() until game:IsLoaded()
 local GuiLibrary
 local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
@@ -1954,8 +1953,18 @@ GeneralSettings.CreateButton2({
 	Name = "REINJECT",
 	Function = function(calling)
 		GuiLibrary.SelfDestruct();
-		loadfile("vape/NewMainScript.lua")()
+		loadfile("vape/MainScript.lua")()
 	end
+})
+local FPSSlider = {Value = 9999}
+FPSSlider = GeneralSettings.CreateSlider({
+	Name = "FPS-Cap",
+	Function = function(calling)
+        setfpscap(FPSSlider.Value)
+    end,
+	Min = 60,
+	Max = 9999,
+	Default = 9999
 })
 
 local function loadVape()

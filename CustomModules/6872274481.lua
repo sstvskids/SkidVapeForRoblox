@@ -2776,6 +2776,12 @@ run(function()
 		Name = "InfiniteFly",
 		Function = function(callback)
 			if callback then
+				if Desync.Enabled then
+                    			warningNotification("InfiniteFly", "Desync is enabled, using InfiniteFly will cause interference!", 6)
+                    			InfiniteFly.ToggleButton(false)
+                    			return
+                		end
+
 				if not entityLibrary.isAlive then
 					disabledproper = true
 				end
@@ -9556,34 +9562,37 @@ run(function()
 	})
 end)
 
---[[run(function()
-    local Desync = {Enabled = false}
-    local originalpos = lplr.HumanoidRootPart.Position
-    local DesyncDelay = {Value = 0.08}
+run(function()
+    local Desync = {Enabled = false};
+    local root = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart");
+    local fakeLatency = {Value = 0.00017};
+    local currentPos;
 
     Desync = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
         Name = "Desync",
         Function = function(callback)
             if callback then
                 task.spawn(function()
-                    repeat task.wait(DesyncDelay.Value)
-                        local targetPos = originalpos - Vector3.new(0, 0, 0.07)
-                        local tweenInfo = TweenInfo.new(DesyncDelay.Value, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
-                        local tween = tweenService:Create(lplr.HumanoidRootPart, tweenInfo, {Position = targetPos})
-                        tween:Play()
-					until not Desync.Enabled
+                    repeat task.wait()
+                        currentPos = root.Position + Vector3.new(0, 0, -0.0017);
+                    until not Desync.Enabled
+                    repeat task.wait(fakeLatency.Value + 0.004)
+                        if not Desync.Enabled then return end
+                        task.wait(fakeLatency.Value + 0.004)
+                        root.CFrame = CFrame.new(currentPos)
+                    until not Desync.Enabled
                 end)
             end
         end
     })
-    DesyncDelay = Desync.CreateSlider({
-        Name = "Range",
+    fakeLatency = Desync.CreateSlider({
+        Name = "Delay",
         Min = 0,
-        Max = 1,
-        Default = 0.08,
+        Max = 0.001,
+        Default = 0.00017,
         Function = function() end
     })
-end)]]
+end)
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil

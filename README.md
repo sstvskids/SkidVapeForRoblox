@@ -10,3 +10,4 @@ head-modifications, MarinaKitExploit
 # Note: Even though this is open source you **cannot** skid from it
 # Devs: @nebula, @stav, @skiddedruck, @qwertyui, @mont
 credits to all of these amazing people for helping out with this project!
+also, we DO NOT log you btw ;)

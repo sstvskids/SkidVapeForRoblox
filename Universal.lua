@@ -6448,7 +6448,7 @@ run(function()
 		animefunctions[AnimeSelection.Value]()
 	end
 
-    AnimeImages = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+    AnimeImages = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
         Name = "AnimeImages",
         Function = function(callback) 
             if callback then
@@ -6472,6 +6472,120 @@ run(function()
 		end,
 		List = {"Waifu1", "Waifu2"}
 	})	
+end)
+
+run(function()
+    local Desync = {Enabled = false};
+    local FakeLatencyDelay = {Value = 0.00017};
+    local currentPos;
+    local DesyncDistance = {Value = 0.00017};
+    
+    getgenv().getroot = function()
+        return lplr.character.RootPart;
+    end
+
+    Desync = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+        Name = "Desync",
+        Function = function(callback)
+            if callback then
+                task.spawn(function()
+                    repeat task.wait(0.07)
+						local root = getroot();
+						currentPos = root.Position + Vector3.new(0, 0, -DesyncDistance.Value);
+						task.wait(FakeLatencyDelay.Value + 0.004);
+						root.CFrame = CFrame.new(currentPos);
+					until not Desync.Enabled
+                end)
+            end
+        end
+    })
+    FakeLatencyDelay = Desync.CreateSlider({
+        Name = "Delay",
+        Min = 0,
+        Max = 0.001,
+        Default = 0.00017,
+        Function = function() end
+    })
+    DesyncDistance = Desync.CreateSlider({
+        Name = "DesyncDistance",
+        Min = 0,
+        Max = 0.05,
+        Default = 0.00017,
+        Function = function() end
+    })
+end)
+
+run(function()
+    local AntiCrash = {Enabled = false};
+    local MaxPing = {Value = 555};
+    local MinFPS = {Value = 30};
+    local WarningDuration = {Value = 6};
+    local WarningMethod = {Value = "Vape"};
+    local PingCallback = lplr:GetNetworkPing() * 1000;
+	local FPSCounter = workspace:GetRealPhysicsFPS();
+    AntiCrash = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+        Name = "AntiCrash",
+        Function = function(callback)
+            if callback then
+                task.spawn(function()
+                    repeat task.wait()
+                        if not AntiCrash.Enabled then return end
+                        if workspace:GetRealPhysicsFPS() < MinFPS.Value then
+                            if WarningMethod.Value == "Vape" then
+                                warningNotification("Vape", "FPS is below "..MinFPS.Value.." FPS. FPS: "..FPSCounter.."", WarningDuration.Value)
+								task.wait(WarningDuration.Value)
+                            elseif WarningMethod.Value == "PrintWarn" then
+                                warn("FPS is below"..MinFPS.Value.." FPS.")
+								task.wait(WarningDuration.Value)
+                            elseif WarningMethod.Value == "Kick" then
+                                lplr:Kick("FPS is below"..MinFPS.Value.." FPS.")
+								task.wait(WarningDuration.Value)
+                            end
+                        end
+                        if PingCallback > MaxPing.Value then
+                            if WarningMethod.Value == "Vape" then
+                                warningNotification("Vape", "Ping is above "..MaxPing.Value.." ms. MS: "..math.ceil(PingCallback).."", WarningDuration.Value)
+								task.wait(WarningDuration.Value)
+                            elseif WarningMethod.Value == "PrintWarn" then
+                                warn("Ping is above"..MaxPing.Value.." ms.")
+								task.wait(WarningDuration.Value)
+                            elseif WarningMethod.Value == "Kick" then
+                                lplr:Kick("Ping is above"..MaxPing.Value.." ms.")
+								task.wait(WarningDuration.Value)
+                            end
+                        end
+                    until not AntiCrash.Enabled
+                end)
+            end
+        end,
+        HoverText = "Attempts to prevent you from crashing in bad servers.\nNotifies you in real-time about FPS/Ping issues."
+    })
+    MaxPing = AntiCrash.CreateSlider({
+		Name = "MaxPing",
+		Min = 500,
+		Max = 2000,
+		Function = function() end,
+		Default = 555
+	})
+    MinFPS = AntiCrash.CreateSlider({
+		Name = "MinFPS",
+		Min = 0,
+		Max = 35,
+		Function = function() end,
+		Default = 30
+	})
+    WarningMethod = AntiCrash.CreateDropdown({
+		Name = "WarningMethod",
+		List = {"Vape", "PrintWarn", "Kick"},
+		Function = function() end
+	})
+    WarningDuration = AntiCrash.CreateSlider({
+		Name = "WarningDuration",
+		Min = 1,
+		Max = 10,
+		Function = function() end,
+		Default = 5
+	})
 end)
 					
 run(function()

@@ -9512,7 +9512,7 @@ run(function()
     })
 end)
 
-run(function()
+--[[run(function()
     local AutoUpgradeStats = {Enabled = false}
     local netManaged = game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged
 
@@ -9541,7 +9541,7 @@ run(function()
         end,
         HoverText = "Automatically upgrades your stats"
     })
-end)
+end)]]
 
 run(function()
 	local SkyScytheInstakill = {Enabled = false}

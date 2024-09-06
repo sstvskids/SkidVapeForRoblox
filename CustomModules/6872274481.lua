@@ -20,10 +20,10 @@ local vapeEvents = setmetatable({}, {
 })
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
-local SkidWareVersion = "Next-Gen"
 
 local bedwars = {}
 local store = {
+	version = "Next-Gen",
 	attackReach = 0,
 	attackReachUpdate = tick(),
 	blocks = {},
@@ -9881,5 +9881,5 @@ task.spawn(function()
 	end
 end)
 
-warningNotification("Vape", "Skid-Ware "..SkidWareVersion.." has loaded.", 4)
+warningNotification("Vape", "Skid-Ware "..store.version.." has loaded.", 4)
 print("Skid-Vxpe | BEDWARS.lua")

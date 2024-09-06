@@ -19,7 +19,9 @@ local bedwars = {}
 local getfunctions
 local origC0 = nil
 local collectionservice = game:GetService("CollectionService")
-local SkidWareVersion = "Next-Gen"
+local skidstore = {
+	version = "Next-Gen"
+}
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("vape/"..scripturl)
@@ -1447,5 +1449,5 @@ task.spawn(function()
 	end)
 end)
 
-warningNotification("Vape", "Skid-Ware "..SkidWareVersion.." has loaded.", 4)
+warningNotification("Vape", "Skid-Ware "..skidstore.version.." has loaded.", 4)
 print("Skid-Vxpe | BEDWARSlobby.lua")

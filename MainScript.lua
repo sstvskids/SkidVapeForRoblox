@@ -2026,7 +2026,15 @@ local function loadVape()
 	shared.VapeFullyLoaded = true
 end
 
-cheatenginecheck()
+if identifyexecutor then
+	local executor = string.lower(identifyexecutor())
+    for i, v in pairs(skidstore.cheatengine) do
+		if string.find(executor, string.lower(v)) then
+			local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)
+			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		end
+	end
+end
 
 if shared.VapeIndependent then
 	task.spawn(loadVape)

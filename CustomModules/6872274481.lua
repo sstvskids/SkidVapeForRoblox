@@ -9881,5 +9881,5 @@ task.spawn(function()
 	end
 end)
 
-skidstore.VersionCheck()
+skidstore.versioncheck()
 print("Skid-Vxpe | BEDWARS.lua")

@@ -19,7 +19,7 @@ skidstore.cheatenginecheck = function()
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(skidstore.cheatengine) do
 	        if string.find(executor, string.lower(v)) then
-				warningNotification("Vape", "Executor is not supported. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60, "assets/WarningNotification.png")		
+				warningNotification("Vape", "Executor is not supported. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)		
 			end
 	    end
 	end

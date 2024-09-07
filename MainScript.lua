@@ -2026,7 +2026,7 @@ local function loadVape()
 	shared.VapeFullyLoaded = true
 end
 
-skidstore.cheatenginecheck()
+cheatenginecheck()
 
 if shared.VapeIndependent then
 	task.spawn(loadVape)

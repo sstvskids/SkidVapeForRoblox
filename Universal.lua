@@ -6593,6 +6593,7 @@ run(function()
     local ChatSay = ""
     local FastMessages = {Value = 999}
     local Players = game:GetService("Players")
+    local ChatSayPhrases = {ObjectList = {}}
     
     local Player = Players.LocalPlayer
     local PlayerGui = Player.PlayerGui
@@ -6651,7 +6652,7 @@ run(function()
             end
         end
     })
-    local ChatSayPhrases = ChatFreezer.CreateTextList({
+    ChatSayPhrases = ChatFreezer.CreateTextList({
         Name = "ChatFreezeMessage",
         TempText = "phrase (freeze)",
     })

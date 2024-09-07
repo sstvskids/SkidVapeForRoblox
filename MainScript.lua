@@ -17,6 +17,7 @@ local isfile = isfile or function(file)
 end
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
 local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 0 end
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 local vapeAssetTable = {
 	["vape/assets/AddItem.png"] = "rbxassetid://13350763121",
 	["vape/assets/AddRemoveIcon1.png"] = "rbxassetid://13350764147",
@@ -2026,11 +2027,9 @@ local function loadVape()
 end
 
 task.spawn(function()
-local cheatengineexecutors = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/ExecutorDetection.lua", true))()
-	local executorid = identifyexecutor()
 	if identifyexecutor then
-	    local executor = string.lower(executorid)
-	    for i, v in pairs(cheatengineexecutors) do
+	    local executor = string.lower(identifyexecutor())
+	    for i, v in pairs(skidstore.cheatengine) do
 	        if string.find(executor, string.lower(v)) then
 				local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. Check console for more information, regarding unsupported executors. ("..executorid..") ", 60, "assets/WarningNotification.png")
 				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)

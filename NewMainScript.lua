@@ -7,7 +7,7 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
-local cheatengineexecutors = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/ExecutorDetection.lua", true))()
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()
@@ -96,7 +96,7 @@ end
 pcall(function()
 	if identifyexecutor then
 	    local executor = string.lower(identifyexecutor())
-	    for i, v in pairs(cheatengineexecutors) do
+	    for i, v in pairs(skidstore.cheatengine) do
 	        if string.find(executor, string.lower(v)) then
 	            warn("Executors who fake their UNC (Claim to be 100% UNC), or are level 3 or whom which broke a function will NOT be supported. This means that "..identifyexecutor().." executor will not be supported.")
 				game:GetService("StarterGui"):SetCore("SendNotification", {

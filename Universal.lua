@@ -6522,7 +6522,7 @@ run(function()
     local WarningDuration = {Value = 6};
     local WarningMethod = {Value = "Vape"};
     local PingCallback = lplr:GetNetworkPing() * 1000;
-	local FPSCounter = workspace:GetRealPhysicsFPS();
+    local FPSCounter = workspace:GetRealPhysicsFPS();
     AntiCrash = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
         Name = "AntiCrash",
         Function = function(callback)
@@ -6532,7 +6532,7 @@ run(function()
                         if not AntiCrash.Enabled then return end
                         if workspace:GetRealPhysicsFPS() < MinFPS.Value then
                             if WarningMethod.Value == "Vape" then
-                                warningNotification("Vape", "FPS is below "..MinFPS.Value.." FPS. FPS: "..FPSCounter.."", WarningDuration.Value)
+                                warningNotification("Vape", "FPS is below "..MinFPS.Value.." FPS. FPS: "..math.ceil(FPSCounter), WarningDuration.Value)
 								task.wait(WarningDuration.Value)
                             elseif WarningMethod.Value == "PrintWarn" then
                                 warn("FPS is below"..MinFPS.Value.." FPS.")
@@ -6544,7 +6544,7 @@ run(function()
                         end
                         if PingCallback > MaxPing.Value then
                             if WarningMethod.Value == "Vape" then
-                                warningNotification("Vape", "Ping is above "..MaxPing.Value.." ms. MS: "..math.ceil(PingCallback).."", WarningDuration.Value)
+                                warningNotification("Vape", "Ping is above "..MaxPing.Value.." ms. MS: "..math.ceil(PingCallback), WarningDuration.Value)
 								task.wait(WarningDuration.Value)
                             elseif WarningMethod.Value == "PrintWarn" then
                                 warn("Ping is above"..MaxPing.Value.." ms.")

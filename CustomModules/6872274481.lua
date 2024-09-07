@@ -9563,38 +9563,6 @@ run(function()
 end)
 
 run(function()
-    local Desync = {Enabled = false};
-    local root = lplr.Character and lplr.Character:FindFirstChild("HumanoidRootPart");
-    local fakeLatency = {Value = 0.00017};
-    local currentPos;
-
-    Desync = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-        Name = "Desync",
-        Function = function(callback)
-            if callback then
-                task.spawn(function()
-                    repeat task.wait()
-                        currentPos = root.Position + Vector3.new(0, 0, -0.0017);
-                    until not Desync.Enabled
-                    repeat task.wait(fakeLatency.Value + 0.004)
-                        if not Desync.Enabled then return end
-                        task.wait(fakeLatency.Value + 0.004)
-                        root.CFrame = CFrame.new(currentPos)
-                    until not Desync.Enabled
-                end)
-            end
-        end
-    })
-    fakeLatency = Desync.CreateSlider({
-        Name = "Delay",
-        Min = 0,
-        Max = 0.001,
-        Default = 0.00017,
-        Function = function() end
-    })
-end)
-
-run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
 	local Overlay = GuiLibrary.CreateCustomWindow({

@@ -9873,6 +9873,9 @@ run(function()
 		HoverText = "Removes KillFeed"
 	})
 end)
+																																										
+skidstore.versioncheck()
+print("Skid-Vxpe | BEDWARS.lua")
 
 task.spawn(function()
 	repeat task.wait() until shared.VapeFullyLoaded
@@ -9880,6 +9883,3 @@ task.spawn(function()
 		AutoLeave.ToggleButton(false)
 	end
 end)
-
-skidstore.versioncheck()
-print("Skid-Vxpe | BEDWARS.lua")

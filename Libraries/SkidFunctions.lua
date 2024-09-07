@@ -1,5 +1,5 @@
 local skidstore = {
-	cheatengine = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/ExecutorDetection.lua", true))(),
+	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS"},
 	skidver = "Next-Gen",
 	skiduser = game.Players.LocalPlayer.Username,
 	whitelist = shared.vapewhitelist

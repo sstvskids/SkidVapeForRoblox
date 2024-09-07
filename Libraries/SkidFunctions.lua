@@ -5,7 +5,7 @@ local skidstore = {
 	whitelist = shared.vapewhitelist
 }
 
-skidstore.CheatEngineCheck = function()
+skidstore.cheatenginecheck = function()
 	if identifyexecutor then
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(skidstore.cheatengine) do
@@ -17,7 +17,7 @@ skidstore.CheatEngineCheck = function()
 	end
 end
 
-skidstore.VersionCheck = function()
+skidstore.versioncheck = function()
 	warningNotification("Skid-Vape "..skidstore.skidver.."", "Logged in as "..skidstore.skiduser.." Whitelist: "..skidstore.whitelist.."", 6.25)
 end
 

@@ -21,5 +21,5 @@ skidstore.versioncheck = function()
 	warningNotification("Skid-Vape "..skidstore.skidver.."", "Logged in as "..skidstore.skiduser.." Whitelist: "..skidstore.whitelist.."", 6.25)
 end
 
-getgenv().SkidStore = SkidStore;
-return SkidStore
+getgenv().skidstore = skidstore;
+return skidstore

@@ -1,4 +1,12 @@
-local GuiLibrary = shared.GuiLibrary
+local GuiLibrary = shared.GuiLibrary;
+local function warningNotification(title, text, delay)
+	local suc, res = pcall(function()
+		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/WarningNotification.png")
+		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		return frame
+	end)
+	return (suc and res)
+end
 local skidstore = {
 	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS"},
 	skidver = "Next-Gen",
@@ -11,8 +19,7 @@ skidstore.cheatenginecheck = function()
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(skidstore.cheatengine) do
 	        if string.find(executor, string.lower(v)) then
-				local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60, "assets/WarningNotification.png")
-				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)			
+				warningNotification("Vape", "Executor is not supported. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60, "assets/WarningNotification.png")		
 			end
 	    end
 	end

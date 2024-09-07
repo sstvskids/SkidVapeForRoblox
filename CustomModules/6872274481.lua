@@ -20,7 +20,7 @@ local vapeEvents = setmetatable({}, {
 })
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
-local version = "Next-Gen"
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 
 local bedwars = {}
 local store = {
@@ -9881,5 +9881,5 @@ task.spawn(function()
 	end
 end)
 
-warningNotification("Vape", "Skid-Ware "..version.." has loaded.", 4)
+skidstore.VersionCheck()
 print("Skid-Vxpe | BEDWARS.lua")

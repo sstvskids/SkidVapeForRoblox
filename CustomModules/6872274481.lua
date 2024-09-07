@@ -9553,7 +9553,7 @@ run(function()
 					repeat task.wait()
 						local item = getItemNear("sky_scythe")
 						if item and bedwars.CombatController then
-							bedwars.Client:Get(bedwars.SkyScytheSpin):SendToServer({})
+							bedwars.Client:Get("SkyScytheSpin"):SendToServer({})
 						end
 					until not insta.Enabled
 				end)

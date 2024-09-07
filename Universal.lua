@@ -6588,7 +6588,7 @@ run(function()
 	})
 end)
 
---[[run(function()
+run(function()
     local ChatFreezer = {Enabled = false}
     local ChatSay = ""
     local FastMessages = {Value = 999}
@@ -6666,7 +6666,7 @@ end)
     if not game:IsLoaded() then
         game.Loaded:wait()
     end
-end)]]
+end)
 					
 run(function()
 	local FPS = {}

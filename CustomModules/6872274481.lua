@@ -9529,11 +9529,11 @@ end)
                 local teamLevels = {3, 6, 5, 4, 7, 8, 9, 10, 11, 1, 2, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
                 repeat task.wait()
-                    for i,v in pairs(upgrades) do
+                    for i,v in ipairs(upgrades) do
                         netManaged.RequestUpgradeStat:InvokeServer(unpack(upgrade))
                     end
 
-                    for i,v in pairs(teamLevels) do
+                    for i,v in ipairs(teamLevels) do
                         netManaged.RequestPurchaseTeamLevel:InvokeServer(level)
                     end
                 until not AutoUpgradeStats.Enabled
@@ -9543,7 +9543,7 @@ end)
     })
 end)]]
 
-run(function()
+--[[run(function()
 	local SkyScytheInstakill = {Enabled = false}
 	SkyScytheInstakill = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
 		Name = "SkyScytheInstakill",
@@ -9560,7 +9560,7 @@ run(function()
 			end
 		end
 	})
-end)
+end)]]
 
 run(function()
 	local NoNameTag = {Enabled = false}

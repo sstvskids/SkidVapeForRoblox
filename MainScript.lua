@@ -2041,6 +2041,6 @@ if shared.VapeIndependent then
 	shared.VapeFullyLoaded = true
 	return GuiLibrary
 else
-	print("Skid-Vxpe | MainScript.lua")
 	loadVape()
+	print("Skid-Vxpe | MainScript.lua")
 end

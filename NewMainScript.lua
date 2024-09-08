@@ -50,6 +50,9 @@ local function vapeGithubRequest(scripturl)
 	return readfile("vape/"..scripturl)
 end
 
+local skidstore = loadstring(vapeGithubRequest("Libraries/SkidFunctions.lua"))()
+shared.skidstore = skidstore
+
 if not shared.VapeDeveloper then 
 	local commit = "main"
 	for i,v in pairs(game:HttpGet("https://github.com/sstvskids/SkidVapeForRoblox"):split("\n")) do 

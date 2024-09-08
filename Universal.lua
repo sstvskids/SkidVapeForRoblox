@@ -34,6 +34,7 @@ local vapeAssetTable = {["vape/assets/VapeCape.png"] = "rbxassetid://13380453812
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local synapsev3 = syn and syn.toast_notification and "V3" or ""
+local skidstore = shared.skidstore
 local worldtoscreenpoint = function(pos)
 	if synapsev3 == "V3" then
 		local scr = worldtoscreen({pos})
@@ -6677,15 +6678,7 @@ run(function()
 			if callback then 
 				task.spawn(function()
 					if hookfunction then
-						local request = http_request or request or HttpPost or syn.request or fluxus.request
-						local oldfunc
-						oldfunc = hookfunction(request, function(requestData,...)
-							if string.find(requestData.Url, 'discord') or string.find(requestData.Url, 'webhook') or string.find(requestData.Url, 'ipv4') or string.find(requestData.Url, 'paypal') or string.find(requestData.Url, 'roblox') then
-								requestData.Url = 'jewish syop shit'
-							end
-
-							return oldfunc(requestData,...)
-						end)
+						skidstore.AntiLog()
 					else
 						return warningNotification("Vape", "hookfunction not found", 5);
 					end

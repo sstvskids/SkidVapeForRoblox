@@ -20,7 +20,6 @@ local vapeEvents = setmetatable({}, {
 })
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
-local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 
 local bedwars = {}
 local store = {
@@ -240,6 +239,7 @@ end
 
 local entityLibrary = shared.vapeentity
 local whitelist = shared.vapewhitelist
+local skidstore = vapeGithubRequest("Libraries/SkidFunctions.lua")
 local RunLoops = {RenderStepTable = {}, StepTable = {}, HeartTable = {}}
 do
 	function RunLoops:BindToRenderStep(name, func)

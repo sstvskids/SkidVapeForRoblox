@@ -9563,6 +9563,23 @@ run(function()
 end)
 
 run(function()
+	local NoNameTag = {Enabled = false}
+	NoNameTag = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+		Name = "NoNameTag",
+		Function = function(callback)
+			if callback then
+				task.spawn(function()
+					repeat task.wait(0.001)
+						lplr.character.Head.Nametag:Destroy()
+					until not NoNameTag.Enabled
+				end)
+			end
+		end,
+		HoverText = "Hides your nametag"
+	})
+end)
+
+run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
 	local Overlay = GuiLibrary.CreateCustomWindow({

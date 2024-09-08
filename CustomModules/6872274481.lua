@@ -9562,6 +9562,8 @@ run(function()
 	})
 end)
 
+print("Skid-Vxpe | BEDWARS.lua")
+
 run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
@@ -9843,7 +9845,6 @@ run(function()
 end)
 																																										
 warningNotification("Skid-Vape "..skidstore.skidver.."", "Logged in as "..skidstore.skiduser.."", 6.25)
-print("Skid-Vxpe | BEDWARS.lua")
 
 task.spawn(function()
 	repeat task.wait() until shared.VapeFullyLoaded

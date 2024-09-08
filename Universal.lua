@@ -6668,33 +6668,6 @@ run(function()
         game.Loaded:wait()
     end
 end)
-
-run(function()
-	local AntiLogger = {Enabled = false}
-	AntiLogger = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
-		Name = "AntiLog",
-		Function = function(callback)
-			if callback then 
-				task.spawn(function()
-					if hookfunction then
-						local request = http_request or request or HttpPost or syn.request or fluxus.request
-						local oldfunc
-						oldfunc = hookfunction(request, function(requestData,...)
-							if string.find(requestData.Url, 'discord') or string.find(requestData.Url, 'webhook') or string.find(requestData.Url, 'ipv4') or string.find(requestData.Url, 'paypal') or string.find(requestData.Url, 'roblox') then
-								requestData.Url = 'jewish syop shit'
-							end
-
-							return oldfunc(requestData,...)
-						end)
-					else
-						return warningNotification("Vape", "hookfunction not found", 5);
-					end)
-				end
-			end
-		end,
-		HoverText = "Makes sure stupid skids dont log you"
-	})
-end)
 					
 run(function()
 	local FPS = {}

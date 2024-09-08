@@ -1,4 +1,3 @@
--- pls let me back in seriously :(
 local GuiLibrary = shared.GuiLibrary
 local playersService = game:GetService("Players")
 local textService = game:GetService("TextService")

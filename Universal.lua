@@ -6671,7 +6671,7 @@ end)
 
 run(function()
 	local AntiLogger = {Enabled = false}
-	AntiLogger = GuiLibrary.ObjectsThatCanBeSaved.SkidwareWindow.Api.CreateOptionsButton({
+	AntiLogger = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
 		Name = "AntiLog",
 		Function = function(callback)
 			if callback then 

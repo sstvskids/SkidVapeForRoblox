@@ -9568,11 +9568,14 @@ run(function()
 		Name = "NoNameTag",
 		Function = function(callback)
 			if callback then
-				task.spawn(function()
-					repeat task.wait(0.001)
+				RunLoops:BindToHeartbeat('NoNameTag', function()
+					pcall(function()
+						task.wait(0.001)
 						lplr.character.Head.Nametag:Destroy()
-					until not NoNameTag.Enabled
+					end)
 				end)
+			else
+				RunLoops:UnbindFromHeartbeat('NoNameTag')
 			end
 		end,
 		HoverText = "Hides your nametag"

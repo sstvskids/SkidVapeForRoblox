@@ -7,7 +7,6 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
-local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()
@@ -50,7 +49,7 @@ local function vapeGithubRequest(scripturl)
 	return readfile("vape/"..scripturl)
 end
 
-local skidstore = loadstring(vapeGithubRequest("Libraries/SkidFunctions.lua"))()
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua",true))()
 shared.skidstore = skidstore
 
 if not shared.VapeDeveloper then 

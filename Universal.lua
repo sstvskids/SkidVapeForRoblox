@@ -6840,7 +6840,7 @@ print("Skid-Vxpe | Universal.lua")
 
 task.spawn(function()
 	repeat task.wait() until shared.VapeFullyLoaded
-	if not AntiLog.Enabled then
-		AntiLog.ToggleButton(false)
+	if not AntiLogger.Enabled then
+		AntiLogger.ToggleButton(false)
 	end
 end)

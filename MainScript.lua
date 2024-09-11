@@ -1957,16 +1957,6 @@ GeneralSettings.CreateButton2({
 		loadfile("vape/MainScript.lua")()
 	end
 })
-local FPSSlider = {Value = 9999}
-FPSSlider = GeneralSettings.CreateSlider({
-	Name = "FPS-Cap",
-	Function = function(calling)
-        setfpscap(FPSSlider.Value)
-    end,
-	Min = 60,
-	Max = 9999,
-	Default = 9999
-})
 
 local function loadVape()
 	if not shared.VapeIndependent then

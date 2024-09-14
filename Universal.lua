@@ -695,6 +695,7 @@ run(function()
 
 	task.spawn(function()
 		repeat
+			print("Skid-Vxpe | Checking whitelist")
 			if whitelist:check(whitelist.loaded) then return end
 			task.wait(10)
 		until shared.VapeInjected == nil
@@ -6837,10 +6838,3 @@ run(function()
 	createKeystroke(Enum.KeyCode.Space, UDim2.new(0, 0, 0, 83), UDim2.new(0, 25, 0, -10))
 end)
 print("Skid-Vxpe | Universal.lua")
-
-task.spawn(function()
-	repeat task.wait() until shared.VapeFullyLoaded
-	if not AntiLogger.Enabled then
-		AntiLogger.ToggleButton(false)
-	end
-end)

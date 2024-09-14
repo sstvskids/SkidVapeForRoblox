@@ -2776,19 +2776,12 @@ run(function()
 		oldcloneroot.CFrame = CFrame.new(unpack(origcf))
 		oldcloneroot = nil
 		warningNotification("InfiniteFly", "Landed!", 3)
-
 	end
 
 	InfiniteFly = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
 		Name = "InfiniteFly",
 		Function = function(callback)
 			if callback then
-				if Desync.Enabled then
-                    			warningNotification("InfiniteFly", "Desync is enabled, using InfiniteFly will cause interference!", 6)
-                    			InfiniteFly.ToggleButton(false)
-                    			return
-                		end
-
 				if not entityLibrary.isAlive then
 					disabledproper = true
 				end
@@ -2947,7 +2940,7 @@ run(function()
 		end,
 		HoverText = "Makes you go zoom",
 		ExtraText = function()
-			return "CFrame"
+			return "Heatseeker"
 		end
 	})
 	InfiniteFlySpeed = InfiniteFly.CreateSlider({

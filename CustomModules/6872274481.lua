@@ -387,6 +387,9 @@ local function attackValue(vec)
 	return {value = vec}
 end
 
+local ScytheSpeed = {Value = 57}
+local SpeedBypassMethod = {Value = "Heatseeker"}
+
 local function getSpeed()
 	local speed = 0
 	if lplr.Character then
@@ -398,8 +401,12 @@ local function getSpeed()
 			speed = speed + 90
 		end
 		if store.scythe > tick() then
-			if entityLibrary.isAlive and entityLibrary.character.Head.Transparency ~= 0 then
-				speed = speed + 57
+			if entityLibrary.isAlive then
+				if SpeedBypassMethod.Value == "Heatseeker" and entityLibrary.character.Head.Transparency ~= 0 then
+					speed = speed + ScytheSpeed.Value
+				elseif SpeedBypassMethod.Value == "CFrame" then
+					speed = speed + ScytheSpeed.Value
+				end
 			end
 		end
 		if lplr.Character:GetAttribute("GrimReaperChannel") then
@@ -2508,7 +2515,7 @@ run(function()
 		end,
 		HoverText = "Makes you go zoom (longer Fly discovered by exelys and Cqded)",
 		ExtraText = function()
-			return "Heatseeker"
+			return "CFrame"
 		end
 	})
 	FlySpeed = Fly.CreateSlider({
@@ -2940,7 +2947,7 @@ run(function()
 		end,
 		HoverText = "Makes you go zoom",
 		ExtraText = function()
-			return "Heatseeker"
+			return "CFrame"
 		end
 	})
 	InfiniteFlySpeed = InfiniteFly.CreateSlider({
@@ -3379,7 +3386,7 @@ run(function()
 												bedwars.SwordController:playSwordEffect(swordmeta, false)
 											end
 											if swordmeta.displayName:find(" Scythe") then
-												bedwars.ScytheController:playLocalAnimation()
+												--bedwars.ScytheController:playLocalAnimation()
 											end
 										end
 									end
@@ -4496,7 +4503,7 @@ run(function()
 		end,
 		HoverText = "Increases your movement.",
 		ExtraText = function()
-			return "Heatseeker"
+			return "CFrame"
 		end
 	})
 	SpeedValue = Speed.CreateSlider({
@@ -8942,18 +8949,17 @@ run(function()
 end)
 
 run(function()
-	local Disabler = {Enabled = false}
-	local BypassMethod = {{Value = "MoveDirection"}}
+	local BypassMethod = {{Value = "LookVector + MoveDirection"}}
 	local MultiplyDirection = {Value = 0.01}
 	local DivideVal = {Value = 2}
-	local TritionKit = {Enabled = false}
 	local direction
+	local ScytheTick = {Value = 2}
 	Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
 		Name = "FirewallBypass",
 		Function = function(callback)
 			if callback then
-				task.spawn(function()
-					repeat
+				RunLoops:BindToHeartbeat('Disabler', function()
+					task.spawn(function()
 						task.wait()
 						local item = getItemNear("scythe")
 						if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
@@ -8962,22 +8968,14 @@ run(function()
                             elseif BypassMethod.Value == "MoveDirection" then
                                 direction = entityLibrary.character.Humanoid.MoveDirection
 							elseif BypassMethod.Value == "LookVector + MoveDirection" then
-                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 1.25
+                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 2
 							end
 							bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
 							if entityLibrary.isAlive and entityLibrary.character.Head.Transparency ~= 0 then
-								store.scythe = tick() + 2
+								store.scythe = tick() + ScytheTick.Value
 							end
 						end
-					until (not Disabler.Enabled)
-					if TritonKit.Enabled then
-						RunLoops:BindToRenderStep(Disabler, function()
-							task.wait()
-							bedwars.Client:Get("TridentUnanchor"):SendToServer()
-						end)
-					else
-						RunLoops:UnbindFromRenderStep(Disabler)
-					end
+					end)
 				end)
 			else
 				RunLoops:UnbindFromRenderStep(Disabler)
@@ -8985,6 +8983,13 @@ run(function()
 		end,
 		HoverText = "Float disabler with scythe"
 	})
+	SpeedBypassMethod = Disabler.CreateDropdown({
+        Name = "SpeedMode",
+        List = {"Heatseeker", "CFrame"},
+        Function = function(value)
+            SpeedBypassMethod.Value = value
+        end
+    })
 	BypassMethod = Disabler.CreateDropdown({
         Name = "DirectionMode",
         List = {"LookVector", "MoveDirection", "LookVector + MoveDirection"},
@@ -9001,10 +9006,23 @@ run(function()
             MultiplyDirection.Value = val
         end
     })
-	TritonKit = Disabler.CreateToggle({
-        Name = "TritionKitBypass",
-        Function = function() end,
-        HoverText = "Attempts to bypass the ac \nwith the Triton kit"
+	ScytheSpeed = Disabler.CreateSlider({
+        Name = "ScytheSpeed",
+        Min = 0,
+        Max = 57,
+        Default = 57,
+        Function = function(val) 
+            ScytheSpeed.Value = val
+        end
+    })
+	ScytheTick = Disabler.CreateSlider({
+        Name = "Tick",
+        Min = 0,
+        Max = 2,
+        Default = 2,
+        Function = function(val) 
+            ScytheTick.Value = val
+        end
     })
 end)
 
@@ -9324,7 +9342,7 @@ end)]]
 
 run(function()
 	local BridgeDuelsExploit = {Enabled = false}
-	BridgeDuelsExploit = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	BridgeDuelsExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
         Name = "BridgeDuelsExploit",
         Function = function(callback)
 			if callback then
@@ -9430,7 +9448,7 @@ run(function()
 														end
 													end
 
-													lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + Vector3.new(0,100000,0)
+													lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + Vector3.new(0,50,0)
 
 													game:GetService("RunService").RenderStepped:Connect(function()
 														if Clone ~= nil and Clone:FindFirstChild("HumanoidRootPart") then

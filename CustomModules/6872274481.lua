@@ -48,7 +48,6 @@ local store = {
 	pots = {},
 	queueType = "bedwars_test",
 	scythe = tick(),
-	scytheexploit = false,
 	statistics = {
 		beds = 0,
 		kills = 0,
@@ -6840,7 +6839,7 @@ run(function()
 			if currentsword ~= nil and table.find(swords, currentsword.itemType) == nil then return end
 			local highestbuyable = nil
 			for i = swordindex, #swords, 1 do
-				local shopitem = store.scytheexploit and getShopItem(scythes[i]) or getShopItem(swords[i])
+				local shopitem = getShopItem(swords[i])
 				if shopitem and i == swordindex then
 					local currency = getItem(shopitem.currency, inv.items)
 					if currency and currency.amount >= shopitem.price and (shopitem.category ~= "Armory" or upgrades.armory) then
@@ -9639,18 +9638,6 @@ run(function()
 			end
 		end,
 		HoverText = "Hides your nametag"
-	})
-end)
-
-run(function()
-	local ScytheExploit = {Enabled = false};
-	ScytheExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-		Name = "ScytheExploit",
-		Function = function(callback)
-			if callback then
-				store.scytheexploit = callback
-			end
-		end
 	})
 end)
 

@@ -387,7 +387,9 @@ local function attackValue(vec)
 	return {value = vec}
 end
 
+local Fly = {Enabled = false}
 local ScytheSpeed = {Value = 57}
+local ScytheFlySpeed = {Value = 20}
 local SpeedBypassMethod = {Value = "Heatseeker"}
 
 local function getSpeed()
@@ -406,6 +408,9 @@ local function getSpeed()
 					speed = speed + ScytheSpeed.Value
 				elseif SpeedBypassMethod.Value == "CFrame" then
 					speed = speed + ScytheSpeed.Value
+				end
+				if Fly.Enabled then
+					speed = speed + ScytheFlySpeed.Value
 				end
 			end
 		end
@@ -2308,7 +2313,6 @@ end)
 
 local autobankballoon = false
 run(function()
-	local Fly = {Enabled = false}
 	local FlyMode = {Value = "CFrame"}
 	local FlyVerticalSpeed = {Value = 40}
 	local FlyVertical = {Enabled = true}
@@ -8961,7 +8965,7 @@ run(function()
                             elseif BypassMethod.Value == "MoveDirection" then
                                 direction = entityLibrary.character.Humanoid.MoveDirection
 							elseif BypassMethod.Value == "LookVector + MoveDirection" then
-                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 2
+                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 1
 							end
 							bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
 							if entityLibrary.isAlive and entityLibrary.character.Head.Transparency ~= 0 then
@@ -8974,7 +8978,10 @@ run(function()
 				RunLoops:UnbindFromRenderStep(Disabler)
 			end
 		end,
-		HoverText = "Float disabler with scythe"
+		HoverText = "Float disabler with scythe\nAllows up to 80-100 speed depending on what BypassMethod you use",
+		ExtraText = function()
+			return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value)..")"
+		end
 	})
 	SpeedBypassMethod = Disabler.CreateDropdown({
         Name = "SpeedMode",
@@ -9006,6 +9013,15 @@ run(function()
         Default = 57,
         Function = function(val) 
             ScytheSpeed.Value = val
+        end
+    })
+	ScytheFlySpeed = Disabler.CreateSlider({
+        Name = "ScytheFlySpeed",
+        Min = 0,
+        Max = 20,
+        Default = 20,
+        Function = function(val) 
+            ScytheFlySpeed.Value = val
         end
     })
 	ScytheTick = Disabler.CreateSlider({

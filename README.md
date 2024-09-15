@@ -1,5 +1,5 @@
-# Skid-Vape
-nextgen :tm:
+# shitty pasted detcted vape
+:tm: get fucked
 
 Everything was deleted by qwertyui and nebula
 Maybe next time dont leak exploits don't skid. This is your lesson stav.

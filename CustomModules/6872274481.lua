@@ -48,6 +48,7 @@ local store = {
 	pots = {},
 	queueType = "bedwars_test",
 	scythe = tick(),
+	scytheexploit = false,
 	statistics = {
 		beds = 0,
 		kills = 0,
@@ -6688,6 +6689,14 @@ run(function()
 		[5] = "emerald_sword"
 	}
 
+	local scythes = {
+		[1] = "wood_scythe",
+		[2] = "stone_scythe",
+		[3] = "iron_scythe",
+		[4] = "diamond_scythe",
+		[5] = "mythic_scythe"
+	}
+
 	local axes = {
 		[1] = "wood_axe",
 		[2] = "stone_axe",
@@ -6831,7 +6840,7 @@ run(function()
 			if currentsword ~= nil and table.find(swords, currentsword.itemType) == nil then return end
 			local highestbuyable = nil
 			for i = swordindex, #swords, 1 do
-				local shopitem = getShopItem(swords[i])
+				local shopitem = store.scytheexploit and getShopItem(scythes[i]) or getShopItem(swords[i])
 				if shopitem and i == swordindex then
 					local currency = getItem(shopitem.currency, inv.items)
 					if currency and currency.amount >= shopitem.price and (shopitem.category ~= "Armory" or upgrades.armory) then
@@ -8948,16 +8957,18 @@ end)
 run(function()
 	local BypassMethod = {{Value = "LookVector + MoveDirection"}}
 	local MultiplyDirection = {Value = 0.01}
+	local DivideDirection = {Value = 0.01}
 	local DivideVal = {Value = 2}
 	local direction
 	local ScytheTick = {Value = 2}
+	local ScytheDelay = {Value = 0}
 	Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
 		Name = "FirewallBypass",
 		Function = function(callback)
 			if callback then
 				RunLoops:BindToHeartbeat('Disabler', function()
 					task.spawn(function()
-						task.wait()
+						task.wait(ScytheDelay.Value)
 						local item = getItemNear("scythe")
 						if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
 							if BypassMethod.Value == "LookVector" then
@@ -8967,7 +8978,11 @@ run(function()
 							elseif BypassMethod.Value == "LookVector + MoveDirection" then
                                 direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 1
 							end
-							bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
+							if DivideDirection.Value ~= 0 then
+								bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction / DivideDirection.Value * MultiplyDirection.Value})
+							else
+								bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
+							end
 							if entityLibrary.isAlive and entityLibrary.character.Head.Transparency ~= 0 then
 								store.scythe = tick() + ScytheTick.Value
 							end
@@ -8975,7 +8990,7 @@ run(function()
 					end)
 				end)
 			else
-				RunLoops:UnbindFromRenderStep(Disabler)
+				RunLoops:UnbindFromHeartbeat(Disabler)
 			end
 		end,
 		HoverText = "Float disabler with scythe\nAllows up to 80-100 speed depending on what BypassMethod you use",
@@ -8997,6 +9012,15 @@ run(function()
             BypassMethod.Value = value
         end
     })
+	ScytheDelay = Disabler.CreateSlider({
+        Name = "Delay",
+        Min = 0,
+        Max = 5,
+        Default = 0,
+        Function = function(val) 
+            ScytheDelay.Value = val
+        end
+    })
 	MultiplyDirection = Disabler.CreateSlider({
         Name = "DirectionMultiply",
         Min = 0,
@@ -9004,6 +9028,15 @@ run(function()
         Default = 0.001,
         Function = function(val) 
             MultiplyDirection.Value = val
+        end
+    })
+	DivideDirection = Disabler.CreateSlider({
+        Name = "DivideDirection",
+        Min = 0,
+        Max = 0.01,
+        Default = 0,
+        Function = function(val) 
+            DivideDirection.Value = val
         end
     })
 	ScytheSpeed = Disabler.CreateSlider({
@@ -9606,6 +9639,18 @@ run(function()
 			end
 		end,
 		HoverText = "Hides your nametag"
+	})
+end)
+
+run(function()
+	local ScytheExploit = {Enabled = false};
+	ScytheExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+		Name = "ScytheExploit",
+		Function = function(callback)
+			if callback then
+				store.scytheexploit = callback
+			end
+		end
 	})
 end)
 

@@ -8989,7 +8989,7 @@ run(function()
 					end)
 				end)
 			else
-				RunLoops:UnbindFromHeartbeat(Disabler)
+				RunLoops:UnbindFromHeartbeat('Disabler')
 			end
 		end,
 		HoverText = "Float disabler with scythe\nAllows up to 80-100 speed depending on what BypassMethod you use",

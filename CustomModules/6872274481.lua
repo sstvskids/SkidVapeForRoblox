@@ -2312,6 +2312,7 @@ run(function()
 end)
 
 local autobankballoon = false
+local Disabler = {Enabled = false}
 run(function()
 	local FlyMode = {Value = "CFrame"}
 	local FlyVerticalSpeed = {Value = 40}
@@ -2461,7 +2462,7 @@ run(function()
 							onground = newray and true or false
 							if lastonground ~= onground then
 								if (not onground) then
-									if item and lplr.Character.HandInvItem.Value == item.tool then
+									if Disabler.Enabled and item and lplr.Character.HandInvItem.Value == item.tool then
 										groundtime = tick() + (120.1 + (entityLibrary.groundTick - tick()))
 									else
 										groundtime = tick() + (2.6 + (entityLibrary.groundTick - tick()))

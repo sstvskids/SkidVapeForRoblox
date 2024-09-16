@@ -4439,10 +4439,10 @@ run(function()
 end)
 
 local antivoidvelo
+local SpeedValue = {Value = 1}
 run(function()
 	local Speed = {Enabled = false}
 	local SpeedMode = {Value = "CFrame"}
-	local SpeedValue = {Value = 1}
 	local SpeedValueLarge = {Value = 1}
 	local SpeedJump = {Enabled = false}
 	local SpeedJumpHeight = {Value = 20}
@@ -8998,7 +8998,7 @@ run(function()
 		end,
 		HoverText = "Float disabler with scythe\nAllows up to 80-100 speed depending on what BypassMethod you use",
 		ExtraText = function()
-			return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value)..")"
+			return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")"
 		end
 	})
 	SpeedBypassMethod = Disabler.CreateDropdown({

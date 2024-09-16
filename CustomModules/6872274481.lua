@@ -406,11 +406,14 @@ local function getSpeed()
 			if entityLibrary.isAlive then
 				if SpeedBypassMethod.Value == "Heatseeker" and entityLibrary.character.Head.Transparency ~= 0 then
 					speed = speed + ScytheSpeed.Value
+					if Fly.Enabled then
+						speed = speed + ScytheFlySpeed.Value
+					end
 				elseif SpeedBypassMethod.Value == "CFrame" then
 					speed = speed + ScytheSpeed.Value
-				end
-				if Fly.Enabled then
-					speed = speed + ScytheFlySpeed.Value
+					if Fly.Enabled then
+						speed = speed + ScytheFlySpeed.Value
+					end
 				end
 			end
 		end

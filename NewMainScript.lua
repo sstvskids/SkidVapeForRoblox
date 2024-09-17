@@ -100,13 +100,7 @@ pcall(function()
 	    local executor = string.lower(identifyexecutor())
 	    for i, v in pairs(skidstore.cheatengine) do
 	        if string.find(executor, string.lower(v)) then
-	            warn("Executors who fake their UNC (Claim to be 100% UNC), or are level 3 or whom which broke a function will NOT be supported. This means that "..identifyexecutor().." executor will not be supported.")
-				game:GetService("StarterGui"):SetCore("SendNotification", {
-					Title = "Skid-Vxpe",
-					Text = ""..identifyexecutor().." not supported! Check console for more information, or wait until a warning appears for more info!",
-					Duration = 10,
-					Icon = "rbxassetid://76015764869546"
-				})					
+	            warn("Executors who fake their UNC (Claim to be 100% UNC), or are level 3 or whom which broke a function will NOT be supported. This means that "..identifyexecutor().." executor will not be supported.")		
 			end
 	    end
 	end

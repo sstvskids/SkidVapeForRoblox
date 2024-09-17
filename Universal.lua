@@ -6481,24 +6481,23 @@ run(function()
     local FakeLatencyDelay = {Value = 0.00017};
     local currentPos;
     local DesyncDistance = {Value = 0.00017};
-    
-    getgenv().getroot = function()
-        return lplr.character.RootPart;
-    end
 
     Desync = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
         Name = "Desync",
         Function = function(callback)
             if callback then
                 task.spawn(function()
-                    repeat task.wait(0.07)
-						local root = getroot();
+                    RunLoops:BindToHeartbeat("Desync", function()
+						task.wait(0.07)
+						local root = entityLibrary.character.HumanoidRootPart;
 						currentPos = root.Position + Vector3.new(0, 0, -DesyncDistance.Value);
 						task.wait(FakeLatencyDelay.Value + 0.004);
 						root.CFrame = CFrame.new(currentPos);
-					until not Desync.Enabled
+					end)
                 end)
-            end
+            else
+				RunLoops:UnbindFromHeartbeat("Desync")
+			end
         end
     })
     FakeLatencyDelay = Desync.CreateSlider({

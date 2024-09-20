@@ -1,9 +1,9 @@
-local lplr = game.Players.LocalPlayer
+local lplr = cloneref(game.GetService("Players")).LocalPlayer
 local skidstore = {
 	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven"},
 	skidver = "Next-Gen",
 	skiduser = lplr.Name,
-	skiduserid = lplr.UserId
+	skiduserid = lplr.UserId,
 	skids = {"erco", "coco"}
 }
 

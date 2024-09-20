@@ -1,1 +1,11 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
 
+# Specify specific file types
+*.lua text
+*.md text
+*.txt text
+*.jpg binary
+*.png binary
+
+# For other files, **people with contributor perm on repo** can add them as needed

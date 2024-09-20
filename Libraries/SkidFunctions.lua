@@ -1,7 +1,9 @@
+local lplr = game.Players.LocalPlayer
 local skidstore = {
 	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven"},
 	skidver = "Next-Gen",
-	skiduser = game.Players.LocalPlayer.Name
+	skiduser = lplr.Name,
+	skiduserid = lplr.UserId
 }
 
 local function AntiLog()

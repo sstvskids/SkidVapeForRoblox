@@ -1449,5 +1449,5 @@ task.spawn(function()
 	end)
 end)
 
-warningNotification("Vape", "Skid-Ware "..skidstore.version.." has loaded.", 4)
+warningNotification("Vape", "Skid-Vape "..skidstore.version.." has loaded.", 4)
 print("Skid-Vxpe | BEDWARSlobby.lua")

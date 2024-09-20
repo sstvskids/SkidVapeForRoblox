@@ -4,6 +4,7 @@ local skidstore = {
 	skidver = "Next-Gen",
 	skiduser = lplr.Name,
 	skiduserid = lplr.UserId
+	skids = {"erco", "coco",}
 }
 
 local function AntiLog()

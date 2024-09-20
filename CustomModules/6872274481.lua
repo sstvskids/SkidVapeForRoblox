@@ -7626,7 +7626,7 @@ run(function()
 			if callback then
 				table.insert(AutoToxic.Connections, vapeEvents.BedwarsBedBreak.Event:Connect(function(bedTable)
 					if AutoToxicBedDestroyed.Enabled and bedTable.brokenBedTeam.id == lplr:GetAttribute("Team") then
-						local custommsg = #AutoToxicPhrases6.ObjectList > 0 and AutoToxicPhrases6.ObjectList[math.random(1, #AutoToxicPhrases6.ObjectList)] or "How dare you break my bed >:( <name> | vxpe on top"
+						local custommsg = #AutoToxicPhrases6.ObjectList > 0 and AutoToxicPhrases6.ObjectList[math.random(1, #AutoToxicPhrases6.ObjectList)] or "How dare you break my bed >:( <name> | skid-vxpe on top"
 						if custommsg then
 							custommsg = custommsg:gsub("<name>", (bedTable.player.DisplayName or bedTable.player.Name))
 						end
@@ -7636,7 +7636,7 @@ run(function()
 							replicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(custommsg, 'All')
 						end
 					elseif AutoToxicBedBreak.Enabled and bedTable.player.UserId == lplr.UserId then
-						local custommsg = #AutoToxicPhrases7.ObjectList > 0 and AutoToxicPhrases7.ObjectList[math.random(1, #AutoToxicPhrases7.ObjectList)] or "nice bed <teamname> | vxpe on top"
+						local custommsg = #AutoToxicPhrases7.ObjectList > 0 and AutoToxicPhrases7.ObjectList[math.random(1, #AutoToxicPhrases7.ObjectList)] or "nice bed <teamname> | skid-vxpe on top"
 						if custommsg then
 							local team = bedwars.QueueMeta[store.queueType].teams[tonumber(bedTable.brokenBedTeam.id)]
 							local teamname = team and team.displayName:lower() or "white"
@@ -7657,7 +7657,7 @@ run(function()
 						if killed == lplr then
 							if (not leavesaid) and killer ~= lplr and AutoToxicDeath.Enabled then
 								leavesaid = true
-								local custommsg = #AutoToxicPhrases3.ObjectList > 0 and AutoToxicPhrases3.ObjectList[math.random(1, #AutoToxicPhrases3.ObjectList)] or "My gaming chair expired midfight, thats why you won <name> | vxpe on top"
+								local custommsg = #AutoToxicPhrases3.ObjectList > 0 and AutoToxicPhrases3.ObjectList[math.random(1, #AutoToxicPhrases3.ObjectList)] or "My synz/wave key expired midfight, thats why you won <name> | skid-vxpe on top"
 								if custommsg then
 									custommsg = custommsg:gsub("<name>", (killer.DisplayName or killer.Name))
 								end
@@ -7669,9 +7669,9 @@ run(function()
 							end
 						else
 							if killer == lplr and AutoToxicFinalKill.Enabled then
-								local custommsg = #AutoToxicPhrases2.ObjectList > 0 and AutoToxicPhrases2.ObjectList[math.random(1, #AutoToxicPhrases2.ObjectList)] or "L <name> | vxpe on top"
+								local custommsg = #AutoToxicPhrases2.ObjectList > 0 and AutoToxicPhrases2.ObjectList[math.random(1, #AutoToxicPhrases2.ObjectList)] or "L <name> | skid-vxpe on top"
 								if custommsg == lastsaid then
-									custommsg = #AutoToxicPhrases2.ObjectList > 0 and AutoToxicPhrases2.ObjectList[math.random(1, #AutoToxicPhrases2.ObjectList)] or "L <name> | vxpe on top"
+									custommsg = #AutoToxicPhrases2.ObjectList > 0 and AutoToxicPhrases2.ObjectList[math.random(1, #AutoToxicPhrases2.ObjectList)] or "L <name> | skid-vxpe on top"
 								else
 									lastsaid = custommsg
 								end
@@ -7697,7 +7697,7 @@ run(function()
 							end
 						end
 						if AutoToxicWin.Enabled then
-							local custommsg = #AutoToxicPhrases.ObjectList > 0 and AutoToxicPhrases.ObjectList[math.random(1, #AutoToxicPhrases.ObjectList)] or "EZ L TRASH KIDS | vxpe on top"
+							local custommsg = #AutoToxicPhrases.ObjectList > 0 and AutoToxicPhrases.ObjectList[math.random(1, #AutoToxicPhrases.ObjectList)] or "EZ L SKIDS | skid-vxpe on top"
 							if textChatService.ChatVersion == Enum.ChatVersion.TextChatService then
 								textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync(custommsg)
 							else
@@ -7712,7 +7712,7 @@ run(function()
 						if custommsg then
 							custommsg = custommsg:gsub("<name>", (plr.DisplayName or plr.Name))
 						end
-						local msg = custommsg or "Imagine lagbacking L "..(plr.DisplayName or plr.Name).." | vxpe on top"
+						local msg = custommsg or "Imagine lagbacking L "..(plr.DisplayName or plr.Name).." | skid-vxpe on top"
 						if textChatService.ChatVersion == Enum.ChatVersion.TextChatService then
 							textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync(msg)
 						else
@@ -7732,7 +7732,7 @@ run(function()
 								if custommsg then
 									custommsg = custommsg:gsub("<name>", (plr.DisplayName or plr.Name))
 								end
-								local msg = custommsg or "I don't care about the fact that I'm hacking, I care about you dying in a block game. L "..(plr.DisplayName or plr.Name).." | vxpe on top"
+								local msg = custommsg or "I don't care about the fact that I'm hacking, I care about you dying in a block game. L "..(plr.DisplayName or plr.Name).." | skid-vxpe on top"
 								if textChatService.ChatVersion == Enum.ChatVersion.TextChatService then
 									textChatService.ChatInputBarConfiguration.TargetTextChannel:SendAsync(msg)
 								else
@@ -8037,7 +8037,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
 	local BowExploit = {Enabled = false}
 	local BowExploitTarget = {Value = "Mouse"}
 	local BowExploitAutoShootFOV = {Value = 1000}
@@ -8121,7 +8121,7 @@ run(function()
 		Max = 1000,
 		Default = 1000
 	})
-end)
+end)]]
 
 run(function()
 	local RavenTP = {Enabled = false}
@@ -8324,7 +8324,7 @@ run(function()
 				end
 			end
 		end,
-		HoverText = "Gives you a chance to get on land (Bouncing Twice, abusing, or bad luck will lead to lagbacks)"
+		HoverText = "Gives you a chance to get on land (Bouncing Twice, abusing, flying too long or bad luck will lead to lagbacks)"
 	})
 	AntiVoidMoveMode = AntiVoid.CreateDropdown({
 		Name = "Position Mode",
@@ -8515,6 +8515,7 @@ run(function()
 
 	Nuker = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
 		Name = "Nuker",
+		HoverText = "instantly break bed",																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
 		Function = function(callback)
 			if callback then
 				for i,v in pairs(store.blocks) do
@@ -8997,7 +8998,7 @@ run(function()
 				RunLoops:UnbindFromHeartbeat('Disabler')
 			end
 		end,
-		HoverText = "Float disabler with scythe\nAllows up to 80-100 speed depending on what BypassMethod you use",
+		HoverText = "Float disabler with scythe\nAllows up to 45-60 speed depending on what BypassMethod you use", -- 100 works for few movements than lagbacks
 		ExtraText = function()
 			return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")"
 		end
@@ -9386,30 +9387,8 @@ end)
 	})
 end)]]
 
-run(function()
-	local BridgeDuelsExploit = {Enabled = false}
-	BridgeDuelsExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-        Name = "BridgeDuelsExploit",
-        Function = function(callback)
-			if callback then
-				task.spawn(function()
-					repeat task.wait()
-						for i,v in workspace:GetDescendants() do
-							if v:IsA('BasePart') then
-								for i,v in v:GetChildren() do
-									if v:IsA('TouchTransmitter') then
-										firetouchinterest(humanoidRootPart, v.Parent, 1)
-									end
-								end
-							end
-						end
-					until not BridgeDuelsExploit.Enabled
-				end)
-			end
-		end,
-		HoverText = "Automatically wins BridgeDuels for you"
-	})
-end)
+
+-- doesnt work
 
 run(function()
     local SkidRoaster = {Enabled = false}
@@ -9424,7 +9403,7 @@ run(function()
                         if MatchCheck.Enabled then
                             if store.matchState == 0 then return end
                         end
-                        warningNotification("Vape", #SkidPhrases.ObjectList > 0 and SkidPhrases.ObjectList[math.random(1, #SkidPhrases.ObjectList)] or "CocoSkid? Couldn't be me 🤣", SkidDelay.Value)
+                        warningNotification("Vape", #SkidPhrases.ObjectList > 0 and SkidPhrases.ObjectList[math.random(1, #SkidPhrases.ObjectList)] or "Voidware pasting in 2026 be like 💀", SkidDelay.Value)
                         task.wait(SkidDelay.Value)
                     until (not SkidRoaster.Enabled)
                 end)
@@ -9576,36 +9555,41 @@ run(function()
     })
 end)
 
---[[run(function()
+
+run(function()
     local AutoUpgradeStats = {Enabled = false}
-    local netManaged = game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged
+    local replicatedStorage = game:GetService("ReplicatedStorage")
+    local netManaged = replicatedStorage.rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged
 
     AutoUpgradeStats = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-        Name = "AutoUpgradeStats/TeamLevel",
+        Name = "AutoUpgradeStats",
         Function = function(callback)
-            if callback then																																					
-                local upgrades = {
+            if callback then                                                                                                                                                            
+                local promoment = {
                     {"SPEED", 1}, {"SPEED", 2}, {"SPEED", 3},
                     {"DAMAGE", 1}, {"DAMAGE", 2}, {"DAMAGE", 3},
                     {"ARMOR", 1}, {"ARMOR", 2}, {"ARMOR", 3},
                     {"DESTRUCTION", 1}, {"DESTRUCTION", 2}, {"DESTRUCTION", 3}
                 }
-                local teamLevels = {3, 6, 5, 4, 7, 8, 9, 10, 11, 1, 2, 12, 13, 14, 15, 16, 17, 18, 19, 20}
-
-                repeat task.wait()
-                    for i,v in ipairs(upgrades) do
-                        netManaged.RequestUpgradeStat:InvokeServer(unpack(upgrade))
-                    end
-
-                    for i,v in ipairs(teamLevels) do
-                        netManaged.RequestPurchaseTeamLevel:InvokeServer(level)
-                    end
-                until not AutoUpgradeStats.Enabled
+                local levels = {3, 6, 5, 4, 7, 8, 9, 10, 11, 1, 2, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+                task.spawn(function()
+                    repeat
+                        for _, upgrade in ipairs(promoment) do
+                            netManaged.RequestUpgradeStat:InvokeServer(unpack(upgrade))
+                        end
+    
+                        for _, level in ipairs(levels) do
+                            netManaged.RequestPurchaseTeamLevel:InvokeServer(level)
+                        end
+    
+                        wait(0.1)
+                    until (not AutoUpgradeStats.Enabled)
+                end)   
             end
         end,
-        HoverText = "Automatically upgrades your stats"
+        HoverText = "pro moment eeeeajjsjskekssk"
     })
-end)]]
+end)																																																																																																																																																																																																																																																	
 
 --[[run(function()
 	local SkyScytheInstakill = {Enabled = false}
@@ -9629,17 +9613,17 @@ end)]]
 run(function()
 	local NoNameTag = {Enabled = false}
 	NoNameTag = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
-		Name = "NoNameTag",
+		Name = "NoNametag",
 		Function = function(callback)
 			if callback then
-				RunLoops:BindToHeartbeat('NoNameTag', function()
+				RunLoops:BindToHeartbeat('NoNametag', function()
 					pcall(function()
 						task.wait(0.001)
 						lplr.character.Head.Nametag:Destroy()
 					end)
 				end)
 			else
-				RunLoops:UnbindFromHeartbeat('NoNameTag')
+				RunLoops:UnbindFromHeartbeat('NoNametag')
 			end
 		end,
 		HoverText = "Hides your nametag"

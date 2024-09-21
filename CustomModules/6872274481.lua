@@ -21,6 +21,7 @@ local vapeEvents = setmetatable({}, {
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
 local skidstore = shared.skidstore
+local wingui = shared.wingui
 
 local bedwars = {}
 local store = {
@@ -1783,7 +1784,7 @@ run(function()
 	local AimAssistStrafe = {Enabled = false}
 	local AimSpeed = {Value = 1}
 	local AimAssistTargetFrame = {Players = {Enabled = false}}
-	AimAssist = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton({
+	AimAssist = wingui.combat({
 		Name = "AimAssist",
 		Function = function(callback)
 			if callback then
@@ -1906,7 +1907,7 @@ run(function()
 		end)
 	end
 
-	autoclicker = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton({
+	autoclicker = wingui.combat({
 		Name = "AutoClicker",
 		Function = function(callback)
 			if callback then
@@ -1950,7 +1951,7 @@ run(function()
 	})
 
 	local noclickfunc
-	noclickdelay = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton({
+	noclickdelay = wingui.combat({
 		Name = "NoClickDelay",
 		Function = function(callback)
 			if callback then
@@ -1970,7 +1971,7 @@ end)
 run(function()
 	local ReachValue = {Value = 14}
 
-	Reach = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton({
+	Reach = wingui.combat({
 		Name = "Reach",
 		Function = function(callback)
 			bedwars.CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = callback and ReachValue.Value + 2 or 14.4
@@ -1993,7 +1994,7 @@ end)
 run(function()
 	local Sprint = {Enabled = false}
 	local oldSprintFunction
-	Sprint = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton({
+	Sprint = wingui.combat({
 		Name = "Sprint",
 		Function = function(callback)
 			if callback then
@@ -2031,7 +2032,7 @@ run(function()
 	local VelocityHorizontal = {Value = 100}
 	local VelocityVertical = {Value = 100}
 	local applyKnockback
-	Velocity = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton({
+	Velocity = wingui.combat({
 		Name = "Velocity",
 		Function = function(callback)
 			if callback then
@@ -2144,7 +2145,7 @@ run(function()
 		end
 	end
 
-	AutoLeave = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	AutoLeave = wingui.blatant({
 		Name = "AutoLeave",
 		Function = function(callback)
 			if callback then
@@ -2244,7 +2245,7 @@ run(function()
 	local oldclickhold
 	local oldclickhold2
 	local roact
-	local FastConsume = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	local FastConsume = wingui.blatant({
 		Name = "FastConsume",
 		Function = function(callback)
 			if callback then
@@ -2347,7 +2348,7 @@ run(function()
 		return false
 	end
 
-	Fly = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Fly = wingui.blatant({
 		Name = "Fly",
 		Function = function(callback)
 			if callback then
@@ -2674,7 +2675,7 @@ run(function()
 		end
 	end)
 
-	GrappleExploit = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	GrappleExploit = wingui.blatant({
 		Name = "GrappleExploit",
 		Function = function(callback)
 			if callback then
@@ -2786,7 +2787,7 @@ run(function()
 		warningNotification("InfiniteFly", "Landed!", 3)
 	end
 
-	InfiniteFly = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	InfiniteFly = wingui.blatant({
 		Name = "InfiniteFly",
 		Function = function(callback)
 			if callback then
@@ -3232,7 +3233,7 @@ run(function()
 		until (not Killaura.Enabled) or (not killauraautoblock.Enabled)
 	end
 
-	Killaura = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Killaura = wingui.blatant({
 		Name = "Killaura",
 		Function = function(callback)
 			if callback then
@@ -3931,7 +3932,7 @@ run(function()
 	LongJumpacprogressbartext.BackgroundTransparency = 1
 	LongJumpacprogressbartext.Position = UDim2.new(0, 0, -1, 0)
 	LongJumpacprogressbartext.Parent = LongJumpacprogressbarframe
-	LongJump = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	LongJump = wingui.blatant({
 		Name = "LongJump",
 		Function = function(callback)
 			if callback then
@@ -4052,7 +4053,7 @@ end)
 run(function()
 	local NoFall = {Enabled = false}
 	local oldfall
-	NoFall = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	NoFall = wingui.blatant({
 		Name = "NoFall",
 		Function = function(callback)
 			if callback then
@@ -4066,7 +4067,7 @@ end)
 run(function()
 	local NoSlowdown = {Enabled = false}
 	local OldSetSpeedFunc
-	NoSlowdown = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	NoSlowdown = wingui.blatant({
 		Name = "NoSlowdown",
 		Function = function(callback)
 			if callback then
@@ -4109,7 +4110,7 @@ run(function()
 		return (#possible == 0)
 	end
 
-	Phase = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Phase = wingui.blatant({
 		Name = "Phase",
 		Function = function(callback)
 			if callback then
@@ -4150,7 +4151,7 @@ run(function()
 	local BowAimbotProjectiles = {Enabled = false}
 	local BowAimbotPart = {Value = "HumanoidRootPart"}
 	local BowAimbotFOV = {Value = 1000}
-	local BowAimbot = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	local BowAimbot = wingui.blatant({
 		Name = "ProjectileAimbot",
 		Function = function(callback)
 			if callback then
@@ -4301,7 +4302,7 @@ run(function()
 	end
 
 	local oldspeed
-	Scaffold = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Scaffold = wingui.blatant({
 		Name = "Scaffold",
 		Function = function(callback)
 			if callback then
@@ -4453,7 +4454,7 @@ run(function()
 	local raycastparameters = RaycastParams.new()
 
 	local alternatelist = {"Normal", "AntiCheat A", "AntiCheat B"}
-	Speed = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Speed = wingui.blatant({
 		Name = "Speed",
 		Function = function(callback)
 			if callback then
@@ -4569,7 +4570,7 @@ run(function()
 	local SpiderSpeed = {Value = 0}
 	local SpiderMode = {Value = "Normal"}
 	local SpiderPart
-	Spider = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	Spider = wingui.blatant({
 		Name = "Spider",
 		Function = function(callback)
 			if callback then
@@ -4649,7 +4650,7 @@ run(function()
 	local oldmove
 	local controlmodule
 	local block
-	TargetStrafe = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+	TargetStrafe = wingui.blatant({
 		Name = "TargetStrafe",
 		Function = function(callback)
 			if callback then
@@ -4719,7 +4720,7 @@ run(function()
 	local BedESPColor = {Value = 0.44}
 	local BedESPTransparency = {Value = 1}
 	local BedESPOnTop = {Enabled = true}
-	BedESP = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	BedESP = wingui.render({
 		Name = "BedESP",
 		Function = function(callback)
 			if callback then
@@ -4868,7 +4869,7 @@ run(function()
 		refreshAdornee(billboard)
 	end
 
-	BedPlates = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	BedPlates = wingui.render({
 		Name = "BedPlates",
 		Function = function(callback)
 			if callback then
@@ -4992,7 +4993,7 @@ run(function()
 		end)
 	end
 
-	ChestESP = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	ChestESP = wingui.render({
 		Name = "ChestESP",
 		Function = function(callback)
 			if callback then
@@ -5039,7 +5040,7 @@ run(function()
 	local oldfov2
 	local FieldOfView = {Enabled = false}
 	local FieldOfViewZoom = {Enabled = false}
-	FieldOfView = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	FieldOfView = wingui.render({
 		Name = "FOVChanger",
 		Function = function(callback)
 			if callback then
@@ -5114,7 +5115,7 @@ run(function()
 		end)
 	end
 
-	FPSBoost = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	FPSBoost = wingui.render({
 		Name = "FPSBoost",
 		Function = function(callback)
 			local damagetab = debug.getupvalue(bedwars.DamageIndicator, 2)
@@ -5191,7 +5192,7 @@ run(function()
 	local GameFixer = {Enabled = false}
 	local GameFixerHit = {Enabled = false}
 	local RaycastFucker = {Enabled = false}
-	GameFixer = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	GameFixer = wingui.render({
 		Name = "GameFixer",
 		Function = function(callback)
 			task.spawn(function()
@@ -5643,7 +5644,7 @@ run(function()
 		end
 	}
 
-	GameTheme = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	GameTheme = wingui.render({
 		Name = "GameTheme",
 		Function = function(callback)
 			if callback then
@@ -5763,7 +5764,7 @@ run(function()
 	end
 	table.sort(KillEffectName, function(a, b) return a:lower() < b:lower() end)
 	local KillEffect = {Enabled = false}
-	KillEffect = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	KillEffect = wingui.render({
 		Name = "KillEffect",
 		Function = function(callback)
 			if callback then
@@ -5854,7 +5855,7 @@ run(function()
 		end
 	end
 
-	KitESP = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	KitESP = wingui.render({
 		Name = "KitESP",
 		Function = function(callback)
 			if callback then
@@ -6188,7 +6189,7 @@ run(function()
 	local methodused
 
 	local NameTags = {Enabled = false}
-	NameTags = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	NameTags = wingui.render({
 		Name = "NameTags",
 		Function = function(callback)
 			if callback then
@@ -6307,7 +6308,7 @@ run(function()
 	local rotationz = {Value = 0}
 	local oldc1
 	local oldfunc
-	local nobob = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	local nobob = wingui.render({
 		Name = "NoBob",
 		Function = function(callback)
 			local viewmodel = gameCamera:FindFirstChild("Viewmodel")
@@ -6434,7 +6435,7 @@ run(function()
 		until (not SongBeats.Enabled) or SongAudio.IsPaused
 	end
 
-	SongBeats = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	SongBeats = wingui.render({
 		Name = "SongBeats",
 		Function = function(callback)
 			if callback then
@@ -6476,7 +6477,7 @@ end)
 
 run(function()
 	local performed = false
-	GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	wingui.render({
 		Name = "UICleanup",
 		Function = function(callback)
 			if callback and not performed then
@@ -6545,7 +6546,7 @@ end)
 
 run(function()
 	local AntiAFK = {Enabled = false}
-	AntiAFK = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AntiAFK = wingui.utility({
 		Name = "AntiAFK",
 		Function = function(callback)
 			if callback then
@@ -6565,7 +6566,7 @@ run(function()
 	local AutoBalloonypos = 0
 	local balloondebounce = false
 	local AutoBalloon = {Enabled = false}
-	AutoBalloon = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoBalloon = wingui.utility({
 		Name = "AutoBalloon",
 		Function = function(callback)
 			if callback then
@@ -6862,7 +6863,7 @@ run(function()
 		end
 	}
 
-	AutoBuy = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoBuy = wingui.utility({
 		Name = "AutoBuy",
 		Function = function(callback)
 			if callback then
@@ -7011,7 +7012,7 @@ run(function()
 		end
 	end
 
-	AutoConsume = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoConsume = wingui.utility({
 		Name = "AutoConsume",
 		Function = function(callback)
 			if callback then
@@ -7153,7 +7154,7 @@ run(function()
 		end)
 	end
 
-	AutoHotbar = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoHotbar = wingui.utility({
 		Name = "AutoHotbar",
 		Function = function(callback)
 			if callback then
@@ -7209,7 +7210,7 @@ run(function()
 		return lowestplayer
 	end
 
-	AutoKit = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoKit = wingui.utility({
 		Name = "AutoKit",
 		Function = function(callback)
 			if callback then
@@ -7442,7 +7443,7 @@ run(function()
 		end
 	end
 
-	AutoForge = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoForge = wingui.utility({
 		Name = "AutoForge",
 		Function = function(callback)
 			if callback then
@@ -7502,7 +7503,7 @@ run(function()
 	local alreadyreportedlist = {}
 	local AutoReportV2 = {Enabled = false}
 	local AutoReportV2Notify = {Enabled = false}
-	AutoReportV2 = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoReportV2 = wingui.utility({
 		Name = "AutoReportV2",
 		Function = function(callback)
 			if callback then
@@ -7620,7 +7621,7 @@ run(function()
 		return nil
 	end
 
-	AutoToxic = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AutoToxic = wingui.utility({
 		Name = "AutoToxic",
 		Function = function(callback)
 			if callback then
@@ -7880,7 +7881,7 @@ run(function()
 		end
 	}
 
-	ChestStealer = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	ChestStealer = wingui.utility({
 		Name = "ChestStealer",
 		Function = function(callback)
 			if callback then
@@ -7927,7 +7928,7 @@ end)
 
 run(function()
 	local FastDrop = {Enabled = false}
-	FastDrop = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	FastDrop = wingui.utility({
 		Name = "FastDrop",
 		Function = function(callback)
 			if callback then
@@ -7948,7 +7949,7 @@ end)
 run(function()
 	local MissileTP = {Enabled = false}
 	local MissileTeleportDelaySlider = {Value = 30}
-	MissileTP = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	MissileTP = wingui.utility({
 		Name = "MissileTP",
 		Function = function(callback)
 			if callback then
@@ -7998,7 +7999,7 @@ end)
 run(function()
 	local PickupRangeRange = {Value = 1}
 	local PickupRange = {Enabled = false}
-	PickupRange = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	PickupRange = wingui.utility({
 		Name = "PickupRange",
 		Function = function(callback)
 			if callback then
@@ -8047,7 +8048,7 @@ end)
 		"telepearl"
 	}
 
-	BowExploit = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	BowExploit = wingui.utility({
 		Name = "ProjectileExploit",
 		Function = function(callback)
 			if callback then
@@ -8125,7 +8126,7 @@ end)]]
 
 run(function()
 	local RavenTP = {Enabled = false}
-	RavenTP = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	RavenTP = wingui.utility({
 		Name = "RavenTP",
 		Function = function(callback)
 			if callback then
@@ -8184,7 +8185,7 @@ run(function()
 		end
 	end
 
-	GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	wingui.utility({
 		Name = "ShopTierBypass",
 		Function = function(callback)
 			if callback then
@@ -8254,7 +8255,7 @@ run(function()
 
 	local antivoidypos = 0
 	local antivoiding = false
-	AntiVoid = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+	AntiVoid = wingui.world({
 		Name = "AntiVoid",
 		Function = function(callback)
 			if callback then
@@ -8387,7 +8388,7 @@ end)
 run(function()
 	local oldhitblock
 
-	local AutoTool = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+	local AutoTool = wingui.world({
 		Name = "AutoTool",
 		Function = function(callback)
 			if callback then
@@ -8468,7 +8469,7 @@ run(function()
 	end
 
 	local bedprotectorrange = {Value = 1}
-	BedProtector = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+	BedProtector = wingui.world({
 		Name = "BedProtector",
 		Function = function(callback)
 			if callback then
@@ -8513,7 +8514,7 @@ run(function()
 	local nukercustom = {RefreshValues = function() end, ObjectList = {}}
 	local luckyblocktable = {}
 
-	Nuker = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+	Nuker = wingui.world({
 		Name = "Nuker",
 		HoverText = "instantly break bed",																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
 		Function = function(callback)
@@ -8669,7 +8670,7 @@ run(function()
 	local oldmove
 	local SafeWalk = {Enabled = false}
 	local SafeWalkMode = {Value = "Optimized"}
-	SafeWalk = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+	SafeWalk = wingui.world({
 		Name = "SafeWalk",
 		Function = function(callback)
 			if callback then
@@ -8825,7 +8826,7 @@ run(function()
 		end
 	end
 
-	Schematica = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton({
+	Schematica = wingui.world({
 		Name = "Schematica",
 		Function = function(callback)
 			if callback then
@@ -8967,7 +8968,7 @@ run(function()
 	local direction
 	local ScytheTick = {Value = 2}
 	local ScytheDelay = {Value = 0}
-	Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	Disabler = wingui.utility({
 		Name = "FirewallBypass",
 		Function = function(callback)
 			if callback then
@@ -9142,7 +9143,7 @@ run(function()
         end
     }
 
-    CustomPacks = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+    CustomPacks = wingui.utility({
         ["Name"] = "CustomPacks",
         ["Function"] = function(callback) 
             if callback then 
@@ -9199,7 +9200,7 @@ run(function()
             end; 
         end
     }
-    AntiDeath = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+    AntiDeath = wingui.utility({
         Name = "AntiDeath",
         HoverText = "Automatically prevents you from dying. (by mont, he gave me perms 💋)",
        Function = function(callback)
@@ -9284,7 +9285,7 @@ run(function()
     local DragonSound = {Enabled = false}
     local ConfettiPopper = {Enabled = false}
     local YuziDash = {Enabled = false}
-    Annoyer = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+    Annoyer = wingui.blatant({
         Name = "RemoteTrollage",
         Function = function(callback)
             if callback then
@@ -9333,7 +9334,7 @@ end)
 run(function()
 	local MelodyExploit = {Enabled = false}
 	local Delay = {Value = 5}
-	MelodyExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+	MelodyExploit = wingui.exploit({
 		Name = "MelodyExploit",
 		Function = function(callback)
 			if callback then
@@ -9361,7 +9362,7 @@ end)
 
 --[[run(function()
 	local JellyfishExploit = {Enabled = false}
-	JellyfishExploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+	JellyfishExploit = wingui.exploit({
 		Name = "MarinaJellyfishExploit",
 		Function = function(callback)
 			if callback then
@@ -9394,7 +9395,7 @@ run(function()
     local SkidRoaster = {Enabled = false}
     local MatchCheck = {Enabled = false}
     local SkidDelay = {Value = 5}
-    SkidRoaster = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+    SkidRoaster = wingui.render({
         Name = "SkidRoaster",
         Function = function(callback)
             if callback then
@@ -9441,7 +9442,7 @@ run(function()
 		if plr.Character:FindFirstChild("Humanoid").Health < 0.11 then return false end
 		return true
 	end
-    GodMode = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton({
+    GodMode = wingui.blatant({
         Name = "AntiHit",
         Function = function(callback)
             if callback then
@@ -9510,7 +9511,7 @@ end)
 
 run(function()
     local HostPanel = {Enabled = false}
-	HostPanel = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	HostPanel = wingui.render({
 		Name = "HostPanelExploit",
 		HoverText = "Allows you to get host-panel client-sided",
         Function = function(callback)
@@ -9526,7 +9527,7 @@ end)
 run(function()
     local SemiInstantWin = {Enabled = false}
     local PlaceIdPicker = {Value = "Squads/5v5/Doubles/Skywars"}
-    SemiInstantWin = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+    SemiInstantWin = wingui.exploit({
         Name = "SemiInstantWin",
         HoverText = "Sort of a instant-win (by nebula) (fuck the skids man especially erco)",
         Function = function(callback)
@@ -9561,7 +9562,7 @@ run(function()
     local replicatedStorage = game:GetService("ReplicatedStorage")
     local netManaged = replicatedStorage.rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged
 
-    AutoUpgradeStats = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+    AutoUpgradeStats = wingui.exploit({
         Name = "AutoUpgradeStats",
         Function = function(callback)
             if callback then                                                                                                                                                            
@@ -9593,7 +9594,7 @@ end)
 
 --[[run(function()
 	local SkyScytheInstakill = {Enabled = false}
-	SkyScytheInstakill = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+	SkyScytheInstakill = wingui.exploit({
 		Name = "SkyScytheInstakill",
 		Function = function(callback)
 			if callback then
@@ -9612,7 +9613,7 @@ end)]]
 
 run(function()
 	local NoNameTag = {Enabled = false}
-	NoNameTag = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+	NoNameTag = wingui.render({
 		Name = "NoNametag",
 		Function = function(callback)
 			if callback then

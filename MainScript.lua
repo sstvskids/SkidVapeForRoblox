@@ -1863,6 +1863,7 @@ GuiLibrary.SelfDestruct = function()
 	shared.VapeManualLoad = nil
 	shared.CustomSaveVape = nil
 	shared.skidstore = nil
+	shared.wingui = nil
 	GuiLibrary.KeyInputHandler:Disconnect()
 	GuiLibrary.KeyInputHandler2:Disconnect()
 	if MiddleClickInput then

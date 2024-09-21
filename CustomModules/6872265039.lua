@@ -4,6 +4,7 @@
 	Please notify me if you need credits
 ]]
 local GuiLibrary = shared.GuiLibrary
+local wingui = shared.wingui
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
 local repstorage = game:GetService("ReplicatedStorage")
@@ -318,7 +319,7 @@ teleportfunc = lplr.OnTeleport:Connect(function(State)
 end)
 
 local Sprint = {["Enabled"] = false}
-Sprint = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
+Sprint = wingui.combat({
 	["Name"] = "Sprint",
 	["Function"] = function(callback)
 		if callback then
@@ -357,7 +358,7 @@ runcode(function()
 
 	local flytog = false
 	local flytogtick = tick()
-	fly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+	fly = wingui.blatant({
 		["Name"] = "Fly",
 		["Function"] = function(callback)
 			if callback then
@@ -442,7 +443,7 @@ local JoinQueue = {["Enabled"] = false}
 local JoinQueueTypes = {["Value"] = ""}
 local JoinQueueDelay = {["Value"] = 1}
 local firstqueue = true
-JoinQueue = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+JoinQueue = wingui.blatant({
 	["Name"] = "AutoQueue",
 	["Function"] = function(callback)
 		if callback then
@@ -538,7 +539,7 @@ runcode(function()
 		ownedkitsamount = ownedkitsamount + 1
 		ownedkits[bedwars["KitMeta"][v3.kitType].name:lower()] = v3.kitType
 	end
-	AutoKit = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+	AutoKit = wingui.utility({
 		["Name"] = "AutoKit",
 		["Function"] = function(callback)
 			if callback then
@@ -583,7 +584,7 @@ end)
 
 runcode(function()
 	local CameraFix = {["Enabled"] = false}
-	CameraFix = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+	CameraFix = wingui.render({
 		["Name"] = "CameraFix",
 		["Function"] = function(callback)
 			if callback then
@@ -615,7 +616,7 @@ runcode(function()
 	local speedtick = tick()
 	local bodyvelo
 	local raycastparameters = RaycastParams.new()
-	speed = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+	speed = wingui.blatant({
 		["Name"] = "Speed",
 		["Function"] = function(callback)
 			if callback then
@@ -1200,7 +1201,7 @@ runcode(function()
 		end
 	}
 
-	OldBedwars = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+	OldBedwars = wingui.render({
 		["Name"] = "GameTheme",
 		["Function"] = function(callback)
 			if callback then

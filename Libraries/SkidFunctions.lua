@@ -1,10 +1,10 @@
 local lplr = cloneref(game.GetService("Players")).LocalPlayer
 local skidstore = {
-	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven"},
+	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera"},
 	skidver = "Next-Gen",
 	skiduser = lplr.Name,
 	skiduserid = lplr.UserId,
-	skids = {"erco", "coco"}
+	skids = {"erco", "coco", "daiplayz"} -- he doesnt know a metatable
 }
 
 local function AntiLog()

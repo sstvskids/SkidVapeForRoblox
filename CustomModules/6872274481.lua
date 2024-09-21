@@ -8968,8 +8968,9 @@ run(function()
 	local direction
 	local ScytheTick = {Value = 2}
 	local ScytheDelay = {Value = 0}
-	Disabler = wingui.utility({
-		Name = "FirewallBypass",
+	local DelayToggle = {Enabled = false}
+	Disabler = wingui.exploit({
+		Name = "ScytheDisabler",
 		Function = function(callback)
 			if callback then
 				RunLoops:BindToHeartbeat('Disabler', function()
@@ -9004,6 +9005,14 @@ run(function()
 			return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")"
 		end
 	})
+	DelayToggle = Disabler.CreateToggle({
+        Name = "Delay",
+		HoverText = "Reduces the speed/can make you look legit in some cases"
+        Default = false,
+        Function = function(calling)
+			if calling then pcall(function() ScytheDelay.Object.Visible = calling end)
+		end
+    })
 	SpeedBypassMethod = Disabler.CreateDropdown({
         Name = "SpeedMode",
         List = {"Heatseeker", "CFrame"},
@@ -9072,6 +9081,7 @@ run(function()
             ScytheTick.Value = val
         end
     })
+	ScytheDelay.Object.Visible = false
 end)
 
 run(function()

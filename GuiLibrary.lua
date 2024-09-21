@@ -95,6 +95,15 @@ if shared.VapeExecuted then
 		MobileButtons = {},
 		RainbowSliders = {}
 	}
+	local wingui = {
+		combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
+		blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
+		render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
+		utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
+		world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
+		exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
+	}
+	shared.wingui = wingui
 	local runService = game:GetService("RunService")
 	local inputService = game:GetService("UserInputService")
 	local httpService = game:GetService("HttpService")

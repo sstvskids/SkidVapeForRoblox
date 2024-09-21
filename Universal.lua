@@ -15,7 +15,7 @@ local vapeConnections = {}
 local vapeCachedAssets = {}
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
-local wingui = skidstore.wingui
+--local wingui = shared.skidstore.wingui
 table.insert(vapeConnections, workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	gameCamera = workspace.CurrentCamera or workspace:FindFirstChildWhichIsA("Camera")
 end))
@@ -6691,7 +6691,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
 	PrintTest = wingui.render({
 		Name = "printtest"
 		Function = function(callback)
@@ -6700,7 +6700,7 @@ run(function()
 			end
 		end
 	})
-end)
+end)]]
 					
 run(function()
 	local FPS = {}

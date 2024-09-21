@@ -9083,7 +9083,6 @@ run(function()
             ScytheTick.Value = val
         end
     })
-	ScytheDelay.Object.Visible = false
 end)
 
 run(function()

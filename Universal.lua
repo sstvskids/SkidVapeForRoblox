@@ -1,4 +1,5 @@
 local GuiLibrary = shared.GuiLibrary
+local wingui = shared.wingui
 local playersService = game:GetService("Players")
 local coreGui = game:GetService("CoreGui")
 local textService = game:GetService("TextService")
@@ -6686,6 +6687,17 @@ run(function()
 			end
 		end,
 		HoverText = "Makes sure stupid skids dont log you"
+	})
+end)
+
+run(function()
+	PrintTest = wingui.render({
+		Name = "printtest"
+		Function = function(callback)
+			if callback then
+				print('testing skid works!!')
+			end
+		end
 	})
 end)
 					

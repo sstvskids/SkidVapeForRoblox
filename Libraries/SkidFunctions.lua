@@ -1,4 +1,5 @@
-local lplr = cloneref(game:GetService("Players")).LocalPlayer
+local lplr = cloneref(game:GetService("Players")).LocalPlayer;
+local GuiLibrary = shared.GuiLibrary	
 local skidstore = {
 	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera"},
 	skidver = "Next-Gen",

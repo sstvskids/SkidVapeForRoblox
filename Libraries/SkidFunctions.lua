@@ -4,7 +4,7 @@ local skidstore = {
 	skidver = "Next-Gen",
 	skiduser = lplr.Name,
 	skiduserid = lplr.UserId,
-	skids = {"erco", "coco"}
+	skids = {"erco", "coco", "daiplayz"} -- he doesnt know a metatable
 }
 
 local function AntiLog()

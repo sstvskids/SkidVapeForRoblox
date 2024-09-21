@@ -1,6 +1,5 @@
 repeat task.wait() until game:IsLoaded()
 local GuiLibrary
-local skidstore
 local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
 local vapeInjected = true
 local oldRainbow = false
@@ -240,9 +239,7 @@ if not isfile("vape/CustomModules/cachechecked.txt") then
 end
 
 GuiLibrary = loadstring(vapeGithubRequest("GuiLibrary.lua"))()
-skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 shared.GuiLibrary = GuiLibrary
-shared.skidstore = skidstore
 
 local saveSettingsLoop = coroutine.create(function()
 	if inputService.TouchEnabled then return end
@@ -2018,9 +2015,6 @@ local function loadVape()
 	coroutine.resume(saveSettingsLoop)
 	shared.VapeFullyLoaded = true
 end
-
-local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
-shared.skidstore = skidstore
 
 if identifyexecutor then
 	local executor = string.lower(identifyexecutor())

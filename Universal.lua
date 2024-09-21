@@ -1,5 +1,6 @@
 local GuiLibrary = shared.GuiLibrary
-local skidstore = shared.skidstore
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
+shared.skidstore = skidstore
 local playersService = game:GetService("Players")
 local coreGui = game:GetService("CoreGui")
 local textService = game:GetService("TextService")

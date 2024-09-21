@@ -6693,7 +6693,7 @@ end)
 
 run(function()
 	PrintTest = wingui.render({
-		Name = "printtest"
+		Name = "printtest",
 		Function = function(callback)
 			if callback then
 				print('testing skid works!!')

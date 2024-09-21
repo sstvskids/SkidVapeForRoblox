@@ -9007,7 +9007,7 @@ run(function()
 	})
 	DelayToggle = Disabler.CreateToggle({
         Name = "Delay",
-		HoverText = "Reduces the speed/can make you look legit in some cases"
+		HoverText = "Reduces the speed/can make you look legit in some cases",
         Default = false,
         Function = function(calling)
 			pcall(function()

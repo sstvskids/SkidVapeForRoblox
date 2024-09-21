@@ -1,5 +1,5 @@
 local GuiLibrary = shared.GuiLibrary
-local wingui = shared.wingui
+local skidstore = shared.skidstore
 local playersService = game:GetService("Players")
 local coreGui = game:GetService("CoreGui")
 local textService = game:GetService("TextService")
@@ -15,6 +15,7 @@ local vapeConnections = {}
 local vapeCachedAssets = {}
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
+local wingui = skidstore.wingui
 table.insert(vapeConnections, workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	gameCamera = workspace.CurrentCamera or workspace:FindFirstChildWhichIsA("Camera")
 end))

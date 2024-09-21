@@ -27,7 +27,7 @@ local wingui = {
         render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
         utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
         world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
-        exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton
+        exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
     }
 }
 

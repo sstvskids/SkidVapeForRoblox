@@ -1,5 +1,6 @@
 -- Credits to Inf Yield & all the other scripts that helped me make bypasses
 local GuiLibrary = shared.GuiLibrary
+local wingui = shared.wingui
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
 local lplr = players.LocalPlayer
@@ -103,7 +104,7 @@ local function vischeck(char, part)
 	return not unpack(cam:GetPartsObscuringTarget({lplr.Character[part].Position, char[part].Position}, {lplr.Character, char}))
 end
 
-local function runcode(func)
+local function run(func)
 	func()
 end
 

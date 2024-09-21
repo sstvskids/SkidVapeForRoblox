@@ -1,5 +1,6 @@
 repeat task.wait() until game:IsLoaded()
 local GuiLibrary
+local skidstore
 local baseDirectory = (shared.VapePrivate and "vapeprivate/" or "vape/")
 local vapeInjected = true
 local oldRainbow = false
@@ -97,8 +98,6 @@ local getcustomasset = getsynasset or getcustomasset or function(location) retur
 local customassetcheck = (getsynasset or getcustomasset) and true
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local delfile = delfile or function(file) writefile(file, "") end
-local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
-shared.skidstore = skidstore
 
 local function displayErrorPopup(text, funclist)
 	local oldidentity = getidentity()
@@ -241,7 +240,9 @@ if not isfile("vape/CustomModules/cachechecked.txt") then
 end
 
 GuiLibrary = loadstring(vapeGithubRequest("GuiLibrary.lua"))()
+skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 shared.GuiLibrary = GuiLibrary
+shared.skidstore = skidstore
 
 local saveSettingsLoop = coroutine.create(function()
 	if inputService.TouchEnabled then return end

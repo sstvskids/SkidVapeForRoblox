@@ -8962,13 +8962,13 @@ end)
 
 run(function()
 	local BypassMethod = {{Value = "LookVector + MoveDirection"}}
+	local DelayToggle = {Enabled = false}
 	local MultiplyDirection = {Value = 0.01}
 	local DivideDirection = {Value = 0.01}
 	local DivideVal = {Value = 2}
 	local direction
 	local ScytheTick = {Value = 2}
 	local ScytheDelay = {Value = 0}
-	local DelayToggle = {Enabled = false}
 	Disabler = wingui.utility({
 		Name = "FirewallBypass",
 		Function = function(callback)

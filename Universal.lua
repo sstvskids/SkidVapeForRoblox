@@ -36,7 +36,6 @@ local vapeAssetTable = {["vape/assets/VapeCape.png"] = "rbxassetid://13380453812
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local synapsev3 = syn and syn.toast_notification and "V3" or ""
-local skidstore = shared.skidstore
 local worldtoscreenpoint = function(pos)
 	if synapsev3 == "V3" then
 		local scr = worldtoscreen({pos})

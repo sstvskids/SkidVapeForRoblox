@@ -17,7 +17,6 @@ local isfile = isfile or function(file)
 end
 local setidentity = syn and syn.set_thread_identity or set_thread_identity or setidentity or setthreadidentity or function() end
 local getidentity = syn and syn.get_thread_identity or get_thread_identity or getidentity or getthreadidentity or function() return 0 end
-local skidstore = shared.skidstore
 local vapeAssetTable = {
 	["vape/assets/AddItem.png"] = "rbxassetid://13350763121",
 	["vape/assets/AddRemoveIcon1.png"] = "rbxassetid://13350764147",
@@ -2015,6 +2014,9 @@ local function loadVape()
 	coroutine.resume(saveSettingsLoop)
 	shared.VapeFullyLoaded = true
 end
+
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua",true))()
+shared.skidstore = skidstore
 
 if identifyexecutor then
 	local executor = string.lower(identifyexecutor())

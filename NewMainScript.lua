@@ -49,9 +49,6 @@ local function vapeGithubRequest(scripturl)
 	return readfile("vape/"..scripturl)
 end
 
-local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua",true))()
-shared.skidstore = skidstore
-
 if not shared.VapeDeveloper then 
 	local commit = "main"
 	for i,v in pairs(game:HttpGet("https://github.com/sstvskids/SkidVapeForRoblox"):split("\n")) do 
@@ -95,16 +92,6 @@ if not shared.VapeDeveloper then
 	end
 end
 
-pcall(function()
-	if identifyexecutor then
-	    local executor = string.lower(identifyexecutor())
-	    for i, v in pairs(skidstore.cheatengine) do
-	        if string.find(executor, string.lower(v)) then
-	            warn("Executors who fake their UNC (Claim to be 100% UNC), or are level 3 or whom which broke a function will NOT be supported. This means that "..identifyexecutor().." executor will not be supported.")		
-			end
-	    end
-	end
-end)
 
 print("Skid-Vxpe | NewMainScript.lua")
 return loadstring(vapeGithubRequest("MainScript.lua"))()

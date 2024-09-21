@@ -51,6 +51,8 @@ end
 
 local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua",true))()
 shared.skidstore = skidstore
+local wingui = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
+shared.wingui = wingui
 
 if not shared.VapeDeveloper then 
 	local commit = "main"

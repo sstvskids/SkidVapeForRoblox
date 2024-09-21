@@ -95,27 +95,6 @@ if shared.VapeExecuted then
 		MobileButtons = {},
 		RainbowSliders = {}
 	}
-	--[[
-	run(function()
-		local PrintModule = {Enabled = false};
-		PrintModule = wingui.combat({
-			Name = "hello!",
-			Function = function(calling)
-				if calling then
-					print("Hello!")
-				end
-			end
-		})
-	end)
-	--]]
-	local wingui = {
-		combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
-		blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
-		render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
-		utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
-		world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
-		exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitWindow.Api.CreateOptionsButton
-	}
 	local runService = game:GetService("RunService")
 	local inputService = game:GetService("UserInputService")
 	local httpService = game:GetService("HttpService")
@@ -7086,5 +7065,4 @@ if shared.VapeExecuted then
 
 	print("Skid-Vxpe | GuiLibrary.lua")
 	return GuiLibrary
-	return wingui
 end

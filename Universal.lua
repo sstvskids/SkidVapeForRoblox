@@ -6044,7 +6044,7 @@ run(function()
 	end
 
 
-	Disabler = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	Disabler = wingui.utility({
 		Name = "ClientKickDisabler",
 		Function = function(callback)
 			if callback then
@@ -6088,7 +6088,7 @@ run(function()
     local TextGUI_2 = {Value = "Gotham"}
     local TextLabel, TextLabel_2
 
-    Watermark = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+    Watermark = wingui.render({
         Name = "Watermark",
         Function = function(callback)
             if callback then
@@ -6301,7 +6301,7 @@ run(function()
 		FogStart = lightingService.FogStart,
 		FogEnd = lightingService.FogEnd
 	}
-    LightingModifications = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+    LightingModifications = wingui.render({
         Name = "LightingModifications",
         HoverText = "Makes modifications to the lighting\nMods may be limited to the lighting technology you use.",
         Function = function(callback)
@@ -6461,7 +6461,7 @@ run(function()
 		animefunctions[AnimeSelection.Value]()
 	end
 
-    AnimeImages = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton({
+    AnimeImages = wingui.render({
         Name = "AnimeImages",
         Function = function(callback) 
             if callback then
@@ -6488,46 +6488,6 @@ run(function()
 end)
 
 run(function()
-    local Desync = {Enabled = false};
-    local FakeLatencyDelay = {Value = 0.00017};
-    local currentPos;
-    local DesyncDistance = {Value = 0.00017};
-
-    Desync = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
-        Name = "Desync",
-        Function = function(callback)
-            if callback then
-                task.spawn(function()
-                    RunLoops:BindToHeartbeat("Desync", function()
-						task.wait(0.07)
-						local root = entityLibrary.character.HumanoidRootPart;
-						currentPos = root.Position + Vector3.new(0, 0, -DesyncDistance.Value);
-						task.wait(FakeLatencyDelay.Value + 0.004);
-						root.CFrame = CFrame.new(currentPos);
-					end)
-                end)
-            else
-				RunLoops:UnbindFromHeartbeat("Desync")
-			end
-        end
-    })
-    FakeLatencyDelay = Desync.CreateSlider({
-        Name = "Delay",
-        Min = 0,
-        Max = 0.001,
-        Default = 0.00017,
-        Function = function() end
-    })
-    DesyncDistance = Desync.CreateSlider({
-        Name = "DesyncDistance",
-        Min = 0,
-        Max = 0.05,
-        Default = 0.00017,
-        Function = function() end
-    })
-end)
-
-run(function()
     local AntiCrash = {Enabled = false};
     local MaxPing = {Value = 555};
     local MinFPS = {Value = 30};
@@ -6535,7 +6495,7 @@ run(function()
     local WarningMethod = {Value = "Vape"};
     local PingCallback = lplr:GetNetworkPing() * 1000;
     local FPSCounter = workspace:GetRealPhysicsFPS();
-    AntiCrash = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+    AntiCrash = wingui.exploit({
         Name = "AntiCrash",
         Function = function(callback)
             if callback then
@@ -6644,7 +6604,7 @@ run(function()
         end
     end)
 
-    ChatFreezer = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton({
+    ChatFreezer = wingui.exploit({
         Name = "ChatCrash",
         HoverText = "Attempts to crash everyone with fast messages.",
         Function = function(callback)
@@ -6683,7 +6643,7 @@ end)
 
 run(function()
 	local AntiLogger = {Enabled = false}
-	AntiLogger = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton({
+	AntiLogger = wingui.utility({
 		Name = "AntiLog",
 		Function = function(callback)
 			if callback then 

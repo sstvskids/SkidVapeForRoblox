@@ -6690,7 +6690,7 @@ run(function()
 	})
 end)
 
---[[run(function()
+run(function()
 	PrintTest = wingui.render({
 		Name = "printtest"
 		Function = function(callback)
@@ -6699,7 +6699,7 @@ end)
 			end
 		end
 	})
-end)]]
+end)
 					
 run(function()
 	local FPS = {}

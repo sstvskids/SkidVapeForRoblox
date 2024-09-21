@@ -103,6 +103,7 @@ if shared.VapeExecuted then
 	local textService = game:GetService("TextService")
 	local translations = shared.VapeTranslation or {}
 	local translatedlogo = false
+	local skidstore = shared.skidstore
 
 	GuiLibrary.ColorStepped = runService.RenderStepped:Connect(function()
 		local col = (tick() * 0.25 * GuiLibrary.RainbowSpeed) % 1

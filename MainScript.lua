@@ -97,6 +97,8 @@ local getcustomasset = getsynasset or getcustomasset or function(location) retur
 local customassetcheck = (getsynasset or getcustomasset) and true
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local delfile = delfile or function(file) writefile(file, "") end
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
+shared.skidstore = skidstore
 
 local function displayErrorPopup(text, funclist)
 	local oldidentity = getidentity()
@@ -1862,6 +1864,7 @@ GuiLibrary.SelfDestruct = function()
 	shared.VapeIndependent = nil
 	shared.VapeManualLoad = nil
 	shared.CustomSaveVape = nil
+	shared.skidstore = nil
 	GuiLibrary.KeyInputHandler:Disconnect()
 	GuiLibrary.KeyInputHandler2:Disconnect()
 	if MiddleClickInput then
@@ -2015,7 +2018,7 @@ local function loadVape()
 	shared.VapeFullyLoaded = true
 end
 
-local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua",true))()
+local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidFunctions.lua", true))()
 shared.skidstore = skidstore
 
 if identifyexecutor then

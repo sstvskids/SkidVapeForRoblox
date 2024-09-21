@@ -17,15 +17,7 @@ local vapeConnections = {}
 local vapeCachedAssets = {}
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
-local wingui = {
-	combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
-	blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
-	render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
-	utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
-	world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
-	exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
-}
-shared.wingui = wingui
+local wingui = shared.wingui
 table.insert(vapeConnections, workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	gameCamera = workspace.CurrentCamera or workspace:FindFirstChildWhichIsA("Camera")
 end))

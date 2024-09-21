@@ -9010,11 +9010,9 @@ run(function()
 		HoverText = "Reduces the speed/can make you look legit in some cases"
         Default = false,
         Function = function(calling)
-			if calling then 
-				pcall(function() 
-					ScytheDelay.Object.Visible = calling 
-				end)
-			end
+			pcall(function()
+				ScytheDelay.Object.Visible = calling 
+			end)
 		end
     })
 	SpeedBypassMethod = Disabler.CreateDropdown({
@@ -9036,8 +9034,8 @@ run(function()
         Min = 0,
         Max = 5,
         Default = 0,
-        Function = function(val) 
-            ScytheDelay.Value = val
+        Function = function(calling)
+			ScytheDelay.Value = calling
         end
     })
 	MultiplyDirection = Disabler.CreateSlider({

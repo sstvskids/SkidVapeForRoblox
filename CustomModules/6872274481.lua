@@ -8960,6 +8960,8 @@ run(function()
 	})
 end)
 
+-- CUSTOM-MODULES START HERE
+
 run(function()
 	local BypassMethod = {{Value = "LookVector + MoveDirection"}}
 	local DelayToggle = {Enabled = false}
@@ -8969,8 +8971,8 @@ run(function()
 	local direction
 	local ScytheTick = {Value = 2}
 	local ScytheDelay = {Value = 0}
-	Disabler = wingui.utility({
-		Name = "FirewallBypass",
+	Disabler = wingui.exploit({
+		Name = "ScytheDisabler",
 		Function = function(callback)
 			if callback then
 				RunLoops:BindToHeartbeat('Disabler', function()
@@ -9626,7 +9628,7 @@ end)]]
 run(function()
 	local NoNameTag = {Enabled = false}
 	NoNameTag = wingui.render({
-		Name = "NoNametag",
+		Name = "NoNameTag",
 		Function = function(callback)
 			if callback then
 				RunLoops:BindToHeartbeat('NoNametag', function()

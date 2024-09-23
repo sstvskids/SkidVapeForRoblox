@@ -10,4 +10,5 @@ Watermark, LightingModifications, AnimeImages, AntiCrash, ChatCrasher, AntiLog
 @stav (Main Dev, works on core skid-vape), @stars.space (works on bedwars only), @lyno (making custom profile for me), @mont (worked on antideath), @qwertyuiisback (MelodyExploit).
 
 always remember, pasting skid-vxpe without my knowledge is a sin 🙏 
+
 if you need to paste that bad, learn how to code :)

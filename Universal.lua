@@ -6653,20 +6653,6 @@ run(function()
 		HoverText = "Makes sure stupid skids dont log you"
 	})
 end)
-
-run(function()
-	local PrintTest = {Enabled = false}
-	PrintTest = wingui.render({
-		Name = "printtest",
-		Function = function(callback)
-			if callback then
-				repeat task.wait()
-				print('testing skid works!!')
-				until not PrintTest.Enabled
-			end
-		end
-	})
-end)
 					
 run(function()
 	local FPS = {}

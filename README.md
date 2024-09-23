@@ -1,14 +1,13 @@
-# Skid-Vape
-nextgen :tm:
+# Welcome to a new era :) - Skid-Vape
 
-# modules skid-vape has:
-# reinject, better targethud, skid-roaster, better firewall bypass, antihit, melodyexploit (catv5, i got perms dw), raycast fucker (under gamefixer), removekillfeed, remotetrollage, CustomPacks, AnimeImages, watermark, hostpanelexploit (clientsided), SemiInstantWin, AntiDeath, Desync, AntiCrash, ChatCrash, AntiLog, NoNameTag
+## BEDWARS.lua Modules we have:
+ScytheExploit, CustomPacks, AntiDeath, RemoteTrollage, MelodyExploit, SkidRoaster (yappachino!!), Anti-Hit (crap), HostPanelExploit, SemiInstantWin, AutoUpgradeStats, NoNameTag, RemoveKillFeed
 
-# in fixing:
-head-modifications, MarinaKitExploit, SkyScytheInstaKill,
+## UNIVERSAL.lua Modules we have:
+Watermark, LightingModifications, AnimeImages, AntiCrash, ChatCrasher, AntiLog
 
-# Note: Even though this is open source you **cannot** skid from it
-# Devs: @stars.space, @stav, @skiddedruck, @qwertyui, @mont, @lyno
-credits to all of these amazing people for helping out with this project!
+## Developers:
+@stav (Main Dev, works on core skid-vape), @stars.space (works on bedwars only), @lyno (making custom profile for me), @mont (worked on antideath), @qwertyuiisback (MelodyExploit).
 
-also, we **DO NOT** log you btw ;)
+always remember, pasting skid-vxpe without my knowledge is a sin 🙏 
+if you need to paste that bad, learn how to code :)

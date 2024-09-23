@@ -6072,6 +6072,8 @@ run(function()
 	})
 end)
 
+-- CUSTOM-MODULES START HERE
+
 run(function()
     local Watermark = {Enabled = false}
     local WatermarkText = {Value = ""}

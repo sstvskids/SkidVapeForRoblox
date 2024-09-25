@@ -9646,6 +9646,78 @@ run(function()
 end)
 
 run(function()
+    local promomeng = wingui.exploit({
+        Name = "StaffDetector",
+        Function = function(callback)
+            if callback then
+                if Detection.Value == "Group" then
+                    for _, plr in pairs(game.Players:GetPlayers()) do
+                        if plr:IsInGroup(5774246) and plr:GetRankInGroup(5774246) >= 2 then
+                            warningNotification("StaffDetector", "Staff Detected: " .. (plr.DisplayName and plr.DisplayName .. " (" .. plr.Name .. ")" or plr.Name), 60)
+                        end
+                    end
+                end
+                if Detection.Value == "Impossible Join" then
+                    local function loadPlayerList()
+                        local success, playersToCheck = pcall(function()
+                            return {}
+                        end)
+                        if not success then
+                            warn("Error loading player list.")
+                        end
+                    end
+
+                    local function checkPlayerList(player)
+                        for _, playerToCheck in ipairs(PlayersToCheck) do
+                            if player.Name == playerToCheck.Username or player.DisplayName == playerToCheck.DisplayName then
+                                warningNotification("StaffDetector", playerToCheck.DisplayName .. " has joined", 5)
+                                break
+                            end
+                        end
+                    end
+
+                    local function checkImpossibleJoin(player)
+                        if player then
+                            warningNotification("StaffDetector", player.Name .. " joined impossibly, they might be a staff!")
+                            if Action.Value == "Crash" then 
+                                while true do end
+                            elseif Action.Value == "Uninject" then 
+                                GuiLibrary.SelfDestruct() 
+                            elseif Action.Value == "Leave" then 
+                                LocalPlayer:Kick("Staff detected!")
+                            end
+                        end
+                    end
+
+                    local function setupPlayerListCheck()
+                        game.Players.PlayerAdded:Connect(checkPlayerList)
+                    end
+
+                    local function setupImpossibleJoinCheck()
+                        game.Players.PlayerAdded:Connect(checkImpossibleJoin)
+                    end
+
+                    setupPlayerListCheck()
+                    setupImpossibleJoinCheck()
+                end
+            end
+        end
+    })
+
+    Action = promomeng.CreateDropdown({
+        Name = "Action",
+        Function = function() end,
+        List = {"Uninject", "Leave", "Crash"}
+    })
+
+    Detection = promomeng.CreateDropdown({
+        Name = "Detection Mode",
+        Function = function() end,
+        List = {"Impossible Join", "Group"}
+    })
+end)
+
+run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
 	local Overlay = GuiLibrary.CreateCustomWindow({

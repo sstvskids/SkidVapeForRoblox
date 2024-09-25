@@ -1,7 +1,7 @@
 # Welcome to a new era :) - Skid-Vape
 
 ## 6872274481.lua (bedwars) Modules we have:
-ScytheExploit, CustomPacks, AntiDeath, RemoteTrollage, MelodyExploit, SkidRoaster (yappachino!!), Anti-Hit (crap), HostPanelExploit, SemiInstantWin, AutoUpgradeStats, NoNameTag, RemoveKillFeed
+ScytheExploit, CustomPacks, AntiDeath, RemoteTrollage, MelodyExploit, SkidRoaster (yappachino!!), Anti-Hit (crap), HostPanelExploit (bootycheeks), SemiInstantWin, AutoUpgradeStats, NoNameTag, RemoveKillFeed
 
 ## UNIVERSAL.lua Modules we have:
 Watermark, LightingModifications, AnimeImages, AntiCrash, ChatCrasher, AntiLog

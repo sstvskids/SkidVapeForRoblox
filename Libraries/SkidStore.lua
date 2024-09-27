@@ -1,4 +1,4 @@
-local lplr = game.Players.LocalPlayer
+local lplr = cloneref(game:GetService("Players")).LocalPlayer
 local skidstore = {
 	skidver = "Next-Gen",
 	skiduser = lplr.Name,

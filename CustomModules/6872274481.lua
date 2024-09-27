@@ -393,6 +393,9 @@ local Fly = {Enabled = false}
 local ScytheSpeed = {Value = 57}
 local ScytheFlySpeed = {Value = 20}
 local SpeedBypassMethod = {Value = "Heatseeker"}
+local ZephyrSpeed = {Value = 17}
+local ScytheToggle = {Enabled = false}
+local ZephyrToggle = {Enabled = false}
 
 local function getSpeed()
 	local speed = 0
@@ -406,15 +409,17 @@ local function getSpeed()
 		end
 		if store.scythe > tick() then
 			if entityLibrary.isAlive then
-				if SpeedBypassMethod.Value == "Heatseeker" and entityLibrary.character.Head.Transparency ~= 0 then
-					speed = speed + ScytheSpeed.Value
-					if Fly.Enabled then
-						speed = speed + ScytheFlySpeed.Value
-					end
-				elseif SpeedBypassMethod.Value == "CFrame" then
-					speed = speed + ScytheSpeed.Value
-					if Fly.Enabled then
-						speed = speed + ScytheFlySpeed.Value
+				if ScytheToggle.Enabled then
+					if SpeedBypassMethod.Value == "Heatseeker" and entityLibrary.character.Head.Transparency ~= 0 then
+						speed = speed + ScytheSpeed.Value
+						if Fly.Enabled then
+							speed = speed + ScytheFlySpeed.Value
+						end
+					elseif SpeedBypassMethod.Value == "CFrame" then
+						speed = speed + ScytheSpeed.Value
+						if Fly.Enabled then
+							speed = speed + ScytheFlySpeed.Value
+						end
 					end
 				end
 			end
@@ -428,7 +433,9 @@ local function getSpeed()
 			speed = speed + 12
 		end
 		if store.zephyrOrb ~= 0 then
-			speed = speed + 12
+			if ZephyrToggle.Enabled then
+				speed = speed + ZephyrSpeed.Value
+			end
 		end
 	end
 	return speed
@@ -8964,7 +8971,7 @@ end)
 -- CUSTOM-MODULES START HERE
 
 run(function()
-	local BypassMethod = {{Value = "LookVector + MoveDirection"}}
+	local BypassMethod = {Value = "LookVector + MoveDirection"}
 	local DelayToggle = {Enabled = false}
 	local MultiplyDirection = {Value = 0.01}
 	local DivideDirection = {Value = 0.01}
@@ -9005,9 +9012,45 @@ run(function()
 		end,
 		HoverText = "Float disabler with scythe\nAllows up to 45-60 speed depending on what BypassMethod you use", -- 100 works for few movements than lagbacks
 		ExtraText = function()
-			return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")"
+			return pcall(function() if ScytheToggle.Enabled then SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" end end)
 		end
 	})
+	ZephyrToggle = Disabler.CreateToggle({
+        Name = "Zephyr",
+		HoverText = "Turns on Zephyr bypass",
+        Default = false,
+        Function = function(calling)
+			pcall(function()
+				ZephyrSpeed.Object.Visible = calling 
+			end)
+		end
+    })
+	ZephyrSpeed = Disabler.CreateSlider({
+        Name = "ZephyrSpeed",
+        Min = 0,
+        Max = 17,
+        Default = 17,
+        Function = function(val) 
+            ZephyrSpeed.Value = val
+        end
+    })
+	ScytheToggle = Disabler.CreateToggle({
+        Name = "Scythe",
+		HoverText = "Enables the Scythe-Disabler",
+        Default = false,
+        Function = function(calling)
+			pcall(function()
+				DelayToggle.Object.Visible = calling
+				SpeedBypassMethod.Object.Visible = calling
+				BypassMethod.Object.Visible = calling
+				MultiplyDirection.Object.Visible = calling
+				DivideDirection.Object.Visible = calling
+				ScytheSpeed.Object.Visible = calling
+				ScytheFlySpeed.Object.Visible = calling
+				ScytheTick.Object.Visible = calling
+			end)
+		end
+    })
 	DelayToggle = Disabler.CreateToggle({
         Name = "Delay",
 		HoverText = "Reduces the speed/can make you look legit in some cases",
@@ -9087,6 +9130,15 @@ run(function()
         end
     })
 	ScytheDelay.Object.Visible = false
+	ZephyrSpeed.Object.Visible = false
+	DelayToggle.Object.Visible = false
+	SpeedBypassMethod.Object.Visible = false
+	BypassMethod.Object.Visible = false
+	MultiplyDirection.Object.Visible = false
+	DivideDirection.Object.Visible = false
+	ScytheSpeed.Object.Visible = false
+	ScytheFlySpeed.Object.Visible = false
+	ScytheTick.Object.Visible = false
 end)
 
 run(function()

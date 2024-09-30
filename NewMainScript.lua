@@ -7,6 +7,7 @@ local isfile = isfile or function(file)
 	return suc and res ~= nil
 end
 local delfile = delfile or function(file) writefile(file, "") end
+if ({identifyexecutor()})[1] == 'Synapse Z' then syn.toast_notification = nil end
 
 local function displayErrorPopup(text, func)
 	local oldidentity = getidentity()

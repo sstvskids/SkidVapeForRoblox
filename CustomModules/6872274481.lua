@@ -9498,85 +9498,6 @@ run(function()
 end)
 
 run(function()
-    local GodMode = {Enabled = false}
-	local AntiHit = {Value = 23}
-
-	function IsAlive(plr)
-		plr = plr or lplr
-		if not plr.Character then return false end
-		if not plr.Character:FindFirstChild("Head") then return false end
-		if not plr.Character:FindFirstChild("Humanoid") then return false end
-		if plr.Character:FindFirstChild("Humanoid").Health < 0.11 then return false end
-		return true
-	end
-    GodMode = wingui.blatant({
-        Name = "AntiHit",
-        Function = function(callback)
-            if callback then
-				spawn(function()
-					while task.wait() do
-						if (not GodMode.Enabled) then return end
-						if (not GuiLibrary.ObjectsThatCanBeSaved.FlyOptionsButton.Api.Enabled) and (not GuiLibrary.ObjectsThatCanBeSaved.InfiniteFlyOptionsButton.Api.Enabled) then
-							for i, v in pairs(game:GetService("Players"):GetChildren()) do
-								if v.Team ~= lplr.Team and IsAlive(v) and IsAlive(lplr) then
-									if v and v ~= lplr then
-										local TargetDistance = lplr:DistanceFromCharacter(v.Character:FindFirstChild("HumanoidRootPart").CFrame.p)
-										if TargetDistance < AntiHitRange.Value then
-											if not lplr.Character.HumanoidRootPart:FindFirstChildOfClass("BodyVelocity") then
-												repeat task.wait() until store.matchState ~= 0
-												if not (v.Character.HumanoidRootPart.Velocity.Y < -10*5) then
-													lplr.Character.Archivable = true
-
-													local Clone = lplr.Character:Clone()
-													Clone.Parent = workspace
-													Clone.Head:ClearAllChildren()
-													gameCamera.CameraSubject = Clone:FindFirstChild("Humanoid")
-
-													for i,v in pairs(Clone:GetChildren()) do
-														if string.lower(v.ClassName):find("part") and v.Name ~= "HumanoidRootPart" then
-															v.Transparency = 1
-														end
-														if v:IsA("Accessory") then
-															v:FindFirstChild("Handle").Transparency = 1
-														end
-													end
-
-													lplr.Character.HumanoidRootPart.CFrame = lplr.Character.HumanoidRootPart.CFrame + Vector3.new(0,50,0)
-
-													game:GetService("RunService").RenderStepped:Connect(function()
-														if Clone ~= nil and Clone:FindFirstChild("HumanoidRootPart") then
-															Clone.HumanoidRootPart.Position = Vector3.new(lplr.Character.HumanoidRootPart.Position.X, Clone.HumanoidRootPart.Position.Y, lplr.Character.HumanoidRootPart.Position.Z)
-														end
-													end)
-
-													task.wait(0.3)
-													lplr.Character.HumanoidRootPart.Velocity = Vector3.new(lplr.Character.HumanoidRootPart.Velocity.X, -1, lplr.Character.HumanoidRootPart.Velocity.Z)
-													lplr.Character.HumanoidRootPart.CFrame = Clone.HumanoidRootPart.CFrame
-													gameCamera.CameraSubject = lplr.Character:FindFirstChild("Humanoid")
-													Clone:Destroy()
-													task.wait(0.135)
-												end
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end)
-			end
-        end
-    })
-	AntiHitRange = GodMode.CreateSlider({
-        Name = "Range",
-        Min = 1,
-        Max = 23,
-        Default = 20,
-        Function = function() end
-    })
-end)
-
-run(function()
     local HostPanel = {Enabled = false}
 	HostPanel = wingui.render({
 		Name = "HostPanelExploit",
@@ -9596,7 +9517,7 @@ run(function()
     local PlaceIdPicker = {Value = "Squads/5v5/Doubles/Skywars"}
     SemiInstantWin = wingui.exploit({
         Name = "SemiInstantWin",
-        HoverText = "Sort of a instant-win (by nebula) (fuck the skids man especially erco)",
+        HoverText = "Sort of a instant-win (by skidbula) (fuck the skids man especially erco)",
         Function = function(callback)
             if callback then
                 pcall(function()
@@ -9621,43 +9542,7 @@ run(function()
         List = {"Squads/5v5/Doubles/Skywars", "30v30", "Solos"},
         Function = function() end
     })
-end)
-
-
-run(function()
-    local AutoUpgradeStats = {Enabled = false}
-    local replicatedStorage = game:GetService("ReplicatedStorage")
-    local netManaged = replicatedStorage.rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged
-
-    AutoUpgradeStats = wingui.exploit({
-        Name = "AutoUpgradeStats",
-        Function = function(callback)
-            if callback then                                                                                                                                                            
-                local promoment = {
-                    {"SPEED", 1}, {"SPEED", 2}, {"SPEED", 3},
-                    {"DAMAGE", 1}, {"DAMAGE", 2}, {"DAMAGE", 3},
-                    {"ARMOR", 1}, {"ARMOR", 2}, {"ARMOR", 3},
-                    {"DESTRUCTION", 1}, {"DESTRUCTION", 2}, {"DESTRUCTION", 3}
-                }
-                local levels = {3, 6, 5, 4, 7, 8, 9, 10, 11, 1, 2, 12, 13, 14, 15, 16, 17, 18, 19, 20}
-                task.spawn(function()
-                    repeat
-                        for _, upgrade in ipairs(promoment) do
-                            netManaged.RequestUpgradeStat:InvokeServer(unpack(upgrade))
-                        end
-    
-                        for _, level in ipairs(levels) do
-                            netManaged.RequestPurchaseTeamLevel:InvokeServer(level)
-                        end
-    
-                        wait(0.1)
-                    until (not AutoUpgradeStats.Enabled)
-                end)   
-            end
-        end,
-        HoverText = "pro moment eeeeajjsjskekssk"
-    })
-end)																																																																																																																																																																																																																																																	
+end)																																																																																																																																																																																																																																															
 
 --[[run(function()
 	local SkyScytheInstakill = {Enabled = false}
@@ -9696,78 +9581,6 @@ run(function()
 		end,
 		HoverText = "Hides your nametag"
 	})
-end)
-
-run(function()
-    local promomeng = wingui.exploit({
-        Name = "StaffDetector",
-        Function = function(callback)
-            if callback then
-                if Detection.Value == "Group" then
-                    for _, plr in pairs(game.Players:GetPlayers()) do
-                        if plr:IsInGroup(5774246) and plr:GetRankInGroup(5774246) >= 2 then
-                            warningNotification("StaffDetector", "Staff Detected: " .. (plr.DisplayName and plr.DisplayName .. " (" .. plr.Name .. ")" or plr.Name), 60)
-                        end
-                    end
-                end
-                if Detection.Value == "Impossible Join" then
-                    local function loadPlayerList()
-                        local success, playersToCheck = pcall(function()
-                            return {}
-                        end)
-                        if not success then
-                            warn("Error loading player list.")
-                        end
-                    end
-
-                    local function checkPlayerList(player)
-                        for _, playerToCheck in ipairs(PlayersToCheck) do
-                            if player.Name == playerToCheck.Username or player.DisplayName == playerToCheck.DisplayName then
-                                warningNotification("StaffDetector", playerToCheck.DisplayName .. " has joined", 5)
-                                break
-                            end
-                        end
-                    end
-
-                    local function checkImpossibleJoin(player)
-                        if player then
-                            warningNotification("StaffDetector", player.Name .. " joined impossibly, they might be a staff!")
-                            if Action.Value == "Crash" then 
-                                while true do end
-                            elseif Action.Value == "Uninject" then 
-                                GuiLibrary.SelfDestruct() 
-                            elseif Action.Value == "Leave" then 
-                                LocalPlayer:Kick("Staff detected!")
-                            end
-                        end
-                    end
-
-                    local function setupPlayerListCheck()
-                        game.Players.PlayerAdded:Connect(checkPlayerList)
-                    end
-
-                    local function setupImpossibleJoinCheck()
-                        game.Players.PlayerAdded:Connect(checkImpossibleJoin)
-                    end
-
-                    setupPlayerListCheck()
-                    setupImpossibleJoinCheck()
-                end
-            end
-        end
-    })
-
-    Action = promomeng.CreateDropdown({
-        Name = "Action",
-        Function = function() end,
-        List = {"Uninject", "Leave", "Crash"}
-    })
-
-    Detection = promomeng.CreateDropdown({
-        Name = "Detection Mode",
-        Function = function() end,
-        List = {"Impossible Join", "Group"}
-    })
 end)
 
 run(function()

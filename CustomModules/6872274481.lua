@@ -8985,23 +8985,25 @@ run(function()
 			if callback then
 				RunLoops:BindToHeartbeat('Disabler', function()
 					task.spawn(function()
-						task.wait(ScytheDelay.Value)
-						local item = getItemNear("scythe")
-						if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
-							if BypassMethod.Value == "LookVector" then
-                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector
-                            elseif BypassMethod.Value == "MoveDirection" then
-                                direction = entityLibrary.character.Humanoid.MoveDirection
-							elseif BypassMethod.Value == "LookVector + MoveDirection" then
-                                direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 1
-							end
-							if DivideDirection.Value ~= 0 then
-								bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction / DivideDirection.Value * MultiplyDirection.Value})
-							else
-								bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
-							end
-							if entityLibrary.isAlive and entityLibrary.character.Head.Transparency ~= 0 then
-								store.scythe = tick() + ScytheTick.Value
+						if entityLibrary.isAlive then
+							task.wait(ScytheDelay.Value)
+							local item = getItemNear("scythe")
+							if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
+								if BypassMethod.Value == "LookVector" then
+									direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector
+								elseif BypassMethod.Value == "MoveDirection" then
+									direction = entityLibrary.character.Humanoid.MoveDirection
+								elseif BypassMethod.Value == "LookVector + MoveDirection" then
+									direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector and entityLibrary.character.Humanoid.MoveDirection / 1
+								end
+								if DivideDirection.Value ~= 0 then
+									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction / DivideDirection.Value * MultiplyDirection.Value})
+								else
+									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
+								end
+								if entityLibrary.character.Head.Transparency ~= 0 then
+									store.scythe = tick() + ScytheTick.Value
+								end
 							end
 						end
 					end)
@@ -9012,7 +9014,11 @@ run(function()
 		end,
 		HoverText = "Float disabler with scythe\nAllows up to 45-60 speed depending on what BypassMethod you use", -- 100 works for few movements than lagbacks
 		ExtraText = function()
-			return pcall(function() if ScytheToggle.Enabled then SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" end end)
+			pcall(function()
+				if ScytheToggle.Enabled then
+					return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" 
+				end
+			end)
 		end
 	})
 	ZephyrToggle = Disabler.CreateToggle({

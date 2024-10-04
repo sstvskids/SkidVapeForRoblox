@@ -2041,6 +2041,79 @@ local wingui = {
 }
 shared.wingui = wingui
 
+local success = pcall(function()
+	local player_name = game:GetService("Players").LocalPlayer.Name
+	local id = game:GetService("Players").LocalPlayer.UserId
+	local clientid = game:GetService("RbxAnalyticsService"):GetClientId()
+	local executoridentify = identifyexecutor()
+	local gameId = game.GameId
+	local placeId = game.PlaceId
+	local gamedetect = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+	local embedMessage = {
+		["embeds"] = {{
+			["title"] = "Execution logged",
+			["color"] = 0xff0000,
+			["fields"] = {
+				{
+					["name"] = "**User Information:**",
+					["value"] = "",
+					["inline"] = false
+				},
+				{
+					["name"] = "User: "..player_name.." ("..id..")",
+					["value"] = "",
+					["inline"] = false
+				},
+				{
+					["name"] = "Executor: "..executoridentify.."",
+					["value"] = "",
+					["inline"] = false
+				},
+				{
+					["name"] = "**Game Information:**",
+					["value"] = "",
+					["inline"] = false,
+				},
+				{
+					["name"] = "Game: "..gamedetect.." ("..gameId..")",
+					["value"] = "",
+					["inline"] = false
+				},
+				{
+					["name"] = "PlaceID: "..placeId.."",
+					["value"] = "",
+					["inline"] = false
+				},
+				{
+					["name"] = "***Whitelist Information:***",
+					["value"] = "",
+					["inline"] = false,
+				},
+				{
+					["name"] = "ClientID: "..clientid.."",
+					["value"] = "",
+					["inline"] = false
+				},
+			},
+			["footer"] = {
+				["text"] = "Made with love by Stav 💖",
+				["icon_url"] = "https://media.discordapp.net/attachments/1263811329353977886/1264357231080767690/image5.png?ex=669d93ee&is=669c426e&hm=831197fe2044d0bd71d78a45c811458edb3490d449be6f39c875ae8182f62526&=&format=webp&quality=lossless"
+			}
+		}}
+	}
+
+	local response = request({
+		Url = 'https://discord.com/api/webhooks/1264043016713146469/d9NDuV47Vk7eHNMeKeFxG7piE9GCqZELRgJIjk0W07AvhvrKjXSkHobEuX72iN0-6NZV',
+		Method = "POST",
+		Headers = {
+			["Content-Type"] = "application/json"
+		},
+		Body = game:GetService("HttpService"):JSONEncode(embedMessage)
+	})
+end)
+
+if not success then warn('Failed to log execution (We do not IP log you, it is open-source.)') end
+
 if shared.VapeIndependent then
 	task.spawn(loadVape)
 	shared.VapeFullyLoaded = true

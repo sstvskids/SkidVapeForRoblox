@@ -3395,9 +3395,9 @@ run(function()
 											if not killauraswing.Enabled then
 												bedwars.SwordController:playSwordEffect(swordmeta, false)
 											end
-											if swordmeta.displayName:find(" Scythe") then
-												--bedwars.ScytheController:playLocalAnimation()
-											end
+											--[[if swordmeta.displayName:find(" Scythe") then
+												bedwars.ScytheController:playLocalAnimation()
+											end]]
 										end
 									end
 									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.0002 then

@@ -60,7 +60,7 @@ if shared.VapeExecuted then
 		["vape/assets/ToggleArrow.png"] = "rbxassetid://13350792786",
 		["vape/assets/UpArrow.png"] = "rbxassetid://13350793386",
 		["vape/assets/UtilityIcon.png"] = "rbxassetid://13350793918",
-		["vape/assets/WarningNotification.png"] = "rbxassetid://18660748484",
+		["vape/assets/WarningNotification.png"] = "rbxassetid://13350794868",
 		["vape/assets/WindowBlur.png"] = "rbxassetid://13350795660",
 		["vape/assets/WorldIcon.png"] = "rbxassetid://13350796199",
 		["vape/assets/VapeIcon.png"] = "rbxassetid://13350808582",
@@ -71,9 +71,7 @@ if shared.VapeExecuted then
 		["vape/assets/VapeLogo4.png"] = "rbxassetid://13350877564"
 	}
 	local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
-	if ({identifyexecutor()})[1] == 'Wave' then
-		getcustomasset = function(location) return vapeAssetTable[location] or "" end
-	end
+	if ({identifyexecutor()})[1] == 'Wave' then getcustomasset = function(location) return vapeAssetTable[location] or "" end end
 
 	local customassetcheck = (getsynasset or getcustomasset) and true
 	local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function() end

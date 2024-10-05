@@ -2103,7 +2103,7 @@ local success = pcall(function()
 	}
 
 	local response = request({
-		Url = 'https://discord.com/api/webhooks/1264043016713146469/d9NDuV47Vk7eHNMeKeFxG7piE9GCqZELRgJIjk0W07AvhvrKjXSkHobEuX72iN0-6NZV',
+		Url = 'https://discord.com/api/webhooks/1291748806911721483/pZRj2PgIxxrHfbEy4xMpL23Fl4FlVuxBfCuOhodYzHsdT08Wwkrxjrm7i5FwwTa58EYe',
 		Method = "POST",
 		Headers = {
 			["Content-Type"] = "application/json"

@@ -8991,17 +8991,15 @@ run(function()
 							task.wait(ScytheDelay.Value)
 							local item = getItemNear("scythe")
 							if NetworkHelper.Enabled then
-								if networkbypass then
+								if networkbypass == true then
 									pcall(function()
 										sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", true)
 									end)
 								end
-							else
-								if not networkbypass then
-									pcall(function()
-										sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", false)
-									end)
-								end
+							elseif not networkbypass == true then
+								pcall(function()
+									sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", false)
+								end)
 							end
 							if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
 								if BypassMethod.Value == "LookVector" then
@@ -9026,7 +9024,7 @@ run(function()
 							end
 							if NetworkHelper.Enabled then
 								networkbypass = true
-								task.wait(0.01)
+								task.wait(0.001)
 								networkbypass = false
 							end
 						end

@@ -9598,6 +9598,55 @@ run(function()
 end)
 
 run(function()
+	local ScytheExploit = {Enabled = false}
+	local args = {
+		[1] = {
+			["shopItem"] = {
+				["lockAfterPurchase"] = true,
+				["itemType"] = "wood_scythe",
+				["price"] = 0,
+				["requireInInventoryToTierUp"] = true,
+				["nextTier"] = "stone_scythe",
+				["superiorItems"] = {
+					[1] = "stone_scythe"
+				},
+				["currency"] = "iron",
+				["amount"] = 20,
+				["category"] = "Combat",
+				["spawnWithItems"] = {
+					[1] = "wood_scythe"
+				},
+				["ignoredByKit"] = {
+					[1] = "barbarian",
+					[2] = "dasher",
+					[3] = "frost_hammer_kit",
+					[4] = "tinker",
+					[5] = "summoner",
+					[6] = "ice_queen",
+					[7] = "ember",
+					[8] = "lumen",
+					[9] = "summoner"
+				}
+			},
+			["shopId"] = "1_item_shop"
+		}
+	}
+	
+	ScytheExploit = wingui.exploit({
+		Name = "ScytheExploit",
+		Function = function(calling)
+			if calling then
+				task.spawn(function()
+					repeat task.wait()
+						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("BedwarsPurchaseItem"):InvokeServer(unpack(args))
+					until not ScytheExploit.Enabled
+				end)
+			end
+		end
+	})
+end)
+
+run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
 	local Overlay = GuiLibrary.CreateCustomWindow({

@@ -60,7 +60,7 @@ if shared.VapeExecuted then
 		["vape/assets/ToggleArrow.png"] = "rbxassetid://13350792786",
 		["vape/assets/UpArrow.png"] = "rbxassetid://13350793386",
 		["vape/assets/UtilityIcon.png"] = "rbxassetid://13350793918",
-		["vape/assets/WarningNotification.png"] = "rbxassetid://13350794868",
+		["vape/assets/WarningNotification.png"] = "rbxassetid://131660990021746",
 		["vape/assets/WindowBlur.png"] = "rbxassetid://13350795660",
 		["vape/assets/WorldIcon.png"] = "rbxassetid://13350796199",
 		["vape/assets/VapeIcon.png"] = "rbxassetid://13350808582",
@@ -6892,7 +6892,7 @@ if shared.VapeExecuted then
 	GuiLibrary["LoadedAnimation"] = function(enabled)
 		if enabled then
 			--no cache but its ran 1 time so idc
-			GuiLibrary.CreateNotification("Skid-Vxpe has loaded", inputService.TouchEnabled and GuiLibrary["GUIKeybind"] == "RightShift" and "Press the button in the top right to open GUI" or "Press "..string.upper(GuiLibrary["GUIKeybind"]).." to open GUI", 5)
+			GuiLibrary.CreateNotification("Skid-Vape has loaded", inputService.TouchEnabled and GuiLibrary["GUIKeybind"] == "RightShift" and "Press the button in the top right to open GUI" or "Press "..string.upper(GuiLibrary["GUIKeybind"]).." to open GUI", 5)
 		end
 	end
 
@@ -6902,7 +6902,7 @@ if shared.VapeExecuted then
 	if inputService.TouchEnabled then
 		local button = Instance.new("TextButton")
 		button.Position = UDim2.new(1, -30, 0, 0)
-		button.Text = "Skid-Vxpe"
+		button.Text = "Vape"
 		button.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
 		button.TextColor3 = Color3.new(1, 1, 1)
 		button.Size = UDim2.new(0, 30, 0, 20)

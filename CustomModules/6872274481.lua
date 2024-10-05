@@ -2504,9 +2504,6 @@ run(function()
 						local flyVelocity = entityLibrary.character.Humanoid.MoveDirection * (FlyMode.Value == "Normal" and FlySpeed.Value or 20)
 						entityLibrary.character.HumanoidRootPart.Velocity = flyVelocity + (Vector3.new(0, playerMass + (FlyUp and FlyVerticalSpeed.Value or 0) + (FlyDown and -FlyVerticalSpeed.Value or 0), 0))
 						if FlyMode.Value ~= "Normal" then
-							if FlyMode.Value == "Heatseeker" then 
-								FlySpeed.Value = tick() % 1 < 0.6 and 5 or (20 * getSpeed()) * 0.4
-							end
 							entityLibrary.character.HumanoidRootPart.CFrame = entityLibrary.character.HumanoidRootPart.CFrame + (entityLibrary.character.Humanoid.MoveDirection * ((FlySpeed.Value + getSpeed()) - 20)) * delta
 						end
 					end
@@ -2535,16 +2532,8 @@ run(function()
 		end,
 		HoverText = "Makes you go zoom (longer Fly discovered by exelys and Cqded)",
 		ExtraText = function() 
-			if GuiLibrary.ObjectsThatCanBeSaved["Text GUIAlternate TextToggle"]["Api"].Enabled then 
-				return alternatelist[table.find(FlyMode["List"], FlyMode.Value)]
-			end
-			return FlyMode.Value 
+			return "CFrame"
 		end
-	})
-	FlyMode = Fly.CreateDropdown({
-		Name = "Mode",
-		List = {"CFrame", "Heatseeker"},
-		Function = function() end
 	})
 	FlySpeed = Fly.CreateSlider({
 		Name = "Speed",
@@ -2898,9 +2887,6 @@ run(function()
 							local flyVelocity = entityLibrary.character.Humanoid.MoveDirection * (InfiniteFlyMode.Value == "Normal" and InfiniteFlySpeed.Value or 20)
 							entityLibrary.character.HumanoidRootPart.Velocity = flyVelocity + (Vector3.new(0, playerMass + (InfiniteFlyUp and InfiniteFlyVerticalSpeed.Value or 0) + (InfiniteFlyDown and -InfiniteFlyVerticalSpeed.Value or 0), 0))
 							if InfiniteFlyMode.Value ~= "Normal" then
-								if InfiniteFlyMode.Value == "Heatseeker" then 
-									speedValue = tick() % 1 < 0.6 and 5 or (20 * getSpeed()) * 0.4
-								end
 								entityLibrary.character.HumanoidRootPart.CFrame = entityLibrary.character.HumanoidRootPart.CFrame + (entityLibrary.character.Humanoid.MoveDirection * ((InfiniteFlySpeed.Value + getSpeed()) - 20)) * delta
 							end
 
@@ -2971,16 +2957,8 @@ run(function()
 		end,
 		HoverText = "Makes you go zoom",
 		ExtraText = function() 
-			if GuiLibrary.ObjectsThatCanBeSaved["Text GUIAlternate TextToggle"]["Api"].Enabled then 
-				return alternatelist[table.find(InfiniteFlyMode.List, InfiniteFlyMode.Value)]
-			end
-			return InfiniteFlyMode.Value
+			return "CFrame"
 		end
-	})
-	InfiniteFlyMode = InfiniteFly.CreateDropdown({
-		Name = "Mode",
-		List = {"CFrame", "Heatseeker"},
-		Function = function() end
 	})
 	InfiniteFlySpeed = InfiniteFly.CreateSlider({
 		Name = "Speed",
@@ -4508,9 +4486,6 @@ run(function()
 						local speedVelocity = entityLibrary.character.Humanoid.MoveDirection * (SpeedMode.Value == "Normal" and SpeedValue.Value or 20)
 						entityLibrary.character.HumanoidRootPart.Velocity = antivoidvelo or Vector3.new(speedVelocity.X, entityLibrary.character.HumanoidRootPart.Velocity.Y, speedVelocity.Z)
 						if SpeedMode.Value ~= "Normal" then
-							if SpeedMode.Value == "Heatseeker" then 
-								speedValue = tick() % 1 < 0.6 and 5 or (20 * getSpeed()) * 0.4
-							end
 							local speedCFrame = entityLibrary.character.Humanoid.MoveDirection * (speedValue - 20) * delta
 							raycastparameters.FilterDescendantsInstances = {lplr.Character}
 							local ray = workspace:Raycast(entityLibrary.character.HumanoidRootPart.Position, speedCFrame, raycastparameters)
@@ -4538,16 +4513,8 @@ run(function()
 		end,
 		HoverText = "Increases your movement.",
 		ExtraText = function() 
-			if GuiLibrary.ObjectsThatCanBeSaved["Text GUIAlternate TextToggle"]["Api"].Enabled then 
-				return alternatelist[table.find(SpeedMode.List, SpeedMode.Value)]
-			end
-			return SpeedMode.Value
+			return "CFrame"
 		end
-	})
-	SpeedMode = Speed.CreateDropdown({
-		Name = "Mode",
-		Function = function() end,
-		List = {"CFrame", "Heatseeker"}
 	})
 	SpeedValue = Speed.CreateSlider({
 		Name = "Speed",

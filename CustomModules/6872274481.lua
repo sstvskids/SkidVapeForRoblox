@@ -8980,7 +8980,7 @@ run(function()
 	local ScytheTick = {Value = 2}
 	local ScytheDelay = {Value = 0}
 	Disabler = wingui.exploit({
-		Name = "ScytheDisabler",
+		Name = "Bypass",
 		Function = function(callback)
 			if callback then
 				RunLoops:BindToHeartbeat('Disabler', function()
@@ -9001,7 +9001,11 @@ run(function()
 								else
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
 								end
-								if entityLibrary.character.Head.Transparency ~= 0 then
+								if SpeedBypassMethod.Value == "Heatseeker" then
+									if entityLibrary.character.Head.Transparency ~= 0 then
+										store.scythe = tick() + ScytheTick.Value * 0.25
+									end
+								else
 									store.scythe = tick() + ScytheTick.Value * 0.25
 								end
 							end
@@ -9012,11 +9016,15 @@ run(function()
 				RunLoops:UnbindFromHeartbeat('Disabler')
 			end
 		end,
-		HoverText = "Float disabler with scythe\nAllows up to 45-60 speed depending on what BypassMethod you use", -- 100 works for few movements than lagbacks
+		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-60 speed depending on what BypassMethod you use",
 		ExtraText = function()
 			pcall(function()
-				if ScytheToggle.Enabled then
-					return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" 
+				if ScytheToggle.Enabled and ZephyrToggle.Enabled then
+					return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" 
+				elseif ScytheToggle.Enabled then
+					return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")"
+				elseif ZephyrToggle.Enabled then
+					return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + SpeedValue.Value)..")"
 				end
 			end)
 		end

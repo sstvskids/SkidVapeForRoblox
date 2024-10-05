@@ -9003,10 +9003,10 @@ run(function()
 								end
 								if SpeedBypassMethod.Value == "Heatseeker" then
 									if entityLibrary.character.Head.Transparency ~= 0 then
-										store.scythe = tick() + ScytheTick.Value * 0.25
+										store.scythe = tick() + ScytheTick.Value * 0.001
 									end
 								else
-									store.scythe = tick() + ScytheTick.Value * 0.25
+									store.scythe = tick() + ScytheTick.Value * 0.001
 								end
 							end
 						end

@@ -9025,7 +9025,7 @@ run(function()
 							end
 							if NetworkHelper.Enabled then
 								networkbypass = true
-								task.wait(NetworkDelay.Value / 0.1)
+								task.wait(NetworkDelay.Value / 0.01)
 								networkbypass = false
 							end
 						end

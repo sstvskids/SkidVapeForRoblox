@@ -8980,6 +8980,7 @@ run(function()
 	local ScytheTick = {Value = 2}
 	local ScytheDelay = {Value = 0}
 	local NetworkHelper = {Enabled = false}
+	local NetworkDelay = {Value = 0.01}
 	local networkbypass = false
 	Disabler = wingui.exploit({
 		Name = "Bypass",
@@ -9024,7 +9025,7 @@ run(function()
 							end
 							if NetworkHelper.Enabled then
 								networkbypass = true
-								task.wait(0.001)
+								task.wait(NetworkDelay.Value)
 								networkbypass = false
 							end
 						end
@@ -9090,8 +9091,18 @@ run(function()
         Function = function(calling)
 			pcall(function()
 				networkbypass = calling
+				NetworkDelay.Object.Visible = calling
 			end)
 		end
+    })
+	NetworkDelay = Disabler.CreateSlider({
+        Name = "NetworkDelay",
+        Min = 0,
+        Max = 1,
+        Default = 0.01,
+        Function = function(calling)
+			NetworkDelay.Value = calling
+        end
     })
 	DelayToggle = Disabler.CreateToggle({
         Name = "Delay",
@@ -9181,6 +9192,7 @@ run(function()
 	ScytheSpeed.Object.Visible = false
 	ScytheFlySpeed.Object.Visible = false
 	ScytheTick.Object.Visible = false
+	NetworkDelay.Object.Visible = calling
 end)
 
 run(function()

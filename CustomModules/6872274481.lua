@@ -9086,7 +9086,7 @@ run(function()
     })
 	NetworkHelper = Disabler.CreateToggle({
         Name = "NetworkBypass",
-		HoverText = "Helps bypass the anticheat",
+		HoverText = "Helps bypass the anticheat\nCredits to Cat-Vape",
         Default = false,
         Function = function(calling)
 			pcall(function()

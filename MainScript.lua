@@ -94,6 +94,7 @@ if inputService:GetPlatform() ~= Enum.Platform.Windows then
 	getcustomasset = nil
 end
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
+if ({identifyexecutor()})[1] == 'Wave' or 'macsploit is the best fucking exploit ever made.' or 'Calibri' then getcustomasset = function(location) return vapeAssetTable[location] or "" end end
 local customassetcheck = (getsynasset or getcustomasset) and true
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local delfile = delfile or function(file) writefile(file, "") end

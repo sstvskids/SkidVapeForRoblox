@@ -75,7 +75,7 @@ local vapeAssetTable = {
 	["vape/assets/ToggleArrow.png"] = "rbxassetid://13350792786",
 	["vape/assets/UpArrow.png"] = "rbxassetid://13350793386",
 	["vape/assets/UtilityIcon.png"] = "rbxassetid://13350793918",
-	["vape/assets/WarningNotification.png"] = "rbxassetid://131660990021746",
+	["vape/assets/WarningNotification.png"] = "rbxassetid://13350794868",
 	["vape/assets/WindowBlur.png"] = "rbxassetid://13350795660",
 	["vape/assets/WorldIcon.png"] = "rbxassetid://13350796199",
 	["vape/assets/VapeIcon.png"] = "rbxassetid://13350808582",
@@ -1999,7 +1999,7 @@ local function loadVape()
 		if BlatantModeToggle.Enabled then
 			pcall(function()
 				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Skid-Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
-				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+				frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
 			end)
 		end
 		GuiLibrary.LoadedAnimation(welcomeMessage.Enabled)

@@ -94,7 +94,7 @@ end
 local function warningNotification(title, text, delay)
 	local suc, res = pcall(function()
 		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/WarningNotification.png")
-		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
 		return frame
 	end)
 	return (suc and res)

@@ -8979,6 +8979,7 @@ run(function()
 	local direction
 	local ScytheTick = {Value = 2}
 	local ScytheDelay = {Value = 0}
+	local NetworkHelper = {Enabled = false}
 	local networkbypass = false
 	Disabler = wingui.exploit({
 		Name = "Bypass",
@@ -8989,10 +8990,18 @@ run(function()
 						if entityLibrary.isAlive then
 							task.wait(ScytheDelay.Value)
 							local item = getItemNear("scythe")
-							if networkbypass then
-								pcall(function()
-									sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", true)
-								end)
+							if NetworkHelper.Enabled then
+								if networkbypass then
+									pcall(function()
+										sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", true)
+									end)
+								end
+							else
+								if not networkbypass then
+									pcall(function()
+										sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", false)
+									end)
+								end
 							end
 							if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
 								if BypassMethod.Value == "LookVector" then
@@ -9007,9 +9016,6 @@ run(function()
 								else
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
 								end
-								networkbypass = true
-								task.wait(0.001)
-								networkbypass = false
 								if SpeedBypassMethod.Value == "Heatseeker" then
 									if entityLibrary.character.Head.Transparency ~= 0 then
 										store.scythe = tick() + ScytheTick.Value * 0.001
@@ -9017,6 +9023,11 @@ run(function()
 								else
 									store.scythe = tick() + ScytheTick.Value * 0.001
 								end
+							end
+							if NetworkHelper.Enabled then
+								networkbypass = true
+								task.wait(0.01)
+								networkbypass = false
 							end
 						end
 					end)
@@ -9071,6 +9082,16 @@ run(function()
 				ScytheSpeed.Object.Visible = calling
 				ScytheFlySpeed.Object.Visible = calling
 				ScytheTick.Object.Visible = calling
+			end)
+		end
+    })
+	NetworkHelper = Disabler.CreateToggle({
+        Name = "NetworkBypass",
+		HoverText = "Helps bypass the anticheat",
+        Default = false,
+        Function = function(calling)
+			pcall(function()
+				networkbypass = calling
 			end)
 		end
     })

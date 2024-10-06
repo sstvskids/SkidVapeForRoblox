@@ -8996,9 +8996,13 @@ run(function()
 							if NetworkHelper.Enabled then
 								if networkbypass == true then
 									pcall(function()
-										sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", true)
+										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", true)
 									end)
 								end
+							else
+								pcall(function()
+									sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
+								end)
 							end
 							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController and scythetick then
 								if BypassMethod.Value == "LookVector" then

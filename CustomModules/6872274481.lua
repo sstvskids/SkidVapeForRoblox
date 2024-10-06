@@ -9038,7 +9038,7 @@ run(function()
 		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-60 speed depending on what BypassMethod you use",
 		ExtraText = function()
 			pcall(function()
-				return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" 
+				return SpeedBypassMethod.Value.." ("..ZephyrSpeed.Value + ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value..")" 
 			end)
 		end
 	})

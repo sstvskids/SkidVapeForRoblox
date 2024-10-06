@@ -9174,7 +9174,6 @@ run(function()
 	ScytheSpeed.Object.Visible = false
 	ScytheFlySpeed.Object.Visible = false
 	ScytheTick.Object.Visible = false
-	NetworkDelay.Object.Visible = calling
 end)
 
 run(function()

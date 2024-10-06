@@ -8983,7 +8983,6 @@ run(function()
 	local NetworkHelper = {Enabled = false}
 	local NetworkDelay = {Value = 0.01}
 	local networkbypass = false
-	local scythetick = store.scythe <= tick() or store.scythe >= tick()
 	Disabler = wingui.exploit({
 		Name = "Bypass",
 		Function = function(callback)
@@ -9004,7 +9003,7 @@ run(function()
 									sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
 								end)
 							end
-							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController and scythetick then
+							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
 								if BypassMethod.Value == "LookVector" then
 									direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector
 								elseif BypassMethod.Value == "MoveDirection" then
@@ -9035,6 +9034,7 @@ run(function()
 				end)
 			else
 				RunLoops:UnbindFromHeartbeat('Disabler')
+				sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
 			end
 		end,
 		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-60 speed depending on what BypassMethod you use",

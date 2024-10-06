@@ -9040,10 +9040,6 @@ run(function()
 			pcall(function()
 				if ScytheToggle.Enabled and ZephyrToggle.Enabled then
 					return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" 
-				elseif ScytheToggle.Enabled then
-					return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")"
-				elseif ZephyrToggle.Enabled then
-					return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + SpeedValue.Value)..")"
 				end
 			end)
 		end

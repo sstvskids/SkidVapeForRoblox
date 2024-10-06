@@ -8998,7 +8998,7 @@ run(function()
 								if NetworkHelper.Enabled and networkbypass == true and networkticks >= 100 then
 									pcall(function()
 										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
-										bticks = 0
+										networkticks = 0
 									end)
 								else
 									pcall(function()

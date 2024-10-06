@@ -8983,6 +8983,7 @@ run(function()
 	local NetworkHelper = {Enabled = false}
 	local NetworkDelay = {Value = 0.01}
 	local networkbypass = false
+	local networkticks = 0
 	Disabler = wingui.exploit({
 		Name = "Bypass",
 		Function = function(callback)
@@ -8992,18 +8993,18 @@ run(function()
 						if entityLibrary.isAlive then
 							task.wait(ScytheDelay.Value)
 							local item = getItemNear("scythe")
-							if NetworkHelper.Enabled then
-								if networkbypass == true then
+							networkticks = networkticks + 1
+							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
+								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value and networkticks >= ScytheFlySpeed.Value then
+									pcall(function()
+										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
+										bticks = 0
+									end)
+								else
 									pcall(function()
 										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", true)
 									end)
 								end
-							else
-								pcall(function()
-									sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
-								end)
-							end
-							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
 								if BypassMethod.Value == "LookVector" then
 									direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector
 								elseif BypassMethod.Value == "MoveDirection" then

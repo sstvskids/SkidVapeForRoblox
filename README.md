@@ -13,4 +13,4 @@ Nebula (skid-bula)
 
 always remember, pasting skid-vxpe without my knowledge is a sin 🙏 
 
-if you need to paste that bad, learn how to code like us :)
+if you need to paste that bad, learn how to code :)

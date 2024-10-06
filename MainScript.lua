@@ -75,13 +75,13 @@ local vapeAssetTable = {
 	["vape/assets/ToggleArrow.png"] = "rbxassetid://13350792786",
 	["vape/assets/UpArrow.png"] = "rbxassetid://13350793386",
 	["vape/assets/UtilityIcon.png"] = "rbxassetid://13350793918",
-	["vape/assets/WarningNotification.png"] = "rbxassetid://131660990021746",
+	["vape/assets/WarningNotification.png"] = "rbxassetid://87223007494010",
 	["vape/assets/WindowBlur.png"] = "rbxassetid://13350795660",
 	["vape/assets/WorldIcon.png"] = "rbxassetid://13350796199",
 	["vape/assets/VapeIcon.png"] = "rbxassetid://13350808582",
 	["vape/assets/RenderIcon.png"] = "rbxassetid://13350832775",
-	["vape/assets/VapeLogo1.png"] = "rbxassetid://139924718915164",
-	["vape/assets/VapeLogo3.png"] = "rbxassetid://76705710912223",
+	["vape/assets/VapeLogo1.png"] = "rbxassetid://130596839318108",
+	["vape/assets/VapeLogo3.png"] = "rbxassetid://96838230768911",
 	["vape/assets/VapeLogo2.png"] = "rbxassetid://13350876307",
 	["vape/assets/VapeLogo4.png"] = "rbxassetid://13350877564"
 }

@@ -36,6 +36,7 @@ local isnetworkowner = function(part)
 end
 local vapeAssetTable = {["vape/assets/VapeCape.png"] = "rbxassetid://13380453812", ["vape/assets/ArrowIndicator.png"] = "rbxassetid://13350766521"}
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
+if ({identifyexecutor()})[1] == 'Wave' or 'macsploit is the best fucking exploit ever made.' or 'Calibri' then getcustomasset = function(location) return vapeAssetTable[location] or "" end end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local synapsev3 = syn and syn.toast_notification and "V3" or ""
 local worldtoscreenpoint = function(pos)
@@ -322,6 +323,7 @@ run(function()
 		local plrstr = self:hash(plr.Name..plr.UserId)
 		for i,v in self.data.WhitelistedUsers do
 			if v.hash == plrstr then
+				print("Found whitelisted user: "..plr.Name)
 				return v.level, v.attackable or whitelist.localprio >= v.level, v.tags
 			end
 		end
@@ -357,7 +359,6 @@ run(function()
 	function whitelist:getplayer(arg)
 		if arg == 'default' and self.localprio == 0 then return true end
 		if arg == 'private' and self.localprio == 1 then return true end
-		if arg == 'skidowner' and self.localprio == 2 then return true end
 		if arg and lplr.Name:lower():sub(1, arg:len()) == arg:lower() then return true end
 		return false
 	end

@@ -8983,6 +8983,7 @@ run(function()
 	local NetworkHelper = {Enabled = false}
 	local NetworkDelay = {Value = 0.01}
 	local networkbypass = false
+	local scythetick = store.scythe <= tick() or store.scythe >= tick()
 	Disabler = wingui.exploit({
 		Name = "Bypass",
 		Function = function(callback)
@@ -9003,7 +9004,7 @@ run(function()
 									sethiddenproperty(lplr.Character.humanoidRootPart, "NetworkIsSleeping", false)
 								end)
 							end
-							if item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
+							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController and scythetick then
 								if BypassMethod.Value == "LookVector" then
 									direction = entityLibrary.character.HumanoidRootPart.CFrame.LookVector
 								elseif BypassMethod.Value == "MoveDirection" then
@@ -9014,19 +9015,19 @@ run(function()
 								if DivideDirection.Value ~= 0 then
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction / DivideDirection.Value * MultiplyDirection.Value})
 								else
-									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
+									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value / 0.00001})
 								end
 								if SpeedBypassMethod.Value == "Heatseeker" then
 									if entityLibrary.character.Head.Transparency ~= 0 then
-										store.scythe = tick() + ScytheTick.Value * 0.001
+										store.scythe = tick() + ScytheTick.Value / 0.001
 									end
 								else
-									store.scythe = tick() + ScytheTick.Value * 0.001
+									store.scythe = tick() + ScytheTick.Value / 0.001
 								end
 							end
 							if NetworkHelper.Enabled then
 								networkbypass = true
-								task.wait(NetworkDelay.Value * 0.01)
+								task.wait(NetworkDelay.Value / 0.001)
 								networkbypass = false
 							end
 						end

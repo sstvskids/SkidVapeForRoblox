@@ -9025,11 +9025,6 @@ run(function()
 									store.scythe = tick() + ScytheTick.Value / 0.001
 								end
 							end
-							if NetworkHelper.Enabled then
-								networkbypass = true
-								task.wait(NetworkDelay.Value / 0.001)
-								networkbypass = false
-							end
 						end
 					end)
 				end)
@@ -9088,18 +9083,8 @@ run(function()
         Function = function(calling)
 			pcall(function()
 				networkbypass = calling
-				NetworkDelay.Object.Visible = calling
 			end)
 		end
-    })
-	NetworkDelay = Disabler.CreateSlider({
-        Name = "NetworkDelay",
-        Min = 0,
-        Max = 1,
-        Default = 0.01,
-        Function = function(calling)
-			NetworkDelay.Value = calling
-        end
     })
 	DelayToggle = Disabler.CreateToggle({
         Name = "Delay",

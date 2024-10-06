@@ -2431,6 +2431,7 @@ run(function()
 						repeat task.wait() until (groundtime - tick()) < 0.6 and not onground
 						flyAllowed = ((lplr.Character and lplr.Character:GetAttribute("InflatedBalloons") and lplr.Character:GetAttribute("InflatedBalloons") > 0) or store.matchState == 2 or megacheck) and 1 or 0
 						if (not Fly.Enabled) then break end
+						if (InfiniteFly.Enabled) then break end
 						local Flytppos = -99999
 						if flyAllowed <= 0 and FlyTP.Enabled and entityLibrary.isAlive then
 							local ray = workspace:Raycast(entityLibrary.character.HumanoidRootPart.Position, Vector3.new(0, -1000, 0), store.blockRaycast)

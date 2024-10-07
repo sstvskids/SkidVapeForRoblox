@@ -8980,7 +8980,7 @@ run(function()
 	local ScytheDelay = {Value = 0}
 	local NetworkHelper = {Enabled = false}
 	local NetworkDelay = {Value = 0.01}
-	local networkbypass = false
+	local networkbypass = true
 	local networkticks = 0
 	Disabler = wingui.exploit({
 		Name = "Bypass",
@@ -9052,8 +9052,8 @@ run(function()
 	ZephyrSpeed = Disabler.CreateSlider({
         Name = "ZephyrSpeed",
         Min = 0,
-        Max = 17,
-        Default = 17,
+        Max = 20,
+        Default = 20,
         Function = function(val) 
             ZephyrSpeed.Value = val
         end
@@ -9078,7 +9078,7 @@ run(function()
 	NetworkHelper = Disabler.CreateToggle({
         Name = "NetworkBypass",
 		HoverText = "Helps bypass the anticheat\nCredits to Cat-Vape",
-        Default = false,
+        Default = true,
         Function = function(calling)
 			pcall(function()
 				networkbypass = calling
@@ -9149,7 +9149,7 @@ run(function()
         Name = "ScytheFlySpeed",
         Min = 0,
         Max = 20,
-        Default = 20,
+        Default = 0,
         Function = function(val) 
             ScytheFlySpeed.Value = val
         end

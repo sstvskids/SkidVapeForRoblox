@@ -389,6 +389,7 @@ local function attackValue(vec)
 	return {value = vec}
 end
 
+local Disabler = {Enabled = false}
 local Fly = {Enabled = false}
 local ScytheSpeed = {Value = 57}
 local ScytheFlySpeed = {Value = 20}
@@ -408,18 +409,16 @@ local function getSpeed()
 			speed = speed + 90
 		end
 		if store.scythe > tick() then
-			if entityLibrary.isAlive then
-				if ScytheToggle.Enabled then
-					if SpeedBypassMethod.Value == "Heatseeker" and entityLibrary.character.Head.Transparency ~= 0 then
-						speed = speed + ScytheSpeed.Value
-						if Fly.Enabled then
-							speed = speed + ScytheFlySpeed.Value
-						end
-					elseif SpeedBypassMethod.Value == "CFrame" then
-						speed = speed + ScytheSpeed.Value
-						if Fly.Enabled then
-							speed = speed + ScytheFlySpeed.Value
-						end
+			if entityLibrary.isAlive and ScytheToggle.Enabled and Disabler.Enabled then
+				if SpeedBypassMethod.Value == "Heatseeker" and entityLibrary.character.Head.Transparency ~= 0 then
+					speed = speed + ScytheSpeed.Value
+					if Fly.Enabled then
+						speed = speed + ScytheFlySpeed.Value
+					end
+				elseif SpeedBypassMethod.Value == "CFrame" then
+					speed = speed + ScytheSpeed.Value
+					if Fly.Enabled then
+						speed = speed + ScytheFlySpeed.Value
 					end
 				end
 			end
@@ -2324,7 +2323,6 @@ run(function()
 end)
 
 local autobankballoon = false
-local Disabler = {Enabled = false}
 run(function()
 	local FlyMode = {Value = "CFrame"}
 	local FlyVerticalSpeed = {Value = 40}

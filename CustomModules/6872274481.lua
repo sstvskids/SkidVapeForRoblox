@@ -9954,4 +9954,7 @@ task.spawn(function()
 	if not AutoLeave.Enabled then
 		AutoLeave.ToggleButton(false)
 	end
+	if not Bypass.Enabled then
+		Bypass.ToggleButton(false)
+	end
 end)

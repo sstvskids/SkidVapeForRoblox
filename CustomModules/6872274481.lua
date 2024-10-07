@@ -432,7 +432,7 @@ local function getSpeed()
 			speed = speed + 12
 		end
 		if store.zephyrOrb ~= 0 then
-			if ZephyrToggle.Enabled then
+			if ZephyrToggle.Enabled and entityLibrary.isAlive and Disabler.Enabled then
 				speed = speed + ZephyrSpeed.Value
 			end
 		end

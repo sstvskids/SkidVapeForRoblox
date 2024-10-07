@@ -8986,7 +8986,7 @@ run(function()
 		Name = "Bypass",
 		Function = function(callback)
 			if callback then
-				RunLoops:BindToHeartbeat('Disabler', function()
+				RunLoops:BindToStepped('Disabler', function()
 					task.spawn(function()
 						if entityLibrary.isAlive then
 							task.wait(ScytheDelay.Value)
@@ -9027,7 +9027,7 @@ run(function()
 					end)
 				end)
 			else
-				RunLoops:UnbindFromHeartbeat('Disabler')
+				RunLoops:UnbindFromStepped('Disabler')
 				sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
 				networkticks = 0
 			end

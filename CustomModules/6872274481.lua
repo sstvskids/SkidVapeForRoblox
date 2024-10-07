@@ -8995,12 +8995,12 @@ run(function()
 							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
 								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value then
 									pcall(function()
-										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", true)
+										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
 										networkticks = 0
 									end)
 								else
 									pcall(function()
-										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
+										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", true)
 									end)
 								end
 								if BypassMethod.Value == "LookVector" then
@@ -9013,7 +9013,7 @@ run(function()
 								if DivideDirection.Value ~= 0 then
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction / DivideDirection.Value * MultiplyDirection.Value})
 								else
-									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value / 0.00001})
+									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value / 0.0001})
 								end
 								if SpeedBypassMethod.Value == "Heatseeker" then
 									if entityLibrary.character.Head.Transparency ~= 0 then

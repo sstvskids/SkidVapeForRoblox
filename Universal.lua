@@ -5546,7 +5546,7 @@ run(function()
 						playedanim.Looped = true
 						playedanim:Play()
 						playedanim:AdjustSpeed(AnimationPlayerSpeed.Value / 10)
-						entityLibrary.Humanoid.HumanoidRootPart.CanCollide = false;
+						entityLibrary.character.HumanoidRootPart.CanCollide = false;
 						table.insert(AnimationPlayer.Connections, playedanim.Stopped:Connect(function()
 							if AnimationPlayer.Enabled then
 								AnimationPlayer.ToggleButton(false)
@@ -5578,7 +5578,7 @@ run(function()
 						playedanim.Looped = true
 						playedanim:Play()
 						playedanim:AdjustSpeed(AnimationPlayerSpeed.Value / 10)
-						entityLibrary.Humanoid.HumanoidRootPart.CanCollide = false;
+						entityLibrary.character.HumanoidRootPart.CanCollide = false;
 						playedanim.Stopped:Connect(function()
 							if AnimationPlayer.Enabled then
 								AnimationPlayer.ToggleButton(false)
@@ -5591,7 +5591,7 @@ run(function()
 				end))
 			else
 				if playedanim then playedanim:Stop() playedanim = nil end
-				entityLibrary.Humanoid.HumanoidRootPart.CanCollide = true;
+				entityLibrary.character.HumanoidRootPart.CanCollide = true;
 			end
 		end
 	})

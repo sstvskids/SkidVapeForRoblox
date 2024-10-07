@@ -8991,16 +8991,16 @@ run(function()
 						if entityLibrary.isAlive then
 							task.wait(ScytheDelay.Value)
 							local item = getItemNear("scythe")
-							networkticks = tick() + 1
+							networkticks = networkticks + 1
 							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
-								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value - tick() then
+								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value then
 									pcall(function()
-										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
-										networkticks = tick()
+										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", true)
+										networkticks = 0
 									end)
 								else
 									pcall(function()
-										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", true)
+										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
 									end)
 								end
 								if BypassMethod.Value == "LookVector" then

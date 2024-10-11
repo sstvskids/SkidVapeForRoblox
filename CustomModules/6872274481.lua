@@ -8995,8 +8995,8 @@ run(function()
 							task.wait(ScytheDelay.Value)
 							local item = getItemNear("scythe")
 							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
-								networkticks = networkticks + 1
-								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value then
+								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value + networkticks >= ScytheFlySpeed.Value then
+									networkticks = networkticks + 1
 									pcall(function()
 										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
 										networkticks = 0
@@ -9031,9 +9031,7 @@ run(function()
 		end,
 		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-80 speed depending on what BypassMethod you use",
 		ExtraText = function()
-			pcall(function()
-				return BypassMethod.Value
-			end)
+			return BypassMethod.Value
 		end
 	})
 	ZephyrToggle = Disabler.CreateToggle({

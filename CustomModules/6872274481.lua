@@ -8970,7 +8970,7 @@ end)
 -- CUSTOM-MODULES START HERE
 
 run(function()
-	local BypassMethod = {Value = "LookVector + MoveDirection"}
+	local BypassMethod = {Value = "LookVector"}
 	local DelayToggle = {Enabled = false}
 	local MultiplyDirection = {Value = 0.01}
 	local DivideDirection = {Value = 0.01}
@@ -8983,9 +8983,12 @@ run(function()
 	local networkbypass = true
 	local networkticks = 0
 	Disabler = wingui.exploit({
-		Name = "Bypass",
+		Name = "AnticheatBypass",
 		Function = function(callback)
 			if callback then
+				if BypassMethod.Value == "LookVector + MoveDirection" then
+					warningNotification("Vape", "This method is extremely buggy, prone to low-speed.", 8)
+				end
 				RunLoops:BindToStepped('Disabler', function()
 					task.spawn(function()
 						if entityLibrary.isAlive then
@@ -9015,9 +9018,7 @@ run(function()
 								else
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value / 0.0001})
 								end
-								if entityLibrary.character.Head.Transparency ~= 0 then
-									store.scythe = tick() + ScytheTick.Value / 0.001
-								end
+								store.scythe = tick() + ScytheTick.Value / 0.001
 							end
 						end
 					end)
@@ -9028,10 +9029,10 @@ run(function()
 				networkticks = 0
 			end
 		end,
-		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-60 speed depending on what BypassMethod you use",
+		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-80 speed depending on what BypassMethod you use",
 		ExtraText = function()
 			pcall(function()
-				return SpeedBypassMethod.Value.." ("..ZephyrSpeed.Value + ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value..")" 
+				return BypassMethod.Value
 			end)
 		end
 	})
@@ -9068,6 +9069,7 @@ run(function()
 				ScytheSpeed.Object.Visible = calling
 				ScytheFlySpeed.Object.Visible = calling
 				ScytheTick.Object.Visible = calling
+				NetworkHelper.Object.Visible = calling
 			end)
 		end
     })
@@ -9169,6 +9171,7 @@ run(function()
 	ScytheSpeed.Object.Visible = false
 	ScytheFlySpeed.Object.Visible = false
 	ScytheTick.Object.Visible = false
+	NetworkHelper.Object.Visible = false
 end)
 
 run(function()

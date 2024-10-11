@@ -9383,7 +9383,7 @@ run(function()
     })
 end)
 
-run(function()
+--[[run(function()
     local Annoyer = {Enabled = false}
     local Delay = {Value = 5}
     local DragonSound = {Enabled = false}
@@ -9433,7 +9433,7 @@ run(function()
         Function = function() end,
         HoverText = "Uses the Yuzi remote"
     })
-end)
+end)]]
 
 run(function()
 	local MelodyExploit = {Enabled = false}

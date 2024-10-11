@@ -9031,7 +9031,13 @@ run(function()
 		end,
 		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-80 speed depending on what BypassMethod you use",
 		ExtraText = function()
-			return BypassMethod.Value
+			if ScytheToggle.Enabled and ZephyrToggle.Enabled then
+				return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" 
+			elseif ScytheToggle.Enabled then
+				return SpeedBypassMethod.Value.." ("..tostring(ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")"
+			elseif ZephyrToggle.Enabled then
+				return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + SpeedValue.Value)..")"
+			end
 		end
 	})
 	ZephyrToggle = Disabler.CreateToggle({

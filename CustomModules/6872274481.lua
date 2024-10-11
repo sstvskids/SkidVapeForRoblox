@@ -9015,7 +9015,7 @@ run(function()
 								else
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value / 0.0001})
 								end
-								if SpeedBypassMethod.Value == "Heatseeker" then
+								if BypassMethod.Value == "LookVector + MoveDirection" then
 									if entityLibrary.character.Head.Transparency ~= 0 then
 										store.scythe = tick() + ScytheTick.Value / 0.001
 									end

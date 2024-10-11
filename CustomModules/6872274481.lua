@@ -8995,7 +8995,7 @@ run(function()
 							task.wait(ScytheDelay.Value)
 							local item = getItemNear("scythe")
 							if ScytheToggle.Enabled and item and lplr.Character.HandInvItem.Value == item.tool and bedwars.CombatController then
-								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value and ScytheFlySpeed.Value then
+								if NetworkHelper.Enabled and networkbypass == true and networkticks >= ScytheSpeed.Value then
 									networkticks = networkticks + 1
 									pcall(function()
 										sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)

@@ -9383,7 +9383,7 @@ run(function()
     })
 end)
 
---[[run(function()
+run(function()
     local Annoyer = {Enabled = false}
     local Delay = {Value = 5}
     local DragonSound = {Enabled = false}
@@ -9433,7 +9433,7 @@ end)
         Function = function() end,
         HoverText = "Uses the Yuzi remote"
     })
-end)]]
+end)
 
 run(function()
 	local MelodyExploit = {Enabled = false}
@@ -9620,7 +9620,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
 	local ScytheExploit = {Enabled = false}
 	local args = {
 		[1] = {
@@ -9667,7 +9667,7 @@ run(function()
 			end
 		end
 	})
-end)
+end)]]
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil

@@ -2042,7 +2042,7 @@ local wingui = {
 }
 shared.wingui = wingui
 
-local log = true
+local log = shared.LogUser
 shared.LogUser = log
 
 if shared.LogUser == true then

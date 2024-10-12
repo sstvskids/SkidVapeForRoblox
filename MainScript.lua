@@ -2043,7 +2043,7 @@ local wingui = {
 shared.wingui = wingui
 
 local antilog = false
-shared.antilog = antilog
+shared.AntiLog = antilog
 
 if shared.antilog = false then
 	local success = pcall(function()

@@ -9670,7 +9670,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
     local TeamSwitcher = {Enabled = false};
     local CustomTeam = {Value = 'Neutral'};
 	local cloneref = cloneref or function(data: userdata) return data end;
@@ -9699,7 +9699,7 @@ run(function()
         end,
         List = teamlist
     })
-end)
+end)]]
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil

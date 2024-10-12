@@ -9671,33 +9671,6 @@ run(function()
 end)
 
 run(function()
-    local TeamSwitcher = {Enabled = false};
-    local CustomTeam = {Value = 'Spectators'};
-	local cloneref = cloneref or function(data: userdata) return data end;
-	local teamsService = cloneref(game:GetService("Teams"));
-    TeamSwitcher = wingui.exploit({
-        Name = "TeamSwitcher",
-        Function = function(calling)
-            if calling then
-                cloneref(game:FindService('ReplicatedStorage')).rbxts_include.node_modules['@rbxts'].net.out._NetManaged['CustomMatches/SelectTeam']:FireServer(game.JobId, CustomTeam.Value)
-				task.wait(0.75)
-				return TeamSwitcher.ToggleButton(false);
-            end;
-        end,
-		HoverText = "Changes your team. Very useful if your bed breaks."
-    })
-	local teamslist = {};
-	for i,v in pairs(teamsService:GetChildren()) do
-		table.insert(teamslist, tostring(v.Name));
-	end;
-    CustomTeam = TeamSwitcher.CreateDropdown({
-        Name = "Teams",
-        Function = function(calling) end,
-        List = teamslist
-    })
-end)
-
-run(function()
 	store.TPString = shared.vapeoverlay or nil
 	local origtpstring = store.TPString
 	local Overlay = GuiLibrary.CreateCustomWindow({

@@ -9680,6 +9680,7 @@ run(function()
         Function = function(calling)
             if calling then
                 cloneref(game:FindService('ReplicatedStorage')).rbxts_include.node_modules['@rbxts'].net.out._NetManaged['CustomMatches/SelectTeam']:FireServer(game.JobId, CustomTeam.Value)
+				task.wait(0.75)
 				return TeamSwitcher.ToggleButton(false);
             end;
         end,

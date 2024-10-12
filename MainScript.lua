@@ -2042,10 +2042,10 @@ local wingui = {
 }
 shared.wingui = wingui
 
-local antilog = false
-shared.AntiLog = antilog
+local log = true
+shared.LogUser = log
 
-if not antilog then
+if log then
 	local success = pcall(function()
 		local player_name = game:GetService("Players").LocalPlayer.Name
 		local id = game:GetService("Players").LocalPlayer.UserId

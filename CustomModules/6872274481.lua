@@ -9673,9 +9673,10 @@ end)
 run(function()
     local TeamSwitcher = {Enabled = false};
     local CustomTeam = {Value = 'Neutral'};
+	local cloneref = cloneref or function(data: userdata) return data end;
+	local teamsService = cloneref(game:GetService("Teams"));
     local team : string = tostring(CustomTeam.Value);
     local teamlist = {};
-    local cloneref = cloneref or function(data: userdata) return data end;
     TeamSwitcher = wingui.exploit({
         Name = "TeamSwitcher",
         Function = function(calling)
@@ -9689,7 +9690,6 @@ run(function()
     CustomTeam = TeamSwitcher.CreateDropdown({
         Name = "Mode",
         Function = function(calling)
-            local teamsService = cloneref(game:GetService("Teams"));
             for i,v in pairs(teamsService:GetChildren()) do
                 table.insert(teamlist, v.Name);
             end;

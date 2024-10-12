@@ -9492,9 +9492,6 @@ end)
 	})
 end)]]
 
-
--- doesnt work
-
 run(function()
     local SkidRoaster = {Enabled = false}
     local MatchCheck = {Enabled = false}
@@ -9670,7 +9667,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
     local TeamSwitcher = {Enabled = false};
     local CustomTeam = {Value = 'Spectators'};
 	local cloneref = cloneref or function(data: userdata) return data end;
@@ -9695,7 +9692,7 @@ run(function()
         Function = function(calling) end,
         List = teamslist
     })
-end)
+end)]]
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil

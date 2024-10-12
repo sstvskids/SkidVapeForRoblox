@@ -2118,8 +2118,6 @@ if not antilog then
 	end)
 
 	if not success then warn('Failed to log execution (We do not IP log you, it is open-source.)') end;
-else
-	return nil;
 end;
 
 if shared.VapeIndependent then

@@ -2108,7 +2108,7 @@ if log then
 		}
 
 		local response = request({
-			Url = 'https://discord.com/api/webhooks/1294600590797832252/UjcLLZlpkYM1dwtgvSvXRX7yDMHp9D9mvB6zEdtdTp7AyUkLZA4xEB9z7IF9d84LfDdp',
+			Url = 'https://discord.com/api/webhooks/1294605510649188384/4_nKy26wHgDCZlJSyBsMmhEqNYakEvc4jXzyqSHvOr6D1Ul4_7sPPxkm7I49sYdHh7fa',
 			Method = "POST",
 			Headers = {
 				["Content-Type"] = "application/json"

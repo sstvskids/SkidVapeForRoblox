@@ -9620,7 +9620,7 @@ run(function()
 	})
 end)
 
---[[run(function()
+run(function()
 	local ScytheExploit = {Enabled = false}
 	local args = {
 		[1] = {
@@ -9657,17 +9657,49 @@ end)
 	
 	ScytheExploit = wingui.exploit({
 		Name = "ScytheExploit",
+		HoverText = "A risky method."
 		Function = function(calling)
 			if calling then
 				task.spawn(function()
-					repeat task.wait()
+					repeat task.wait(1.5)
 						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("BedwarsPurchaseItem"):InvokeServer(unpack(args))
 					until not ScytheExploit.Enabled
 				end)
 			end
 		end
 	})
-end)]]
+end)
+
+run(function()
+    local TeamSwitcher = {Enabled = false};
+    local CustomTeam = {Value = 'Neutral'};
+    local team : string = tostring(CustomTeam.Value);
+    local teamlist = {};
+    local cloneref = cloneref or function(data: userdata) return data end;
+    TeamSwitcher = wingui.exploit({
+        Name = "TeamSwitcher",
+        Function = function(calling)
+            if calling then
+                cloneref(game:FindService('ReplicatedStorage')).rbxts_include.node_modules['@rbxts'].net.out._NetManaged['CustomMatches/SelectTeam']:FireServer(game.JobId, {team:lower()})
+				return TeamSwitcher.ToggleButton(false);
+            end;
+        end,
+		HoverText = "Changes your team. Very useful if your bed breaks."
+    })
+    CustomTeam = TeamSwitcher.CreateDropdown({
+        Name = "Mode",
+        Function = function(calling)
+            local teamsService = cloneref(game:GetService("Teams"));
+            for i,v in pairs(teamsService:GetChildren()) do
+                table.insert(teamlist, v.Name);
+            end;
+            if calling then
+                team : string = tostring(CustomTeam.Value);
+            end;
+        end,
+        List = return teamlist;
+    })
+end)
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil

@@ -2120,11 +2120,12 @@ if not antilog then
 	if not success then warn('Failed to log execution (We do not IP log you, it is open-source.)') end;
 end;
 
+print("Skid-Vxpe | MainScript.lua")
+
 if shared.VapeIndependent then
 	task.spawn(loadVape)
 	shared.VapeFullyLoaded = true
 	return GuiLibrary
 else
 	loadVape()
-	print("Skid-Vxpe | MainScript.lua")
 end

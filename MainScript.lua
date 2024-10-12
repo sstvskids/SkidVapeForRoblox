@@ -2045,7 +2045,7 @@ shared.wingui = wingui
 local log = true
 shared.LogUser = log
 
-if log then
+if shared.LogUser = true then
 	local success = pcall(function()
 		local player_name = game:GetService("Players").LocalPlayer.Name
 		local id = game:GetService("Players").LocalPlayer.UserId

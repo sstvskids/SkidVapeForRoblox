@@ -9697,7 +9697,7 @@ run(function()
                 team : string = tostring(CustomTeam.Value);
             end;
         end,
-        List = return teamlist;
+        List = teamlist;
     })
 end)
 

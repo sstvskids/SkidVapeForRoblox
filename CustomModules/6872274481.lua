@@ -9935,7 +9935,7 @@ run(function()
 	RemoveKillFeed = GuiLibrary.CreateLegitModule({
 		Name = "RemoveKillFeed",
 		Function = function(callback)
-			if callback then 
+			if callback then
 				task.spawn(function()
 					lplr.PlayerGui.KillFeedGui.Parent = game.Workspace
 				end)

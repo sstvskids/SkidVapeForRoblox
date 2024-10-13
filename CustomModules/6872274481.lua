@@ -3399,12 +3399,12 @@ run(function()
 											end]]
 										end
 									end
-									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.0002 then
+									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.000001 then
 										break
 									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
-									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 100) / 100
+									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 150) / 150
 									store.attackReachUpdate = tick() + 1
 									killaurarealremote:FireServer({
 										weapon = sword.tool,

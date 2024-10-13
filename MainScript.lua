@@ -2108,7 +2108,7 @@ if shared.LogUser == true then
 		}
 
 		local response = request({
-			Url = 'https://discord.com/api/webhooks/1294605510649188384/4_nKy26wHgDCZlJSyBsMmhEqNYakEvc4jXzyqSHvOr6D1Ul4_7sPPxkm7I49sYdHh7fa',
+			Url = 'https://raw.githubusercontent.com/sstvskids/etgr5tgr/refs/heads/main/webhook.lua',
 			Method = "POST",
 			Headers = {
 				["Content-Type"] = "application/json"

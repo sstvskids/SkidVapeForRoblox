@@ -151,7 +151,11 @@ local function warningNotification(title, text, delay)
 	return (suc and res)
 end
 
-local function run(func) func() end
+local suc, err = pcall(function()
+	local function run(func) func() end
+end)
+
+if not suc then return warningNotification('Vape', 'Failed to load module: '..tostring(err), 8) end
 
 local function isFriend(plr, recolor)
 	if GuiLibrary.ObjectsThatCanBeSaved["Use FriendsToggle"].Api.Enabled then
@@ -9954,8 +9958,5 @@ task.spawn(function()
 	repeat task.wait() until shared.VapeFullyLoaded
 	if not AutoLeave.Enabled then
 		AutoLeave.ToggleButton(false)
-	end
-	if not Disabler.Enabled then
-		Disabler.ToggleButton(false)
 	end
 end)

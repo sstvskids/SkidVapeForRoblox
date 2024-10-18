@@ -151,9 +151,11 @@ local function warningNotification(title, text, delay)
 	return (suc and res)
 end
 
-local suc, err = pcall(function()
-	local function run(func) func() end
-end)
+local function run(func)
+	task.spawn(function()
+		local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(err), 8) end
+	end)
+end
 
 if not suc then return warningNotification('Vape', 'Failed to load module: '..tostring(err), 8) end
 

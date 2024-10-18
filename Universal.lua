@@ -36,7 +36,7 @@ local isnetworkowner = function(part)
 end
 local vapeAssetTable = {["vape/assets/VapeCape.png"] = "rbxassetid://13380453812", ["vape/assets/ArrowIndicator.png"] = "rbxassetid://13350766521"}
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
-if select(1, identifyexecutor()) == 'Wave' or 'macsploit is the best fucking exploit ever made.' or 'Calibri' then return getcustomasset = function(location) return vapeAssetTable[location] or "" end end
+if ({identifyexecutor()})[1] == 'Wave' or 'macsploit is the best fucking exploit ever made.' or 'Calibri' then getcustomasset = function(location) return vapeAssetTable[location] or "" end end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local synapsev3 = syn and syn.toast_notification and "V3" or ""
 local worldtoscreenpoint = function(pos)
@@ -106,7 +106,11 @@ local function removeTags(str)
 	return (str:gsub("<[^<>]->", ""))
 end
 
-local function run(func) func() end
+local function run(func)
+	task.spawn(function()
+		local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(err), 999) end
+	end)
+end
 
 local function isFriend(plr, recolor)
 	if GuiLibrary.ObjectsThatCanBeSaved["Use FriendsToggle"].Api.Enabled then

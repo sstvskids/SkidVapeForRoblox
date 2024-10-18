@@ -151,7 +151,9 @@ do
 end
 
 local function runcode(func)
-	func()
+	task.spawn(function()
+		local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(err), 999) end
+	end)
 end
 
 local function betterfind(tab, obj)

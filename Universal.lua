@@ -37,8 +37,13 @@ end
 local vapeAssetTable = {["vape/assets/VapeCape.png"] = "rbxassetid://13380453812", ["vape/assets/ArrowIndicator.png"] = "rbxassetid://13350766521"}
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
 local executors = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
-if table.find(executors, select(1, identifyexecutor())) then
-    getcustomasset = function(location) return vapeAssetTable[location] or "" end
+if identifyexecutor then
+	local executor = string.lower(identifyexecutor())
+    for i, v in pairs(executors) do
+		if string.find(executor, string.lower(v)) then
+			getcustomasset = function(location) return vapeAssetTable[location] or "" end
+		end
+	end
 end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local synapsev3 = syn and syn.toast_notification and "V3" or ""

@@ -6658,49 +6658,8 @@ run(function()
 		HoverText = "Makes sure stupid skids dont log you"
 	})
 end)
-run(function()
-    local cheaters = {}
-    local checks = {}
-    local speedCheck = function(v)
-        return v.Character.Humanoid.WalkSpeed > 22
-    end
-    local flyCheck = function(v)
-        return v.Character.HumanoidRootPart.Velocity > 100
-    end
-    table.insert(checks, 1, speedCheck, flyCheck)
-    local HackerDetector = {Enabled = false}
-    HackerDetector = wingui.utility({
-        Name = "HackerDetector",
-        Function = function(callback)
-            if callback then
-                task.spawn(function()
-                    for i,v in pairs(playersService:GetPlayers()) do
-                        if store.matchState == 0 then return end
-                        for i, check in pairs(checks) do
-                            if check(v) then
-                                local found = false
-                                for i, name in pairs(cheaters) do
-                                    if name == v.Name then
-                                        found = true
-                                        break
-                                    end
-                                end
-                                if found then
-                                    warningNotification("Vape", "Cheater detected! "..v.Name, 5)
-                                else
-                                    table.insert(cheaters, v.Name)
-                                    warningNotification("Vape", "Cheater detected! "..v.Name, 5)
-                                end
-                            end
-                        end
-                    end
-                end)
-            end
-        end
-    })
-end)
 
-run(function()
+--[[run(function()
 	local cheaters = {}
 	local checks = {}
 	local speedCheck = function(v)
@@ -6720,8 +6679,8 @@ run(function()
 						if store.matchState == 0 then return end
 						for i,cheater in pairs(checks) do
 							if cheater(v) then
-								if cheaters[v.Name] then return warningNotification("Vape", "Cheater detected! "..v.Name, 5) end
-								if not cheaters[v.Name] then
+								if table.find(cheaters, v.Name) then return warningNotification("Vape", "Cheater detected! "..v.Name, 5) end
+								if not table.find(cheaters, v.Name) then
 									table.insert(cheaters, v.Name)
 									warningNotification("Vape", "Cheater detected! "..v.Name, 5)
 								end
@@ -6733,7 +6692,7 @@ run(function()
 			end
 		end
 	})
-end)
+end)]]
 					
 run(function()
 	local FPS = {}

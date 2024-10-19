@@ -73,7 +73,7 @@ if shared.VapeExecuted then
 	local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
 	local executors = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
 	if table.find(executors, select(1, identifyexecutor())) then
-		return getcustomasset = function(location) return vapeAssetTable[location] or "" end
+		getcustomasset = function(location) return vapeAssetTable[location] or "" end
 	end
 
 	local customassetcheck = (getsynasset or getcustomasset) and true

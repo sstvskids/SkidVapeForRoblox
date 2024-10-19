@@ -36,7 +36,10 @@ local isnetworkowner = function(part)
 end
 local vapeAssetTable = {["vape/assets/VapeCape.png"] = "rbxassetid://13380453812", ["vape/assets/ArrowIndicator.png"] = "rbxassetid://13350766521"}
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
-if ({identifyexecutor()})[1] == 'Wave' or 'macsploit is the best fucking exploit ever made.' or 'Calibri' then return getcustomasset = function(location) return vapeAssetTable[location] or "" end end
+local executors = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
+if table.find(executors, select(1, identifyexecutor())) then
+    return getcustomasset = function(location) return vapeAssetTable[location] or "" end
+end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local synapsev3 = syn and syn.toast_notification and "V3" or ""
 local worldtoscreenpoint = function(pos)

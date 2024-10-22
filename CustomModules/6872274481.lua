@@ -9015,6 +9015,8 @@ run(function()
 								end
 								if DivideDirection.Value ~= 0 then
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction / DivideDirection.Value * MultiplyDirection.Value})
+								elseif MultiplyDirection.Value == 0 then
+									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction})
 								else
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
 								end

@@ -5207,8 +5207,7 @@ run(function()
 				if RaycastFucker.Enabled then
 					debug.setconstant(bedwars.SwordController.swingSwordAtMouse, -inf, callback and 'raycast' or 'Raycast')
 					debug.setupvalue(bedwars.SwordController.swingSwordAtMouse, inf, callback and bedwars.QueryUtil or workspace)
-				end
-				if not RaycastFucker.Enabled then
+				else
 					debug.setconstant(bedwars.SwordController.swingSwordAtMouse, 23, callback and 'raycast' or 'Raycast')
 					debug.setupvalue(bedwars.SwordController.swingSwordAtMouse, 4, callback and bedwars.QueryUtil or workspace)
 				end

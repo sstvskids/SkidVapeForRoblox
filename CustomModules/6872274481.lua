@@ -1,5 +1,5 @@
 local GuiLibrary = shared.GuiLibrary
-local LocalPlayer = game.Players.LocalPlayer
+local LocalPlayer = playersService.LocalPlayer
 local wingui = shared.wingui
 local playersService = game:GetService("Players")
 local textService = game:GetService("TextService")

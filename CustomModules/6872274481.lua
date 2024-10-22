@@ -151,7 +151,7 @@ local function warningNotification(title, text, delay)
 	return (suc and res)
 end
 
-local function run(func) task.spawn(function() local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(err), 999) end end) end
+local function run(func) task.spawn(function() local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..err, 999) end end) end
 
 local function isFriend(plr, recolor)
 	if GuiLibrary.ObjectsThatCanBeSaved["Use FriendsToggle"].Api.Enabled then

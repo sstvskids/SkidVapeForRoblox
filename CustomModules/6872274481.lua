@@ -1,5 +1,4 @@
 local GuiLibrary = shared.GuiLibrary
-local LocalPlayer = game.Players.LocalPlayer
 local wingui = shared.wingui
 local playersService = game:GetService("Players")
 local textService = game:GetService("TextService")
@@ -1156,7 +1155,7 @@ local suc, err = pcall(function()
 			end
 			return false
 		end
-
+	
 		local function dumpRemote(tab)
 			for i,v in pairs(tab) do
 				if v == "Client" then
@@ -1165,7 +1164,7 @@ local suc, err = pcall(function()
 			end
 			return ""
 		end
-
+	
 		local KnitGotten, KnitClient
 		repeat
 			KnitGotten, KnitClient = pcall(function()
@@ -1180,7 +1179,7 @@ local suc, err = pcall(function()
 		local InventoryUtil = require(replicatedStorage.TS.inventory["inventory-util"]).InventoryUtil
 		local OldGet = getmetatable(Client).Get
 		local OldBreak
-
+	
 		bedwars = setmetatable({
 			AnimationType = require(replicatedStorage.TS.animation["animation-type"]).AnimationType,
 			AnimationUtil = require(replicatedStorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out["shared"].util["animation-util"]).AnimationUtil,
@@ -1189,8 +1188,8 @@ local suc, err = pcall(function()
 			AbilityUIController = Flamework.resolveDependency("@easy-games/game-core:client/controllers/ability/ability-ui-controller@AbilityUIController"),
 			AttackRemote = dumpRemote(debug.getconstants(KnitClient.Controllers.SwordController.sendServerRequest)),
 			BalanceFile = require(replicatedStorage.TS.balance["balance-file"]).BalanceFile,
-			BatteryRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.BatteryController.KnitStart, 1), 1))),
-			--BlockBreaker = KnitClient.Controllers.BlockBreakController.blockBreaker,
+			--BatteryRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.BatteryController.KnitStart, 1), 1))),
+			BlockBreaker = KnitClient.Controllers.BlockBreakController.blockBreaker,
 			BlockController = require(replicatedStorage["rbxts_include"]["node_modules"]["@easy-games"]["block-engine"].out).BlockEngine,
 			BlockPlacer = require(replicatedStorage["rbxts_include"]["node_modules"]["@easy-games"]["block-engine"].out.client.placement["block-placer"]).BlockPlacer,
 			BlockEngine = require(lplr.PlayerScripts.TS.lib["block-engine"]["client-block-engine"]).ClientBlockEngine,
@@ -1211,7 +1210,7 @@ local suc, err = pcall(function()
 			DefaultKillEffect = require(lplr.PlayerScripts.TS.controllers.game.locker["kill-effect"].effects["default-kill-effect"]),
 			DropItem = KnitClient.Controllers.ItemDropController.dropItemInHand,
 			DropItemRemote = dumpRemote(debug.getconstants(KnitClient.Controllers.ItemDropController.dropItemInHand)),
-			DragonRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.DragonSlayerController.KnitStart, 2), 1))),
+			--DragonRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.DragonSlayerController.KnitStart, 2), 1))),
 			EatRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.ConsumeController.onEnable, 1))),
 			EquipItemRemote = dumpRemote(debug.getconstants(debug.getproto(require(replicatedStorage.TS.entity.entities["inventory-entity"]).InventoryEntity.equipItem, 3))),
 			EmoteMeta = require(replicatedStorage.TS.locker.emote["emote-meta"]).EmoteMeta,
@@ -1244,7 +1243,7 @@ local suc, err = pcall(function()
 			--MinerRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.MinerController.onKitEnabled, 1))),
 			MageRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.MageController.registerTomeInteraction, 1))),
 			MageKitUtil = require(replicatedStorage.TS.games.bedwars.kit.kits.mage["mage-kit-util"]).MageKitUtil,
-			PickupMetalRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.MetalDetectorController.KnitStart, 1), 2))),
+			--PickupMetalRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.MetalDetectorController.KnitStart, 1), 2))),
 			PickupRemote = dumpRemote(debug.getconstants(KnitClient.Controllers.ItemDropController.checkForPickup)),
 			--PinataRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.PiggyBankController.KnitStart, 2), 5))),
 			PinataRemote = '',
@@ -1262,7 +1261,7 @@ local suc, err = pcall(function()
 			SoundList = require(replicatedStorage.TS.sound["game-sound"]).GameSound,
 			SoundManager = require(replicatedStorage["rbxts_include"]["node_modules"]["@easy-games"]["game-core"].out).SoundManager,
 			SpawnRavenRemote = dumpRemote(debug.getconstants(KnitClient.Controllers.RavenController.spawnRaven)),
-			TreeRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.BigmanController.KnitStart, 1), 2))),
+			--TreeRemote = dumpRemote(debug.getconstants(debug.getproto(debug.getproto(KnitClient.Controllers.BigmanController.KnitStart, 1), 2))),
 			TrinityRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.AngelController.onKitEnabled, 1))),
 			UILayers = require(replicatedStorage['rbxts_include']['node_modules']['@easy-games']['game-core'].out).UILayers,
 			WeldTable = require(replicatedStorage.TS.util["weld-util"]).WeldUtil
@@ -1273,7 +1272,7 @@ local suc, err = pcall(function()
 			end
 		})
 		OldBreak = bedwars.BlockController.isBlockBreakable
-
+	
 		getmetatable(Client).Get = function(self, remoteName)
 			if not vapeInjected then return OldGet(self, remoteName) end
 			local originalRemote = OldGet(self, remoteName)
@@ -1300,13 +1299,13 @@ local suc, err = pcall(function()
 			end
 			return originalRemote
 		end
-
+	
 		bedwars.BlockController.isBlockBreakable = function(self, breakTable, plr)
 			local obj = bedwars.BlockController:getStore():getBlockAt(breakTable.blockPosition)
 			if isWhitelistedBed(obj) then return false end
 			return OldBreak(self, breakTable, plr)
 		end
-
+	
 		store.blockPlacer = bedwars.BlockPlacer.new(bedwars.BlockEngine, "wool_white")
 		bedwars.placeBlock = function(speedCFrame, customblock)
 			if getItem(customblock) then
@@ -1314,12 +1313,12 @@ local suc, err = pcall(function()
 				return store.blockPlacer:placeBlock(Vector3.new(speedCFrame.X / 3, speedCFrame.Y / 3, speedCFrame.Z / 3))
 			end
 		end
-
+	
 		local healthbarblocktable = {
 			blockHealth = -1,
 			breakingBlockPosition = Vector3.zero
 		}
-
+	
 		local failedBreak = 0
 		bedwars.breakBlock = function(pos, effects, normal, bypass, anim)
 			if GuiLibrary.ObjectsThatCanBeSaved.InfiniteFlyOptionsButton.Api.Enabled then
@@ -1390,7 +1389,7 @@ local suc, err = pcall(function()
 				end
 			end
 		end
-
+	
 		local function updateStore(newStore, oldStore)
 			if newStore.Game ~= oldStore.Game then
 				store.matchState = newStore.Game.matchState
@@ -1422,10 +1421,10 @@ local suc, err = pcall(function()
 				end
 			end
 		end
-
+	
 		table.insert(vapeConnections, bedwars.ClientStoreHandler.changed:connect(updateStore))
 		updateStore(bedwars.ClientStoreHandler:getState(), {})
-
+	
 		for i, v in pairs({"MatchEndEvent", "EntityDeathEvent", "EntityDamageEvent", "BedwarsBedBreak", "BalloonPopped", "AngelProgress"}) do
 			bedwars.Client:WaitFor(v):andThen(function(connection)
 				table.insert(vapeConnections, connection:Connect(function(...)
@@ -1440,7 +1439,7 @@ local suc, err = pcall(function()
 				end))
 			end)
 		end
-
+	
 		store.blocks = collectionService:GetTagged("block")
 		store.blockRaycast.FilterDescendantsInstances = {store.blocks}
 		table.insert(vapeConnections, collectionService:GetInstanceAddedSignal("block"):Connect(function(block)
@@ -1470,20 +1469,20 @@ local suc, err = pcall(function()
 				table.remove(store.pots, ent)
 			end
 		end))
-
+	
 		local oldZephyrUpdate = bedwars.WindWalkerController.updateJump
 		bedwars.WindWalkerController.updateJump = function(self, orb, ...)
 			store.zephyrOrb = lplr.Character and lplr.Character:GetAttribute("Health") > 0 and orb or 0
 			return oldZephyrUpdate(self, orb, ...)
 		end
-
+	
 		GuiLibrary.SelfDestructEvent.Event:Connect(function()
 			bedwars.WindWalkerController.updateJump = oldZephyrUpdate
 			getmetatable(bedwars.Client).Get = OldGet
 			bedwars.BlockController.isBlockBreakable = OldBreak
 			store.blockPlacer:disable()
 		end)
-
+	
 		local teleportedServers = false
 		table.insert(vapeConnections, lplr.OnTeleport:Connect(function(State)
 			if (not teleportedServers) then

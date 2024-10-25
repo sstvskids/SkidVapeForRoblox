@@ -1285,7 +1285,7 @@ local suc, err = pcall(function()
 							if not ({whitelist:get(plr)})[2] then return end
 							if Reach.Enabled then
 								local attackMagnitude = ((entityLibrary.LocalPosition or entityLibrary.character.HumanoidRootPart.Position) - attackTable.validate.targetPosition.value).magnitude
-								if attackMagnitude > 18 then
+								if attackMagnitude > 21 then
 									return nil
 								end
 								attackTable.validate.selfPosition = attackValue(attackTable.validate.selfPosition.value + (attackMagnitude > 14.4 and (CFrame.lookAt(attackTable.validate.selfPosition.value, attackTable.validate.targetPosition.value).lookVector * 4) or Vector3.zero))

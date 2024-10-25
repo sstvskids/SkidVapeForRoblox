@@ -1144,7 +1144,7 @@ GuiLibrary.LoadSettingsEvent.Event:Connect(function(res)
 	end
 end)
 
-local suc, res = pcall(function()
+local suc, err = pcall(function()
 	run(function()
 		local function isWhitelistedBed(bed)
 			if bed and bed.Name == 'bed' then
@@ -1502,7 +1502,7 @@ local suc, res = pcall(function()
 	end)
 end)
 
-if res then warningNotification('Vape', 'Knit-client error: '..tostring(err), 5) end
+if err then warningNotification('Vape', 'Knit-client error: '..tostring(err), 5) end
 
 do
 	entityLibrary.animationCache = {}

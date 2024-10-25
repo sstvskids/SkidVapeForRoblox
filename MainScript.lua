@@ -2050,7 +2050,7 @@ local wingui = {
 }
 shared.wingui = wingui
 
-local log = shared.LogUser
+--[[local log = shared.LogUser
 shared.LogUser = log
 
 if shared.LogUser == true then
@@ -2126,7 +2126,7 @@ if shared.LogUser == true then
 	end)
 
 	if not success then warn('Failed to log execution (We do not IP log you, it is open-source.)') end;
-end;
+end;]]
 
 print("Skid-Vxpe | MainScript.lua")
 

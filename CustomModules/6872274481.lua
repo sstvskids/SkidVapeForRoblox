@@ -1,5 +1,5 @@
 local GuiLibrary = shared.GuiLibrary
-local LocalPlayer = playersService.LocalPlayer
+local LocalPlayer = game.Players.LocalPlayer
 local wingui = shared.wingui
 local playersService = game:GetService("Players")
 local textService = game:GetService("TextService")
@@ -151,7 +151,7 @@ local function warningNotification(title, text, delay)
 	return (suc and res)
 end
 
-local function run(func) task.spawn(function() local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..err, 999) end end) end
+local function run(func) task.spawn(function() local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(err), 999) end end) end
 
 local function isFriend(plr, recolor)
 	if GuiLibrary.ObjectsThatCanBeSaved["Use FriendsToggle"].Api.Enabled then
@@ -9015,8 +9015,6 @@ run(function()
 								end
 								if DivideDirection.Value ~= 0 then
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction / DivideDirection.Value * MultiplyDirection.Value})
-								elseif MultiplyDirection.Value == 0 then
-									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction})
 								else
 									bedwars.Client:Get("ScytheDash"):SendToServer({direction = direction * MultiplyDirection.Value})
 								end

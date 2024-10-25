@@ -6654,7 +6654,8 @@ run(function()
 					if hookfunction then
 						skidstore.AntiLog()
 					else
-						return warningNotification("Vape", "hookfunction not found", 5);
+						warningNotification("Vape", "hookfunction not found", 5);
+						return AntiLogger.ToggleButton(false)
 					end
 				end)
 			end

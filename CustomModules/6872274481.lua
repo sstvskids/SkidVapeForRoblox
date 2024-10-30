@@ -1,5 +1,5 @@
---This watermark is used to delete the file if its cached, remove it to make the file persist after commits.
 local GuiLibrary = shared.GuiLibrary
+local LocalPlayer = game.Players.LocalPlayer
 local wingui = shared.wingui
 local playersService = game:GetService("Players")
 local textService = game:GetService("TextService")
@@ -151,16 +151,7 @@ local function warningNotification(title, text, delay)
 	return (suc and res)
 end
 
-local function run(func)
-	task.spawn(function()
-		--local suc, err = pcall(function()
-			func()
-		--end)
-		--[[if err then
-			warningNotification('Vape', 'Failed to load module: '..tostring(err), 999)
-		end]]
-	end)
-end
+local function run(func) local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(err), 999) end end
 
 local function isFriend(plr, recolor)
 	if GuiLibrary.ObjectsThatCanBeSaved["Use FriendsToggle"].Api.Enabled then
@@ -9663,7 +9654,6 @@ run(function()
 	
 	ScytheExploit = wingui.exploit({
 		Name = "ScytheExploit",
-		HoverText = "A risky method.",
 		Function = function(calling)
 			if calling then
 				task.spawn(function()
@@ -9672,7 +9662,8 @@ run(function()
 					until not ScytheExploit.Enabled
 				end)
 			end
-		end
+		end,
+		HoverText = "A risky method of buying scythes\nCould get you banned"
 	})
 end)
 
@@ -9944,7 +9935,7 @@ run(function()
 	RemoveKillFeed = GuiLibrary.CreateLegitModule({
 		Name = "RemoveKillFeed",
 		Function = function(callback)
-			if callback then
+			if callback then 
 				task.spawn(function()
 					lplr.PlayerGui.KillFeedGui.Parent = game.Workspace
 				end)
@@ -9963,5 +9954,8 @@ task.spawn(function()
 	repeat task.wait() until shared.VapeFullyLoaded
 	if not AutoLeave.Enabled then
 		AutoLeave.ToggleButton(false)
+	end
+	if not Disabler.Enabled then
+		Disabler.ToggleButton(false)
 	end
 end)

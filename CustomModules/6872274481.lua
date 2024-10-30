@@ -1179,6 +1179,14 @@ run(function()
 	local InventoryUtil = require(replicatedStorage.TS.inventory["inventory-util"]).InventoryUtil
 	local OldGet = getmetatable(Client).Get
 	local OldBreak
+	local bowConstants = {RelX = 0, RelY = 0, RelZ = 0}
+
+	for i, v in debug.getupvalues(KnitClient.Controllers.ProjectileController.enableBeam) do
+		if type(v) == 'table' and rawget(v, 'RelX') then
+			bowConstants = v
+			break
+		end
+	end
 
 	bedwars = setmetatable({
 		AnimationType = require(replicatedStorage.TS.animation["animation-type"]).AnimationType,

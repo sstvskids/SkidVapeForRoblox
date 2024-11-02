@@ -2573,10 +2573,10 @@ run(function()
 							onground = newray and true or false
 							if lastonground ~= onground then
 								if (not onground) then
-									if not Disabler.Enabled and not item and not lplr.Character.HandInvItem.Value == item.tool then
-										groundtime = tick() + (2.6 + (entityLibrary.groundTick - tick()))
-									else
+									if Disabler.Enabled and item and lplr.Character.HandInvItem.Value == item.tool then
 										groundtime = tick() + (120.1 + (entityLibrary.groundTick - tick()))
+									else
+										groundtime = tick() + (2.6 + (entityLibrary.groundTick - tick()))
 									end
 									if FlyAnywayProgressBarFrame then
 										FlyAnywayProgressBarFrame.Frame:TweenSize(UDim2.new(0, 0, 0, 20), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, groundtime - tick(), true)
@@ -2588,10 +2588,10 @@ run(function()
 								end
 							end
 							if FlyAnywayProgressBarFrame then
-								if not item and not lplr.Character.HandInvItem.Value == item.tool then
-									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 2.6 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
-								else
+								if item and lplr.Character.HandInvItem.Value == item.tool then
 									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 120 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
+								else
+									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 2.6 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
 								end
 							end
 							lastonground = onground

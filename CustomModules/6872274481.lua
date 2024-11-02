@@ -3516,7 +3516,7 @@ run(function()
 												cameraPosition = attackValue(root.Position),
 												cursorDirection = attackValue(CFrame.new(selfpos, root.Position).lookVector)
 											},
-											targetPosition = attackValue(root.Position),
+											targetPosition = attackValue(root.Position + Vector3.new(0, 0.7, 0)),
 											selfPosition = attackValue(selfpos)
 										}
 									})

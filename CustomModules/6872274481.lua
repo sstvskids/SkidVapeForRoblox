@@ -2557,6 +2557,7 @@ run(function()
 						if bedwars.matchState == 0 then return end
 					end
 					if entityLibrary.isAlive then
+						local item = getItemNear("scythe")
 						local playerMass = (entityLibrary.character.HumanoidRootPart:GetMass() - 1.4) * (delta * 100)
 						flyAllowed = ((lplr.Character:GetAttribute("InflatedBalloons") and lplr.Character:GetAttribute("InflatedBalloons") > 0) or store.matchState == 2 or megacheck) and 1 or 0
 						playerMass = playerMass + (flyAllowed > 0 and 4 or 0) * (tick() % 0.4 < 0.2 and -1 or 1)
@@ -2572,7 +2573,11 @@ run(function()
 							onground = newray and true or false
 							if lastonground ~= onground then
 								if (not onground) then
-									groundtime = tick() + (2.6 + (entityLibrary.groundTick - tick()))
+									if Disabler.Enabled and item and lplr.Character.HandInvItem.Value == item.tool then
+										groundtime = tick() + (120.1 + (entityLibrary.groundTick - tick()))
+									else
+										groundtime = tick() + (2.6 + (entityLibrary.groundTick - tick()))
+									end
 									if FlyAnywayProgressBarFrame then
 										FlyAnywayProgressBarFrame.Frame:TweenSize(UDim2.new(0, 0, 0, 20), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, groundtime - tick(), true)
 									end
@@ -2583,7 +2588,11 @@ run(function()
 								end
 							end
 							if FlyAnywayProgressBarFrame then
-								FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 2.6 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
+								if item and lplr.Character.HandInvItem.Value == item.tool then
+									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 120 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
+								else
+									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 2.6 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
+								end
 							end
 							lastonground = onground
 						else

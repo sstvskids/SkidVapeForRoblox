@@ -3295,15 +3295,9 @@ run(function()
 
 	local prediction
 	local predictionmethodd = {
-		LookVector = {
-			prediction = root.CFrame.lookVector
-		},
-		MoveDirection = {
-			prediction = plr.Character.Humanoid.MoveDirection
-		},
-		["LookVector + MoveDirection"] = {
-			prediction = root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection
-		}
+		LookVector = function() return root.CFrame.LookVector end,
+		MoveDirection = function() return plr.Character.Humanoid.MoveDirection end,
+		["LookVector + MoveDirection"] = function() return root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection end
 	}
 
 	local function closestpos(block, pos)
@@ -3643,7 +3637,9 @@ run(function()
 	killaurapredictionmethod = Killaura.CreateDropdown({
 		Name = "PredictionMethod",
 		List = predictionlist,
-		Function = function(val) end
+		Function = function(val)
+			prediction = predictionmethodd[val]()
+		end
 	})
 	local oldviewmodel
 	local oldraise

@@ -1,6 +1,6 @@
 
 ## 6872274481.lua (bedwars) Modules we have:
-ScytheExploit, CustomPacks, AntiDeath, RemoteTrollage, MelodyExploit, SkidRoaster (yappachino!!), HostPanelExploit (bootycheeks), SemiInstantWin, NoNameTag, RemoveKillFeed
+ScytheExploit, CustomPacks, AntiDeath, RemoteTrollage, MelodyExploit, SkidRoaster (yappachino!!), HostPanelExploit (bootycheeks), SemiInstantWin, NoNameTag, RemoveKillFeed, AnticheatBypass
 
 ## UNIVERSAL.lua Modules we have:
 Watermark, LightingModifications, AnimeImages, AntiCrash, ChatCrasher, AntiLog

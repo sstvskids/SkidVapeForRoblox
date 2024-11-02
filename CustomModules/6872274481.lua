@@ -3506,17 +3506,16 @@ run(function()
 										break
 									end
 									if killaurapredictionmethod.Value == "LookVector" then
-										prediction = root.CFrame.lookVector
+										prediction = attackValue(root.CFrame.lookVector)
 									elseif killaurapredictionmethod == "MoveDirection" then
-										prediction = plr.Character.Humanoid.MoveDirection
+										prediction = attackValue(plr.Character.Humanoid.MoveDirection)
 									elseif killaurapredictionmethod == "LookVector + MoveDirection" then
-										prediction = (root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection)
+										prediction = attackValue(root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection)
 									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
 									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 100) / 100
 									store.attackReachUpdate = tick() + 1
-									local suc, err = pcall(function()
 									killaurarealremote:FireServer({
 										weapon = sword.tool,
 										chargedAttack = {chargeRatio = swordmeta.sword.chargedAttack and not swordmeta.sword.chargedAttack.disableOnGrounded and 0.999 or 0},
@@ -3530,8 +3529,6 @@ run(function()
 											selfPosition = attackValue(selfpos)
 										}
 									})
-									end)
-									if err then return warn(tostring(err)) end
 									break
 								end
 							end

@@ -3091,6 +3091,7 @@ run(function()
 	local killauraothermethod = {Value = "Normal"}
 	local killauraanimmethod = {Value = "Normal"}
 	local killaurapredictionmethod = {Value = 'LookVector'}
+	local prediction
 	local killaurarange = {Value = 14}
 	local killauraangle = {Value = 360}
 	local killauratargets = {Value = 10}
@@ -3504,15 +3505,12 @@ run(function()
 									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.000001 then
 										break
 									end
-									local prediction
 									if killaurapredictionmethod.Value == "LookVector" then
 										prediction = root.CFrame.lookVector
 									elseif killaurapredictionmethod == "MoveDirection" then
 										prediction = plr.Character.Humanoid.MoveDirection
 									elseif killaurapredictionmethod == "LookVector + MoveDirection" then
 										prediction = root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection / 1
-									elseif killaurapredictionmethod == "Vector3" then
-										prediction = Vector3.new(0.07, 0.7, 0.07)
 									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
@@ -3637,8 +3635,16 @@ run(function()
 	})
 	killaurapredictionmethod = Killaura.CreateDropdown({
 		Name = "PredictionMethod",
-		List = {'LookVector', 'MoveDirection', 'LookVector + MoveDirection', 'Vector3'},
-		Function = function(val) end
+		List = {'LookVector', 'MoveDirection', 'LookVector + MoveDirection'},
+		Function = function(val)
+			if val.Value == 'LookVector' then
+				prediction = root.CFrame.LookVector
+			elseif val.Value == 'MoveDirection' then
+				prediction = plr.Character.Humanoid.MoveDirection
+			elseif val.Value == 'LookVector + MoveDirection' then
+				prediction = root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection / 1
+			end
+		end
 	})
 	local oldviewmodel
 	local oldraise

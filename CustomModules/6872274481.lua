@@ -3090,7 +3090,6 @@ run(function()
 	local killauramethod = {Value = "Normal"}
 	local killauraothermethod = {Value = "Normal"}
 	local killauraanimmethod = {Value = "Normal"}
-	local killaurapredictionmethod = {Value = 'LookVector'}
 	local killaurarange = {Value = 14}
 	local killauraangle = {Value = 360}
 	local killauratargets = {Value = 10}
@@ -3342,7 +3341,6 @@ run(function()
 		until (not Killaura.Enabled) or (not killauraautoblock.Enabled)
 	end
 
-	local prediction
 	Killaura = wingui.blatant({
 		Name = "Killaura",
 		Function = function(callback)
@@ -3505,13 +3503,6 @@ run(function()
 									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.000001 then
 										break
 									end
-									if killaurapredictionmethod.Value == "LookVector" then
-										prediction = attackValue(root.CFrame.lookVector)
-									elseif killaurapredictionmethod == "MoveDirection" then
-										prediction = attackValue(plr.Character.Humanoid.MoveDirection)
-									elseif killaurapredictionmethod == "LookVector + MoveDirection" then
-										prediction = attackValue(root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection)
-									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
 									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 100) / 100
@@ -3522,10 +3513,10 @@ run(function()
 										entityInstance = plr.Character,
 										validate = {
 											raycast = {
-												cameraPosition = attackValue(root.Position + prediction),
+												cameraPosition = attackValue(root.Position + root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection / 1),
 												cursorDirection = attackValue(CFrame.new(selfpos, root.Position).lookVector)
 											},
-											targetPosition = attackValue(root.Position + prediction),
+											targetPosition = attackValue(root.Position + root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection / 1),
 											selfPosition = attackValue(selfpos)
 										}
 									})
@@ -3632,13 +3623,6 @@ run(function()
 		Name = "Animation",
 		List = animmethods,
 		Function = function(val) end
-	})
-	killaurapredictionmethod = Killaura.CreateDropdown({
-		Name = "Prediction",
-		List = {'LookVector', 'MoveDirection', 'LookVector + MoveDirection'},
-		Function = function(val)
-			killaurapredictionmethod.Value = val
-		end
 	})
 	local oldviewmodel
 	local oldraise

@@ -1180,7 +1180,7 @@ run(function()
 	local OldBreak
 	--[[local bowConstants = {RelX = 0, RelY = 0, RelZ = 0}
 
-	for i, v in debug.getupvalues(KnitClient.Controllers.ProjectileController.enableBeam) do
+	for i,v in debug.getupvalues(KnitClient.Controllers.ProjectileController.enableBeam) do
 		if type(v) == 'table' and rawget(v, 'RelX') then
 			bowConstants = v
 			break
@@ -3510,7 +3510,7 @@ run(function()
 									elseif killaurapredictionmethod == "MoveDirection" then
 										prediction = plr.Character.Humanoid.MoveDirection
 									elseif killaurapredictionmethod == "LookVector + MoveDirection" then
-										prediction = root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection
+										prediction = (root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection)
 									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()

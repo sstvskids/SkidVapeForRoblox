@@ -3513,10 +3513,10 @@ run(function()
 										entityInstance = plr.Character,
 										validate = {
 											raycast = {
-												cameraPosition = attackValue(root.Position + root.CFrame.LookVector),
+												cameraPosition = attackValue(root.Position + plr.character.HumanoidRootPart.CFrame.lookVector),
 												cursorDirection = attackValue(CFrame.new(selfpos, root.Position).lookVector)
 											},
-											targetPosition = attackValue(root.Position + root.CFrame.LookVector),
+											targetPosition = attackValue(root.Position + plr.character.HumanoidRootPart.CFrame.lookVector),
 											selfPosition = attackValue(selfpos)
 										}
 									})

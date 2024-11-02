@@ -3637,12 +3637,16 @@ run(function()
 		Name = "PredictionMethod",
 		List = {'LookVector', 'MoveDirection', 'LookVector + MoveDirection'},
 		Function = function(val)
-			if val.Value == 'LookVector' then
+			killaurapredictionmethod.Value = val
+			if killaurapredictionmethod.Value == 'LookVector' then
 				prediction = root.CFrame.LookVector
-			elseif val.Value == 'MoveDirection' then
+				warningNotification('Vape', 'Prediction is: '..val.Value, 6)
+			elseif killaurapredictionmethod.Value == 'MoveDirection' then
 				prediction = plr.Character.Humanoid.MoveDirection
-			elseif val.Value == 'LookVector + MoveDirection' then
+				warningNotification('Vape', 'Prediction is: '..val.Value, 6)
+			elseif killaurapredictionmethod.Value == 'LookVector + MoveDirection' then
 				prediction = root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection
+				warningNotification('Vape', 'Prediction is: '..val.Value, 6)
 			end
 		end
 	})

@@ -3637,18 +3637,7 @@ run(function()
 		Name = "PredictionMethod",
 		List = {'LookVector', 'MoveDirection', 'LookVector + MoveDirection'},
 		Function = function(val)
-			for i,v in pairs(val) do
-				if v == 'LookVector' then
-					prediction = root.CFrame.LookVector
-					warningNotification('Vape', 'Prediction is: '..val.Value, 6)
-				elseif v == 'MoveDirection' then
-					prediction = plr.Character.Humanoid.MoveDirection
-					warningNotification('Vape', 'Prediction is: '..val.Value, 6)
-				elseif v == 'LookVector + MoveDirection' then
-					prediction = root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection
-					warningNotification('Vape', 'Prediction is: '..val.Value, 6)
-				end
-			end
+			killaurapredictionmethod.Value = val
 		end
 	})
 	local oldviewmodel

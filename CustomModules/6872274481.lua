@@ -3516,6 +3516,7 @@ run(function()
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
 									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 100) / 100
 									store.attackReachUpdate = tick() + 1
+									local suc, err = pcall(function()
 									killaurarealremote:FireServer({
 										weapon = sword.tool,
 										chargedAttack = {chargeRatio = swordmeta.sword.chargedAttack and not swordmeta.sword.chargedAttack.disableOnGrounded and 0.999 or 0},
@@ -3529,6 +3530,8 @@ run(function()
 											selfPosition = attackValue(selfpos)
 										}
 									})
+									end)
+									if err then return warn(tostring(err)) end
 									break
 								end
 							end

@@ -3293,13 +3293,6 @@ run(function()
 		}
 	}
 
-	local prediction
-	local predictionmethodd = {
-		LookVector = root.CFrame.LookVector,
-		MoveDirection = plr.Character.Humanoid.MoveDirection,
-		['LookVector + MoveDirection'] = root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection
-	}
-
 	local function closestpos(block, pos)
 		local blockpos = block:GetRenderCFrame()
 		local startpos = (blockpos * CFrame.new(-(block.Size / 2))).p
@@ -3349,6 +3342,7 @@ run(function()
 		until (not Killaura.Enabled) or (not killauraautoblock.Enabled)
 	end
 
+	local prediction
 	Killaura = wingui.blatant({
 		Name = "Killaura",
 		Function = function(callback)
@@ -3511,8 +3505,14 @@ run(function()
 									if (workspace:GetServerTimeNow() - bedwars.SwordController.lastAttack) < 0.000001 then
 										break
 									end
+									if killaurapredictionmethod.Value == "LookVector" then
+										prediction = root.CFrame.lookVector
+									elseif killaurapredictionmethod == "MoveDirection" then
+										prediction = plr.Character.Humanoid.MoveDirection
+									elseif killaurapredictionmethod == "LookVector + MoveDirection" then
+										prediction = root.CFrame.lookVector + plr.Character.Humanoid.MoveDirection
+									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
-									prediction = predictionmethodd[val]
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
 									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 100) / 100
 									store.attackReachUpdate = tick() + 1
@@ -3633,20 +3633,11 @@ run(function()
 		List = animmethods,
 		Function = function(val) end
 	})
-	local prediction
-	local predictionmethodd = {
-		LookVector = root.CFrame.LookVector,
-		MoveDirection = plr.Character.Humanoid.MoveDirection,
-		['LookVector + MoveDirection'] = root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection
-	}
-
-	local predictionlist = {}
-	for i,v in pairs(predictionmethodd) do table.insert(predictionlist, i) end
 	killaurapredictionmethod = Killaura.CreateDropdown({
 		Name = "PredictionMethod",
-		List = predictionlist,
+		List = {'LookVector', 'MoveDirection', 'LookVector + MoveDirection'},
 		Function = function(val)
-			prediction = predictionmethodd[val]
+			killaurapredictionmethod.Value = val
 		end
 	})
 	local oldviewmodel

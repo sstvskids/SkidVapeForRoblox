@@ -2530,7 +2530,6 @@ run(function()
 						repeat task.wait() until (groundtime - tick()) < 0.6 and not onground
 						flyAllowed = ((lplr.Character and lplr.Character:GetAttribute("InflatedBalloons") and lplr.Character:GetAttribute("InflatedBalloons") > 0) or store.matchState == 2 or megacheck) and 1 or 0
 						if (not Fly.Enabled) then break end
-						if (InfiniteFly.Enabled) then break end
 						local Flytppos = -99999
 						if flyAllowed <= 0 and FlyTP.Enabled and entityLibrary.isAlive then
 							local ray = workspace:Raycast(entityLibrary.character.HumanoidRootPart.Position, Vector3.new(0, -1000, 0), store.blockRaycast)
@@ -2574,10 +2573,10 @@ run(function()
 							onground = newray and true or false
 							if lastonground ~= onground then
 								if (not onground) then
-									if Disabler.Enabled and item and lplr.Character.HandInvItem.Value == item.tool then
-										groundtime = tick() + (120.1 + (entityLibrary.groundTick - tick()))
-									else
+									if not Disabler.Enabled and not item and not lplr.Character.HandInvItem.Value == item.tool then
 										groundtime = tick() + (2.6 + (entityLibrary.groundTick - tick()))
+									else
+										groundtime = tick() + (120.1 + (entityLibrary.groundTick - tick()))
 									end
 									if FlyAnywayProgressBarFrame then
 										FlyAnywayProgressBarFrame.Frame:TweenSize(UDim2.new(0, 0, 0, 20), Enum.EasingDirection.InOut, Enum.EasingStyle.Linear, groundtime - tick(), true)
@@ -2589,10 +2588,10 @@ run(function()
 								end
 							end
 							if FlyAnywayProgressBarFrame then
-								if item and lplr.Character.HandInvItem.Value == item.tool then
-									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 120 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
+								if not item and not lplr.Character.HandInvItem.Value == item.tool then
+									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 2.6 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
 								else
-									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 2.5 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
+									FlyAnywayProgressBarFrame.TextLabel.Text = math.max(onground and 120 or math.floor((groundtime - tick()) * 10) / 10, 0).."s"
 								end
 							end
 							lastonground = onground
@@ -2631,7 +2630,7 @@ run(function()
 			end
 		end,
 		HoverText = "Makes you go zoom (longer Fly discovered by exelys and Cqded)",
-		ExtraText = function() 
+		ExtraText = function()
 			return "CFrame"
 		end
 	})

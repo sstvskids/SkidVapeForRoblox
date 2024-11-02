@@ -3634,7 +3634,7 @@ run(function()
 		Function = function(val) end
 	})
 	killaurapredictionmethod = Killaura.CreateDropdown({
-		Name = "PredictionMethod",
+		Name = "Prediction",
 		List = {'LookVector', 'MoveDirection', 'LookVector + MoveDirection'},
 		Function = function(val)
 			killaurapredictionmethod.Value = val

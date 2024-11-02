@@ -3295,9 +3295,9 @@ run(function()
 
 	local prediction
 	local predictionmethodd = {
-		LookVector = function() return root.CFrame.LookVector end,
-		MoveDirection = function() return plr.Character.Humanoid.MoveDirection end,
-		["LookVector + MoveDirection"] = function() return root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection end
+		LookVector = root.CFrame.LookVector,
+		MoveDirection = plr.Character.Humanoid.MoveDirection,
+		['LookVector + MoveDirection'] = root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection
 	}
 
 	local function closestpos(block, pos)
@@ -3512,6 +3512,7 @@ run(function()
 										break
 									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - root.Position).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, root.Position).lookVector * ((selfrootpos - root.Position).magnitude - 14)) or Vector3.zero)
+									prediction = predictionmethodd[val]
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
 									store.attackReach = math.floor((selfrootpos - root.Position).magnitude * 100) / 100
 									store.attackReachUpdate = tick() + 1
@@ -3632,13 +3633,20 @@ run(function()
 		List = animmethods,
 		Function = function(val) end
 	})
+	local prediction
+	local predictionmethodd = {
+		LookVector = root.CFrame.LookVector,
+		MoveDirection = plr.Character.Humanoid.MoveDirection,
+		['LookVector + MoveDirection'] = root.CFrame.LookVector + plr.Character.Humanoid.MoveDirection
+	}
+
 	local predictionlist = {}
 	for i,v in pairs(predictionmethodd) do table.insert(predictionlist, i) end
 	killaurapredictionmethod = Killaura.CreateDropdown({
 		Name = "PredictionMethod",
 		List = predictionlist,
 		Function = function(val)
-			prediction = predictionmethodd[val]()
+			prediction = predictionmethodd[val]
 		end
 	})
 	local oldviewmodel

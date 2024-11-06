@@ -1,4 +1,4 @@
-local lplr = cloneref(game:GetService("Players")).LocalPlayer;
+local lplr = cloneref(game:GetService("Players")).LocalPlayer or game:GetService("Players").LocalPlayer;
 local skidstore : table = {
     skidver = 'Next-Gen';
     skiduser = lplr.Name;
@@ -15,4 +15,4 @@ local skidstore : table = {
     end;
 }
 
-return skidstore
+return skidstore;

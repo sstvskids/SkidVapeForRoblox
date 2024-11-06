@@ -16,6 +16,6 @@ local skidstore : table = {
         end);
         return oldfunc;
     end;
-}
+};
 
 return skidstore;

@@ -6655,6 +6655,7 @@ run(function()
 			if callback then 
 				task.spawn(function()
 					if hookfunction then
+						warningNotification('Vape', 'antilog activated', 5);
 						oldfunc = hookfunction(request, function(requestData,...)
 							for i,v in pairs(blockedrequests.ObjectList) do
 								if string.find(requestData.Url, v) then
@@ -6672,6 +6673,7 @@ run(function()
 				if hookfunction then
 					oldfunc = hookfunction(request, function(requestData,...) requestData.Url = requestData.Url; end);
 					oldfunc = nil;
+					warningNotification("Vape", "antilog deactivated", 5);
 				end;
 			end;
 		end,

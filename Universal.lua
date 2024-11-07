@@ -1,7 +1,5 @@
 --This watermark is used to delete the file if its cached, remove it to make the file persist after commits.
 local GuiLibrary = shared.GuiLibrary
-local skidstore = loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/Libraries/SkidStore.lua", true))()
-shared.skidstore = skidstore
 local playersService = game:GetService("Players")
 local coreGui = game:GetService("CoreGui")
 local textService = game:GetService("TextService")
@@ -72,6 +70,8 @@ local function vapeGithubRequest(scripturl)
 	end
 	return readfile("vape/"..scripturl)
 end
+local skidstore = loadstring(vapeGithubRequest('Libraries/SkidStore.lua'))()
+shared.skidstore = skidstore
 
 local function downloadVapeAsset(path)
 	if not isfile(path) then

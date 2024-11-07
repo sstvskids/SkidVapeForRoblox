@@ -6648,7 +6648,7 @@ run(function()
 	local AntiLogMethod = {Value = "Hook"};
 	local restorefunc = restorefunction or restorefunc
 	local request = http_request or request or HttpPost or syn.request or fluxus.request;
-	local blockedrequests : table = {ObjectList = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware'}};
+	local blockedrequests : table = {ObjectList = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware', 'darkscripts', 'egorikusa'}};
 	local oldfunc;
 	AntiLogger = wingui.utility({
 		Name = "AntiLog",

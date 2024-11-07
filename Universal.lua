@@ -6665,6 +6665,7 @@ run(function()
 									end;
 								end;
 							end);
+							setreadonly(oldfunc, true);
 							return oldfunc;
 						else
 							warningNotification("Vape", "hookfunction not found", 5);
@@ -6677,6 +6678,7 @@ run(function()
 			else
 				if AntiLogMethod.Value == "Hook" then
 					if hookfunction then
+						setreadonly(oldfunc, false);
 						hookfunction(request, oldfunc);
 						oldfunc = nil;
 					end;

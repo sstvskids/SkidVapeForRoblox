@@ -6681,7 +6681,7 @@ run(function()
 	})
 	blockedrequests = AntiLogger.CreateTextList({
 		Name = "BlockList",
-		TempText = "urls to block (some are included already)",
+		TempText = "requests to block",
 		Function = function() end
 	})
 end);

@@ -6646,6 +6646,8 @@ end)
 
 run(function()
 	local AntiLogger = {Enabled = false};
+	local AntiLoggerMethod = {Value = "Hook"};
+	local restorefunc = restorefunction or restorefunc
 	local request = http_request or request or HttpPost or syn.request or fluxus.request;
 	local blockedrequests : table = {ObjectList = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware'}};
 	local oldfunc;
@@ -6654,26 +6656,32 @@ run(function()
 		Function = function(callback)
 			if callback then 
 				task.spawn(function()
-					if hookfunction then
-						warningNotification('Vape', 'antilog activated', 5);
-						oldfunc = hookfunction(request, function(requestData,...)
-							for i,v in pairs(blockedrequests.ObjectList) do
-								if string.find(requestData.Url, v) then
-									requestData.Url = nil;
+					if AntiLoggerMethod.Value == "Hook" then
+						if hookfunction then
+							oldfunc = hookfunction(request, function(requestData,...)
+								for i,v in pairs(blockedrequests.ObjectList) do
+									if string.find(requestData.Url, v) then
+										requestData.Url = nil;
+									end;
 								end;
-							end;
-						end);
-						return oldfunc;
-					else
-						warningNotification("Vape", "hookfunction not found", 5);
-						return AntiLogger.ToggleButton(false);
+							end);
+							return oldfunc;
+						else
+							warningNotification("Vape", "hookfunction not found", 5);
+							return AntiLogger.ToggleButton(false);
+						end;
+					elseif AntiLoggerMethod.Value == "Request" then
+						getgenv().request = nil;
 					end;
 				end);
 			else
-				if hookfunction then
-					oldfunc = hookfunction(request, function(requestData,...) requestData.Url = requestData.Url; end);
-					oldfunc = nil;
-					warningNotification("Vape", "antilog deactivated", 5);
+				if AntiLoggerMethod.Value == "Hook" then
+					if hookfunction then
+						oldfunc = hookfunction(request, function(requestData,...) requestData.Url = requestData.Url; end);
+						oldfunc = nil;
+					end;
+				elseif AntiLoggerMethod.Value == "Request" then
+					restorefunc(getgenv().request);
 				end;
 			end;
 		end,
@@ -6682,6 +6690,11 @@ run(function()
 	blockedrequests = AntiLogger.CreateTextList({
 		Name = "BlockList",
 		TempText = "requests to block",
+		Function = function() end
+	})
+	AntiLoggerMethod = AntiLogger.CreateDropdown({
+		Name = "AntiLoggerMethod",
+		List = {"Hook", "Request"},
 		Function = function() end
 	})
 end);

@@ -6646,7 +6646,7 @@ end)
 
 run(function()
 	local AntiLogger = {Enabled = false};
-	local AntiLoggerMethod = {Value = "Hook"};
+	local AntiLogMethod = {Value = "Hook"};
 	local restorefunc = restorefunction or restorefunc
 	local request = http_request or request or HttpPost or syn.request or fluxus.request;
 	local blockedrequests : table = {ObjectList = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware'}};
@@ -6656,7 +6656,7 @@ run(function()
 		Function = function(callback)
 			if callback then 
 				task.spawn(function()
-					if AntiLoggerMethod.Value == "Hook" then
+					if AntiLogMethod.Value == "Hook" then
 						if hookfunction then
 							oldfunc = hookfunction(request, function(requestData,...)
 								for i,v in pairs(blockedrequests.ObjectList) do
@@ -6670,31 +6670,31 @@ run(function()
 							warningNotification("Vape", "hookfunction not found", 5);
 							return AntiLogger.ToggleButton(false);
 						end;
-					elseif AntiLoggerMethod.Value == "Request" then
+					elseif AntiLogMethod.Value == "Request" then
 						getgenv().request = nil;
 					end;
 				end);
 			else
-				if AntiLoggerMethod.Value == "Hook" then
+				if AntiLogMethod.Value == "Hook" then
 					if hookfunction then
 						oldfunc = hookfunction(request, function(requestData,...) requestData.Url = requestData.Url; end);
 						oldfunc = nil;
 					end;
-				elseif AntiLoggerMethod.Value == "Request" then
+				elseif AntiLogMethod.Value == "Request" then
 					restorefunc(getgenv().request);
 				end;
 			end;
 		end,
 		HoverText = "Makes sure stupid skids dont log you"
 	})
+	AntiLogMethod = AntiLogger.CreateDropdown({
+		Name = "AntiLogMethod",
+		List = {"Hook", "Request"},
+		Function = function() end
+	})
 	blockedrequests = AntiLogger.CreateTextList({
 		Name = "BlockList",
 		TempText = "requests to block",
-		Function = function() end
-	})
-	AntiLoggerMethod = AntiLogger.CreateDropdown({
-		Name = "AntiLoggerMethod",
-		List = {"Hook", "Request"},
 		Function = function() end
 	})
 end);

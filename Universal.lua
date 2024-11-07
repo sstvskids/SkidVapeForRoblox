@@ -6648,7 +6648,8 @@ run(function()
 	local AntiLogMethod = {Value = "Hook"};
 	local restorefunc = restorefunction or restorefunc
 	local request = http_request or request or HttpPost or syn.request or fluxus.request;
-	local blockedrequests : table = {ObjectList = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware', 'darkscripts', 'egorikusa'}};
+	local blockedrequests : table = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware', 'darkscripts', 'egorikusa'};
+	local blockedmanualrequests : table = {ObjectList = {}};
 	local oldfunc;
 	AntiLogger = wingui.utility({
 		Name = "AntiLog",
@@ -6658,13 +6659,17 @@ run(function()
 					if AntiLogMethod.Value == "Hook" then
 						if hookfunction then
 							oldfunc = hookfunction(request, function(requestData,...)
-								for i,v in pairs(blockedrequests.ObjectList) do
+								for i,v in pairs(blockedrequests) do
+									if string.find(requestData.Url, v) then
+										requestData.Url = nil;
+									end;
+								end;
+								for i,v in pairs(blockedmanualrequests.ObjectList) do
 									if string.find(requestData.Url, v) then
 										requestData.Url = nil;
 									end;
 								end;
 							end);
-							setreadonly(oldfunc, true);
 							return oldfunc;
 						else
 							warningNotification("Vape", "hookfunction not found", 5);
@@ -6677,7 +6682,6 @@ run(function()
 			else
 				if AntiLogMethod.Value == "Hook" then
 					if hookfunction then
-						setreadonly(oldfunc, false);
 						hookfunction(request, oldfunc);
 						oldfunc = nil;
 					end;
@@ -6693,7 +6697,7 @@ run(function()
 		List = {"Hook", "Request"},
 		Function = function() end
 	})
-	blockedrequests = AntiLogger.CreateTextList({
+	blockedmanualrequests = AntiLogger.CreateTextList({
 		Name = "BlockList",
 		TempText = "requests to block",
 		Function = function() end

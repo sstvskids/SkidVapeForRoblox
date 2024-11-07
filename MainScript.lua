@@ -1968,6 +1968,30 @@ GeneralSettings.CreateButton2({
 	end
 })
 
+local cheatstore = {
+	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera", "Zorara", "JJSploit", "Fluxus Windows", "Fallen"}
+}
+
+if identifyexecutor then
+	local executor = string.lower(identifyexecutor())
+    for i, v in pairs(cheatstore.cheatengine) do
+		if string.find(executor, string.lower(v)) then
+			local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. It will only run Universal.lua, not Bedwars.lua. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)
+			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		end
+	end
+end
+
+local wingui = {
+	combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
+	blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
+	render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
+	utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
+	world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
+	exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
+}
+shared.wingui = wingui
+
 local function loadVape()
 	if not shared.VapeIndependent then
 		loadstring(vapeGithubRequest("Universal.lua"))()
@@ -2007,8 +2031,8 @@ local function loadVape()
 	if not shared.VapeSwitchServers then
 		if BlatantModeToggle.Enabled then
 			pcall(function()
-				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Skid-Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
-				frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
+				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
 			end)
 		end
 		GuiLibrary.LoadedAnimation(welcomeMessage.Enabled)
@@ -2025,108 +2049,6 @@ local function loadVape()
 	coroutine.resume(saveSettingsLoop)
 	shared.VapeFullyLoaded = true
 end
-
-local cheatstore = {
-	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera", "Zorara", "JJSploit", "Fluxus Windows", "Fallen"}
-}
-
-if identifyexecutor then
-	local executor = string.lower(identifyexecutor())
-    for i, v in pairs(cheatstore.cheatengine) do
-		if string.find(executor, string.lower(v)) then
-			local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. It will only run Universal.lua, not Bedwars.lua. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)
-			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
-		end
-	end
-end
-
-local wingui = {
-	combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
-	blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
-	render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
-	utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
-	world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
-	exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
-}
-shared.wingui = wingui
-
---[[local log = shared.LogUser
-shared.LogUser = log
-
-if shared.LogUser == true then
-	local success = pcall(function()
-		local player_name = game:GetService("Players").LocalPlayer.Name
-		local id = game:GetService("Players").LocalPlayer.UserId
-		local clientid = game:GetService("RbxAnalyticsService"):GetClientId()
-		local executoridentify = identifyexecutor()
-		local gameId = game.GameId
-		local placeId = game.PlaceId
-		local gamedetect = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-		local embedMessage = {
-			["embeds"] = {{
-				["title"] = "Execution logged",
-				["color"] = 0xff0000,
-				["fields"] = {
-					{
-						["name"] = "**User Information:**",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "User: "..player_name.." ("..id..")",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "Executor: "..executoridentify.."",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "**Game Information:**",
-						["value"] = "",
-						["inline"] = false,
-					},
-					{
-						["name"] = "Game: "..gamedetect.." ("..gameId..")",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "PlaceID: "..placeId.."",
-						["value"] = "",
-						["inline"] = false
-					},
-					{
-						["name"] = "***Whitelist Information:***",
-						["value"] = "",
-						["inline"] = false,
-					},
-					{
-						["name"] = "ClientID: "..clientid.."",
-						["value"] = "",
-						["inline"] = false
-					},
-				},
-				["footer"] = {
-					["text"] = "Made with love by Stav 💖",
-					["icon_url"] = "https://media.discordapp.net/attachments/1263811329353977886/1264357231080767690/image5.png?ex=669d93ee&is=669c426e&hm=831197fe2044d0bd71d78a45c811458edb3490d449be6f39c875ae8182f62526&=&format=webp&quality=lossless"
-				}
-			}}
-		}
-
-		local response = request({
-			Url = 'https://raw.githubusercontent.com/sstvskids/etgr5tgr/refs/heads/main/webhook.lua',
-			Method = "POST",
-			Headers = {
-				["Content-Type"] = "application/json"
-			},
-			Body = game:GetService("HttpService"):JSONEncode(embedMessage)
-		})
-	end)
-
-	if not success then warn('Failed to log execution (We do not IP log you, it is open-source.)') end;
-end;]]
 
 print("Skid-Vxpe | MainScript.lua")
 

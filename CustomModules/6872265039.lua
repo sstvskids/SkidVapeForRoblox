@@ -20,9 +20,7 @@ local bedwars = {}
 local getfunctions
 local origC0 = nil
 local collectionservice = game:GetService("CollectionService")
-local skidstore = {
-	version = "Next-Gen"
-}
+local skidstore = shared.skidstore
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("vape/"..scripturl)

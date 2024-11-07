@@ -150,6 +150,15 @@ do
 	end
 end
 
+local function warningNotification(title, text, delay)
+	local suc, res = pcall(function()
+		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/WarningNotification.png")
+		frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
+		return frame
+	end)
+	return (suc and res)
+end
+
 local function runcode(func) task.spawn(function() local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(err), 999) end end) end
 
 local function betterfind(tab, obj)
@@ -205,15 +214,6 @@ local function isAlive(plr)
 		return plr and plr.Character and plr.Character.Parent ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Head") and plr.Character:FindFirstChild("Humanoid")
 	end
 	return lplr and lplr.Character and lplr.Character.Parent ~= nil and lplr.Character:FindFirstChild("HumanoidRootPart") and lplr.Character:FindFirstChild("Head") and lplr.Character:FindFirstChild("Humanoid")
-end
-
-local function warningNotification(title, text, delay)
-	local suc, res = pcall(function()
-		local frame = GuiLibrary.CreateNotification(title, text, delay, "assets/WarningNotification.png")
-		frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
-		return frame
-	end)
-	return (suc and res)
 end
 
 runcode(function()

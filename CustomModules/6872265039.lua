@@ -1448,5 +1448,5 @@ task.spawn(function()
 	end)
 end)
 
-warningNotification("Vape", "Skid-Vape "..skidstore.version.." has loaded.", 4)
-print("Skid-Vxpe | BEDWARSlobby.lua")
+warningNotification("Skid-Vape "..skidstore.skidver.." "..readfile("vape/commithash.txt"), "Logged in as "..skidstore.skiduser.." ("..skidstore.skiduserid..")", 6.25)
+print("Skid-Vxpe | BEDWARSlobby.lua");

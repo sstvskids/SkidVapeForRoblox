@@ -6886,4 +6886,5 @@ run(function()
 	createKeystroke(Enum.KeyCode.D, UDim2.new(0, 76, 0, 42), UDim2.new(0, 8, 0, 5))
 	createKeystroke(Enum.KeyCode.Space, UDim2.new(0, 0, 0, 83), UDim2.new(0, 25, 0, -10))
 end)
-print("Skid-Vxpe | Universal.lua")
+
+print("Skid-Vxpe | Universal.lua");

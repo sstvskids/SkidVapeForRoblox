@@ -10041,7 +10041,7 @@ run(function()
 	})
 end)
 																																										
-warningNotification("Skid-Vape "..skidstore.skidver.."", "Logged in as "..skidstore.skiduser.." ("..skidstore.skiduserid..")", 6.25)
+warningNotification("Skid-Vape "..skidstore.skidver.." "..readfile("vape/commithash.txt"), "Logged in as "..skidstore.skiduser.." ("..skidstore.skiduserid..")", 6.25)
 print("Skid-Vxpe | BEDWARS.lua")
 
 task.spawn(function()

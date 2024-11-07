@@ -6677,7 +6677,7 @@ run(function()
 			else
 				if AntiLogMethod.Value == "Hook" then
 					if hookfunction then
-						oldfunc = hookfunction(request, function(requestData,...) requestData.Url = requestData.Url; end);
+						hookfunction(request, oldfunc);
 						oldfunc = nil;
 					end;
 				elseif AntiLogMethod.Value == "Request" then

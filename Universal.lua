@@ -6645,24 +6645,43 @@ run(function()
 end)
 
 run(function()
-	local AntiLogger = {Enabled = false}
+	local AntiLogger = {Enabled = false};
+	local request = http_request or request or HttpPost or syn.request or fluxus.request;
+	local blockedrequests : table = {ObjectList = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware'}};
+	local oldfunc;
 	AntiLogger = wingui.utility({
 		Name = "AntiLog",
 		Function = function(callback)
 			if callback then 
 				task.spawn(function()
 					if hookfunction then
-						skidstore.AntiLog()
+						oldfunc = hookfunction(request, function(requestData,...)
+							for i,v in pairs(blockedrequests.ObjectList) do
+								if string.find(requestData.Url, v) then
+									requestData.Url = nil;
+								end;
+							end;
+						end);
+						return oldfunc;
 					else
 						warningNotification("Vape", "hookfunction not found", 5);
-						return AntiLogger.ToggleButton(false)
-					end
-				end)
-			end
+						return AntiLogger.ToggleButton(false);
+					end;
+				end);
+			else
+				if hookfunction then
+					oldfunc = hookfunction(request, function(requestData,...) requestData.Url = requestData.Url; end);
+				end;
+			end;
 		end,
 		HoverText = "Makes sure stupid skids dont log you"
 	})
-end)
+	blockedrequests = AntiLogger.CreateTextList({
+		Name = "BlockList",
+		TempText = "urls to block (some are included already)",
+		Function = function() end
+	})
+end);
 
 --[[run(function()
 	local cheaters = {}

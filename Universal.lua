@@ -6671,6 +6671,7 @@ run(function()
 			else
 				if hookfunction then
 					oldfunc = hookfunction(request, function(requestData,...) requestData.Url = requestData.Url; end);
+					oldfunc = nil;
 				end;
 			end;
 		end,

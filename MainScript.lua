@@ -1968,7 +1968,7 @@ GeneralSettings.CreateButton2({
 local skidstore = loadstring(vapeGithubRequest("Libraries/SkidStore.lua"));
 shared.skidstore = skidstore
 
-assexecs = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera", "Zorara", "JJSploit", "Fluxus Windows", "Fallen"};
+assexecs : table = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera", "Zorara", "JJSploit", "Fluxus Windows", "Fallen"};
 
 if identifyexecutor then
 	local executor = string.lower(identifyexecutor())

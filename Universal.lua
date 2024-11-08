@@ -15,6 +15,7 @@ local vapeCachedAssets = {}
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
 local wingui = shared.wingui
+local skidstore = shared.skidstore
 table.insert(vapeConnections, workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
 	gameCamera = workspace.CurrentCamera or workspace:FindFirstChildWhichIsA("Camera")
 end))
@@ -69,8 +70,6 @@ local function vapeGithubRequest(scripturl)
 	end
 	return readfile("vape/"..scripturl)
 end
-local skidstore = loadstring(vapeGithubRequest('Libraries/SkidStore.lua'))()
-shared.skidstore = skidstore
 
 local function downloadVapeAsset(path)
 	if not isfile(path) then

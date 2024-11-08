@@ -72,12 +72,9 @@ if shared.VapeExecuted then
 	}
 	local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
 	local executors = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
-	if identifyexecutor then
-		local executor = string.lower(identifyexecutor())
-		for i, v in pairs(executors) do
-			if string.find(executor, string.lower(v)) then
-				getcustomasset = function(location) return vapeAssetTable[location] or "" end
-			end
+	for i,v in pairs(executors) do
+		if select(1, identifyexecutor()) == v then
+			getcustomasset = function(location) return vapeAssetTable[location] or "" end
 		end
 	end
 

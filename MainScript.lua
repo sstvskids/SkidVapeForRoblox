@@ -85,6 +85,7 @@ local vapeAssetTable = {
 	["vape/assets/VapeLogo2.png"] = "rbxassetid://13350876307",
 	["vape/assets/VapeLogo4.png"] = "rbxassetid://13350877564"
 }
+local assexecs = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
 if inputService:GetPlatform() ~= Enum.Platform.Windows then
 	--mobile exploit fix
 	getgenv().getsynasset = nil
@@ -94,14 +95,10 @@ if inputService:GetPlatform() ~= Enum.Platform.Windows then
 	getcustomasset = nil
 end
 local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
-local executors = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
-if identifyexecutor then
-	local executor = string.lower(identifyexecutor())
-    for i, v in pairs(executors) do
-		if string.find(executor, string.lower(v)) then
-			getcustomasset = function(location) return vapeAssetTable[location] or "" end
-		end
-	end
+for i,v in pairs(assexecs) do
+    if select(1, identifyexecutor()) == v then
+        getcustomasset = function(location) return vapeAssetTable[location] or "" end
+    end
 end
 local customassetcheck = (getsynasset or getcustomasset) and true
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
@@ -1375,7 +1372,7 @@ TargetInfoMainFrame.Parent = TargetInfo.GetCustomChildren()
 local TargetInfoMainInfo = Instance.new("Frame")
 TargetInfoMainInfo.BackgroundColor3 = Color3.fromRGB(25, 26, 25)
 TargetInfoMainInfo.Size = UDim2.new(0, 220, 0, 80)
-TargetInfoMainInfo.BackgroundTransparency = 0.33
+TargetInfoMainInfo.BackgroundTransparency = 0.25
 TargetInfoMainInfo.Position = UDim2.new(0, 0, 0, 0)
 TargetInfoMainInfo.Name = "MainInfo"
 TargetInfoMainInfo.Parent = TargetInfoMainFrame
@@ -1593,7 +1590,7 @@ local windowSortOrder = {
 	RenderButton = 3,
 	UtilityButton = 4,
 	WorldButton = 5,
-	ExploitsButton = 6,
+    ExploitsButton = 6,
 	FriendsButton = 7,
 	TargetsButton = 8,
 	ProfilesButton = 9
@@ -1736,7 +1733,7 @@ GuiLibrary.UpdateUI = function(h, s, val, bypass)
 	end)
 end
 
---[[GUISettings.CreateToggle({
+GUISettings.CreateToggle({
 	Name = "Blur Background",
 	Function = function(callback)
 		GuiLibrary.MainBlur.Size = (callback and 25 or 0)
@@ -1744,7 +1741,7 @@ end
 	end,
 	Default = true,
 	HoverText = "Blur the background of the GUI"
-})]]
+})
 local welcomeMessage = GUISettings.CreateToggle({
 	Name = "GUI bind indicator",
 	Function = function() end,
@@ -1870,9 +1867,9 @@ GuiLibrary.SelfDestruct = function()
 	shared.GuiLibrary = nil
 	shared.VapeIndependent = nil
 	shared.VapeManualLoad = nil
-	shared.CustomSaveVape = nil
 	shared.skidstore = nil
 	shared.wingui = nil
+	shared.CustomSaveVape = nil
 	GuiLibrary.KeyInputHandler:Disconnect()
 	GuiLibrary.KeyInputHandler2:Disconnect()
 	if MiddleClickInput then
@@ -1921,7 +1918,7 @@ GUISettings.CreateButton2({
 			RenderWindow = 4,
 			UtilityWindow = 5,
 			WorldWindow = 6,
-			ExploitsWindow = 7,
+            ExploitsWindow = 7,
 			FriendsWindow = 8,
 			TargetsWindow = 9,
 			ProfilesWindow = 10,
@@ -1968,6 +1965,29 @@ GeneralSettings.CreateButton2({
 	end
 })
 
+local skidstore = loadstring(vapeGithubRequest("Libraries/SkidStore.lua"));
+shared.skidstore = skidstore
+
+if identifyexecutor then
+	local executor = string.lower(identifyexecutor())
+    for i,v in pairs(skidstore.assexecs) do
+		if string.find(executor, string.lower(v)) then
+			local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. It will only run Universal.lua, not Bedwars.lua. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)
+			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		end
+	end
+end
+
+local wingui = {
+	combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
+	blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
+	render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
+	utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
+	world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
+	exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
+}
+shared.wingui = wingui
+
 local function loadVape()
 	if not shared.VapeIndependent then
 		loadstring(vapeGithubRequest("Universal.lua"))()
@@ -2007,8 +2027,8 @@ local function loadVape()
 	if not shared.VapeSwitchServers then
 		if BlatantModeToggle.Enabled then
 			pcall(function()
-				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Skid-Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
-				frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
+				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(236, 129, 44)
 			end)
 		end
 		GuiLibrary.LoadedAnimation(welcomeMessage.Enabled)
@@ -2025,32 +2045,6 @@ local function loadVape()
 	coroutine.resume(saveSettingsLoop)
 	shared.VapeFullyLoaded = true
 end
-
-local cheatstore = {
-	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera", "Zorara", "JJSploit", "Fluxus Windows", "Fallen"}
-}
-
-if identifyexecutor then
-	local executor = string.lower(identifyexecutor())
-    for i,v in pairs(cheatstore.cheatengine) do
-		if string.find(executor, string.lower(v)) then
-			local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. It will only run Universal.lua, not Bedwars.lua. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)
-			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
-		end
-	end
-end
-
-local wingui = {
-	combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
-	blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
-	render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
-	utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
-	world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
-	exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
-}
-shared.wingui = wingui
-
-print("Skid-Vxpe | MainScript.lua")
 
 if shared.VapeIndependent then
 	task.spawn(loadVape)

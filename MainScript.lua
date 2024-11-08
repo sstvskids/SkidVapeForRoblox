@@ -1969,62 +1969,61 @@ GeneralSettings.CreateButton2({
 })
 
 local function loadVape()
-    if not shared.VapeIndependent then
-        loadstring(vapeGithubRequest("Universal.lua"))()
-        if isfile("vape/CustomModules/"..game.PlaceId..".lua") then
-            loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
-        else
-            if not shared.VapeDeveloper then
-                local suc, publicrepo = pcall(function() 
-                    return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..game.PlaceId..".lua") 
-                end)
-                
-                if suc and publicrepo and publicrepo ~= "404: Not Found" then
-                    writefile("vape/CustomModules/"..game.PlaceId..".lua", "--This watermark is used to delete the file if it's cached, remove it to make the file persist after commits.\n"..publicrepo)
-                    loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
-                end
-            end
-        end
-        if shared.VapePrivate then
-            if isfile("vapeprivate/CustomModules/"..game.PlaceId..".lua") then
-                loadstring(readfile("vapeprivate/CustomModules/"..game.PlaceId..".lua"))()
-            end
-        end
-    else
-        repeat task.wait() until shared.VapeManualLoad
-    end
-    if #ProfilesTextList.ObjectList == 0 then
-        table.insert(ProfilesTextList.ObjectList, "default")
-        ProfilesTextList.RefreshValues(ProfilesTextList.ObjectList)
-    end
-    GuiLibrary.LoadSettings(shared.VapeCustomProfile)
-    local profiles = {}
-    for i, v in pairs(GuiLibrary.Profiles) do
-        table.insert(profiles, i)
-    end
-    table.sort(profiles, function(a, b) return b == "default" and true or a:lower() < b:lower() end)
-    ProfilesTextList.RefreshValues(profiles)
-    GUIbind.Reload()
-    TextGUIUpdate()
-    GuiLibrary.UpdateUI(GUIColorSlider.Hue, GUIColorSlider.Sat, GUIColorSlider.Value, true)
-    if not shared.VapeSwitchServers then
-        if BlatantModeToggle.Enabled then
-            pcall(function()
-                local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Skid-Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
-                frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
-            end)
-        end
-        GuiLibrary.LoadedAnimation(welcomeMessage.Enabled)
-    else
-        shared.VapeSwitchServers = nil
-    end
-    if shared.VapeOpenGui then
-        GuiLibrary.MainGui.ScaledGui.ClickGui.Visible = true
-        GuiLibrary.MainGui.ScaledGui.LegitGui.Visible = false
-        shared.VapeOpenGui = nil
-    end
-    coroutine.resume(saveSettingsLoop)
-    shared.VapeFullyLoaded = true
+	if not shared.VapeIndependent then
+		loadstring(vapeGithubRequest("Universal.lua"))()
+		if isfile("vape/CustomModules/"..game.PlaceId..".lua") then
+			loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
+		else
+			if not shared.VapeDeveloper then
+				local suc, publicrepo = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/CustomModules/"..game.PlaceId..".lua") end)
+				if suc and publicrepo and publicrepo ~= "404: Not Found" then
+					writefile("vape/CustomModules/"..game.PlaceId..".lua", "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..publicrepo)
+					loadstring(readfile("vape/CustomModules/"..game.PlaceId..".lua"))()
+				end
+			end
+		end
+		if shared.VapePrivate then
+			if isfile("vapeprivate/CustomModules/"..game.PlaceId..".lua") then
+				loadstring(readfile("vapeprivate/CustomModules/"..game.PlaceId..".lua"))()
+			end
+		end
+	else
+		repeat task.wait() until shared.VapeManualLoad
+	end
+	if #ProfilesTextList.ObjectList == 0 then
+		table.insert(ProfilesTextList.ObjectList, "default")
+		ProfilesTextList.RefreshValues(ProfilesTextList.ObjectList)
+	end
+	GuiLibrary.LoadSettings(shared.VapeCustomProfile)
+	local profiles = {}
+	for i,v in pairs(GuiLibrary.Profiles) do
+		table.insert(profiles, i)
+	end
+	table.sort(profiles, function(a, b) return b == "default" and true or a:lower() < b:lower() end)
+	ProfilesTextList.RefreshValues(profiles)
+	GUIbind.Reload()
+	TextGUIUpdate()
+	GuiLibrary.UpdateUI(GUIColorSlider.Hue, GUIColorSlider.Sat, GUIColorSlider.Value, true)
+	if not shared.VapeSwitchServers then
+		if BlatantModeToggle.Enabled then
+			pcall(function()
+				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Skid-Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+				frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
+			end)
+		end
+		GuiLibrary.LoadedAnimation(welcomeMessage.Enabled)
+	else
+		shared.VapeSwitchServers = nil
+	end
+	if shared.VapeOpenGui then
+		GuiLibrary.MainGui.ScaledGui.ClickGui.Visible = true
+		GuiLibrary.MainGui.ScaledGui.LegitGui.Visible = false
+		--game:GetService("RunService"):SetRobloxGuiFocused(GuiLibrary.MainBlur.Size ~= 0)
+		shared.VapeOpenGui = nil
+	end
+
+	coroutine.resume(saveSettingsLoop)
+	shared.VapeFullyLoaded = true
 end
 
 local cheatstore = {

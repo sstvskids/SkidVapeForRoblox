@@ -1968,30 +1968,6 @@ GeneralSettings.CreateButton2({
 	end
 })
 
-local cheatstore = {
-	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera", "Zorara", "JJSploit", "Fluxus Windows", "Fallen"}
-}
-
-if identifyexecutor then
-	local executor = string.lower(identifyexecutor())
-    for i, v in pairs(cheatstore.cheatengine) do
-		if string.find(executor, string.lower(v)) then
-			local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. It will only run Universal.lua, not Bedwars.lua. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)
-			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
-		end
-	end
-end
-
-local wingui = {
-	combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
-	blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
-	render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
-	utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
-	world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
-	exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
-}
-shared.wingui = wingui
-
 local function loadVape()
 	if not shared.VapeIndependent then
 		loadstring(vapeGithubRequest("Universal.lua"))()
@@ -2031,8 +2007,8 @@ local function loadVape()
 	if not shared.VapeSwitchServers then
 		if BlatantModeToggle.Enabled then
 			pcall(function()
-				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
-				frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+				local frame = GuiLibrary.CreateNotification("Blatant Enabled", "Skid-Vape is now in Blatant Mode.", 5.5, "assets/WarningNotification.png")
+				frame.Frame.Frame.ImageColor3 = Color3.new(255, 255, 255)
 			end)
 		end
 		GuiLibrary.LoadedAnimation(welcomeMessage.Enabled)
@@ -2049,6 +2025,30 @@ local function loadVape()
 	coroutine.resume(saveSettingsLoop)
 	shared.VapeFullyLoaded = true
 end
+
+local cheatstore = {
+	cheatengine = {"Solara", "Celery", "Feather", "MantiWPF", "Octane", "Nyx", "Appleware", "Salad", "Nova", "Rebel", "Ignite", "Incognito", "Scythex", "Jules", "Cubix iOS", "Delta iOS", "Nezur", "Xeno", "Maven", "Riviera", "Zorara", "JJSploit", "Fluxus Windows", "Fallen"}
+}
+
+if identifyexecutor then
+	local executor = string.lower(identifyexecutor())
+    for i,v in pairs(cheatstore.cheatengine) do
+		if string.find(executor, string.lower(v)) then
+			local frame = GuiLibrary.CreateNotification("Vape", "Executor is not supported. It will only run Universal.lua, not Bedwars.lua. Check console for more information, regarding unsupported executors. ("..identifyexecutor()..") ", 60)
+			frame.Frame.Frame.ImageColor3 = Color3.fromRGB(255, 255, 255)
+		end
+	end
+end
+
+local wingui = {
+	combat = GuiLibrary.ObjectsThatCanBeSaved.CombatWindow.Api.CreateOptionsButton,
+	blatant = GuiLibrary.ObjectsThatCanBeSaved.BlatantWindow.Api.CreateOptionsButton,
+	render = GuiLibrary.ObjectsThatCanBeSaved.RenderWindow.Api.CreateOptionsButton,
+	utility = GuiLibrary.ObjectsThatCanBeSaved.UtilityWindow.Api.CreateOptionsButton,
+	world = GuiLibrary.ObjectsThatCanBeSaved.WorldWindow.Api.CreateOptionsButton,
+	exploit = GuiLibrary.ObjectsThatCanBeSaved.ExploitsWindow.Api.CreateOptionsButton
+}
+shared.wingui = wingui
 
 print("Skid-Vxpe | MainScript.lua")
 

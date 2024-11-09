@@ -32,8 +32,8 @@ local store = {
 	blockPlace = tick(),
 	blockRaycast = RaycastParams.new(),
 	equippedKit = "none",
-	forgeMasteryPoints = 0,
-	forgeUpgrades = {},
+	--forgeMasteryPoints = 0,
+	--forgeUpgrades = {},
 	grapple = tick(),
 	inventories = {},
 	localInventory = {
@@ -1495,8 +1495,8 @@ run(function()
 		if newStore.Game ~= oldStore.Game then
 			store.matchState = newStore.Game.matchState
 			store.queueType = newStore.Game.queueType or "bedwars_test"
-			store.forgeMasteryPoints = newStore.Game.forgeMasteryPoints
-			store.forgeUpgrades = newStore.Game.forgeUpgrades
+			--store.forgeMasteryPoints = newStore.Game.forgeMasteryPoints
+			--store.forgeUpgrades = newStore.Game.forgeUpgrades
 		end
 		if newStore.Bedwars ~= oldStore.Bedwars then
 			store.equippedKit = newStore.Bedwars.kit ~= "none" and newStore.Bedwars.kit or ""
@@ -7524,7 +7524,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
 	local AutoForge = {Enabled = false}
 	local AutoForgeWeapon = {Value = "Sword"}
 	local AutoForgeBow = {Enabled = false}
@@ -7604,7 +7604,7 @@ run(function()
 		Function = function() end,
 		Default = true
 	})
-end)
+end)]]
 
 run(function()
 	local alreadyreportedlist = {}
@@ -9711,7 +9711,7 @@ run(function()
 	})
 end)
 
-run(function()
+--[[run(function()
 	local ScytheExploit = {Enabled = false}
 	local args = {
 		[1] = {
@@ -9759,7 +9759,7 @@ run(function()
 		end,
 		HoverText = "A risky method of buying scythes\nCould get you banned"
 	})
-end)
+end)]]
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil

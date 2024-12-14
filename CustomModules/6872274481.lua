@@ -1221,8 +1221,8 @@ run(function()
 			EatRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.ConsumeController.onEnable, 1))),
 			EquipItemRemote = dumpRemote(debug.getconstants(debug.getproto(require(replicatedStorage.TS.entity.entities["inventory-entity"]).InventoryEntity.equipItem, 3))),
 			EmoteMeta = require(replicatedStorage.TS.locker.emote["emote-meta"]).EmoteMeta,
-			ForgeConstants = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 2),
-			ForgeUtil = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 5),
+			--ForgeConstants = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 2),
+			--ForgeUtil = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 5),
 			GameAnimationUtil = require(replicatedStorage.TS.animation["animation-util"]).GameAnimationUtil,
 			EntityUtil = require(replicatedStorage.TS.entity["entity-util"]).EntityUtil,
 			getIcon = function(item, showinv)
@@ -1313,8 +1313,8 @@ run(function()
 			EatRemote = dumpRemote(debug.getconstants(debug.getproto(KnitClient.Controllers.ConsumeController.onEnable, 1))),
 			EquipItemRemote = dumpRemote(debug.getconstants(debug.getproto(require(replicatedStorage.TS.entity.entities["inventory-entity"]).InventoryEntity.equipItem, 3))),
 			EmoteMeta = require(replicatedStorage.TS.locker.emote["emote-meta"]).EmoteMeta,
-			ForgeConstants = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 2),
-			ForgeUtil = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 5),
+			--ForgeConstants = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 2),
+			--ForgeUtil = debug.getupvalue(KnitClient.Controllers.ForgeController.getPurchaseableForgeUpgrades, 5),
 			GameAnimationUtil = require(replicatedStorage.TS.animation["animation-util"]).GameAnimationUtil,
 			EntityUtil = require(replicatedStorage.TS.entity["entity-util"]).EntityUtil,
 			getIcon = function(item, showinv)

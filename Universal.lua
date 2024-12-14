@@ -6192,7 +6192,7 @@ run(function()
         FocusLost = function(enter)
             if enter then
                 if TextLabel_2 then
-                    TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @maxlaser | version: nextgen" or tostring(CreditsText.Value)
+                    TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @chang3d | version: nextgen" or tostring(CreditsText.Value)
                 end
             end
         end

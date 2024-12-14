@@ -1794,7 +1794,7 @@ do
 	end)
 	local textlabel = Instance.new("TextLabel")
 	textlabel.Size = UDim2.new(1, 0, 0, 36)
-	textlabel.Text = "Skid-Vape is currently running smoothly!"
+	textlabel.Text = "Skid-Ware version next-gen"
 	textlabel.BackgroundTransparency = 1
 	textlabel.ZIndex = 10
 	textlabel.TextStrokeTransparency = 0
@@ -9085,7 +9085,7 @@ run(function()
 	Disabler = wingui.exploit({
 		Name = "AnticheatBypass",
 		Function = function(callback)
-			if callback then
+			--[[if callback then
 				if BypassMethod.Value == "LookVector + MoveDirection" then
 					warningNotification("Vape", "This method is extremely buggy, prone to low-speed.", 8)
 				end
@@ -9127,12 +9127,12 @@ run(function()
 				RunLoops:UnbindFromStepped('Disabler')
 				sethiddenproperty(entityLibrary.character.HumanoidRootPart, "NetworkIsSleeping", false)
 				networkticks = 0
-			end
+			end]]
 		end,
-		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-80 speed depending on what BypassMethod you use",
-		ExtraText = function()
+		HoverText = "Float disabler with Scythe and Zephyr\nAllows up to 45-80 speed depending on what BypassMethod you use"
+		--[[ExtraText = function()
 			return SpeedBypassMethod.Value.." ("..tostring(ZephyrSpeed.Value + ScytheSpeed.Value + ScytheFlySpeed.Value + SpeedValue.Value)..")" 
-		end
+		end]]
 	})
 	ZephyrToggle = Disabler.CreateToggle({
         Name = "Zephyr",
@@ -9153,7 +9153,7 @@ run(function()
             ZephyrSpeed.Value = val
         end
     })
-	ScytheToggle = Disabler.CreateToggle({
+	--[[ScytheToggle = Disabler.CreateToggle({
         Name = "Scythe",
 		HoverText = "Enables the Scythe-Disabler",
         Default = false,
@@ -9258,18 +9258,8 @@ run(function()
         Function = function(val) 
             ScytheTick.Value = val
         end
-    })
-	ScytheDelay.Object.Visible = false
+    })]]
 	ZephyrSpeed.Object.Visible = false
-	DelayToggle.Object.Visible = false
-	SpeedBypassMethod.Object.Visible = false
-	BypassMethod.Object.Visible = false
-	MultiplyDirection.Object.Visible = false
-	DivideDirection.Object.Visible = false
-	ScytheSpeed.Object.Visible = false
-	ScytheFlySpeed.Object.Visible = false
-	ScytheTick.Object.Visible = false
-	NetworkHelper.Object.Visible = false
 end)
 
 run(function()
@@ -10048,8 +10038,5 @@ task.spawn(function()
 	repeat task.wait() until shared.VapeFullyLoaded
 	if not AutoLeave.Enabled then
 		AutoLeave.ToggleButton(false)
-	end
-	if not Disabler.Enabled then
-		Disabler.ToggleButton(false)
 	end
 end)

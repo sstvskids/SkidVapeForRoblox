@@ -83,8 +83,6 @@ local function GetURL(scripturl)
 	end
 end
 
-local skidstore = GetURL('Libraries/SkidStore.lua')
-
 local function addvectortocframe2(cframe, newylevel)
 	local x, y, z, R00, R01, R02, R10, R11, R12, R20, R21, R22 = cframe:GetComponents()
 	return CFrame.new(x, newylevel, z, R00, R01, R02, R10, R11, R12, R20, R21, R22)

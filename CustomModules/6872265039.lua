@@ -20,17 +20,6 @@ local bedwars = {}
 local getfunctions
 local origC0 = nil
 local collectionservice = game:GetService("CollectionService")
-local function vapeGithubRequest(scripturl)
-	if not isfile("vape/"..scripturl) then
-		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
-		assert(suc, res)
-		assert(res ~= "404: Not Found", res)
-		if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
-		writefile("vape/"..scripturl, res)
-	end
-	return readfile("vape/"..scripturl)
-end
-local skidstore = shared.skidstore
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		return readfile("vape/"..scripturl)
@@ -93,6 +82,8 @@ local function GetURL(scripturl)
 		return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/"..scripturl, true)
 	end
 end
+
+local skidstore = GetURL('Libraries/SkidStore.lua')
 
 local function addvectortocframe2(cframe, newylevel)
 	local x, y, z, R00, R01, R02, R10, R11, R12, R20, R21, R22 = cframe:GetComponents()

@@ -6642,7 +6642,7 @@ run(function()
     end
 end)
 
-run(function()
+--[[run(function()
 	local AntiLogger = {Enabled = false};
 	local AntiLogMethod = {Value = "Hook"};
 	getgenv().skidrestore = function(v) restorefunction(v) or restorefunc(v); end;
@@ -6701,42 +6701,7 @@ run(function()
 		TempText = "requests to block",
 		Function = function() end
 	})
-end);
-
---[[run(function()
-	local cheaters = {}
-	local checks = {}
-	local speedCheck = function(v)
-		return v.Character.Humanoid.WalkSpeed > 22
-	end;
-	local flyCheck = function(v)
-		return v.Character.HumanoidRootPart.Velocity > 100
-	end;
-	table.insert(checks, 1, speedCheck, flyCheck)
-	local HackerDetector = {Enabled = false}
-	HackerDetector = wingui.utility({
-		Name = "HackerDetector",
-		Function = function(callback)
-			if callback then
-				task.spawn(function()
-					for i,v in pairs(playersService:GetPlayers()) do
-						if store.matchState == 0 then return end
-						for i,cheater in pairs(checks) do
-							if cheater(v) then
-								if table.find(cheaters, v.Name) then return warningNotification("Vape", "Cheater detected! "..v.Name, 5) end
-								if not table.find(cheaters, v.Name) then
-									table.insert(cheaters, v.Name)
-									warningNotification("Vape", "Cheater detected! "..v.Name, 5)
-								end
-								break
-							end
-						end
-					end
-				end)
-			end
-		end
-	})
-end)]]
+end);]]
 					
 run(function()
 	local FPS = {}

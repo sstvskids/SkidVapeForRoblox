@@ -21,7 +21,6 @@ local vapeEvents = setmetatable({}, {
 })
 local vapeTargetInfo = shared.VapeTargetInfo
 local vapeInjected = true
-local skidstore = shared.skidstore
 
 local bedwars = {}
 local store = {
@@ -10031,7 +10030,7 @@ run(function()
 	})
 end)
 																																										
-warningNotification("Skid-Vape "..skidstore.skidver.."", "Logged in as "..skidstore.skiduser.." ("..skidstore.skiduserid..")", 6.25)
+warningNotification("Skid-Vape Next-Gen", "Logged in as "..lplr.Name.." ("..lplr.UserId..")", 6.25)
 print("Skid-Vxpe | BEDWARS.lua")
 
 task.spawn(function()

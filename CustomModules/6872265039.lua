@@ -1447,5 +1447,5 @@ task.spawn(function()
 	end)
 end)
 
-warningNotification("Skid-Vape "..skidstore.skidver.."", "Logged in as "..skidstore.skiduser.." ("..skidstore.skiduserid..")", 6.25)
+warningNotification("Skid-Vape Next-Gen", "Logged in as "..lplr.Name.." ("..lplr.UserId..")", 6.25)
 print("Skid-Vxpe | BEDWARSlobby.lua");

@@ -6158,7 +6158,7 @@ run(function()
 					TextLabel_2.Position = UDim2.new(0.343, 0, 0.626, 0)
 					TextLabel_2.Size = UDim2.new(0, 275, 0, 23)
 					TextLabel_2.Font = Enum.Font[TextGUI_2.Value]
-					TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @maxlaser | version: nextgen" or tostring(CreditsText.Value)
+					TextLabel_2.Text = CreditsText.Value == "" and "by @._stav, @qwerty, @chang3d | version: nextgen" or tostring(CreditsText.Value)
 					TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 					TextLabel_2.TextScaled = true
 					TextLabel_2.TextSize = 14.000

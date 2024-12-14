@@ -1915,7 +1915,7 @@ run(function()
 								if AimAssistTargetFrame.Walls.Enabled then
 									if not bedwars.SwordController:canSee({instance = plr.Character, player = plr.Player, getInstance = function() return plr.Character end}) then return end
 								end
-								gameCamera.CFrame = gameCamera.CFrame:lerp(CFrame.new(gameCamera.CFrame.p, plr.Character.HumanoidRootPart.Position), ((1 / AimSpeed.Value) + (AimAssistStrafe.Enabled and (inputService:IsKeyDown(Enum.KeyCode.A) or inputService:IsKeyDown(Enum.KeyCode.D)) and 0.01 or 0)))
+								gameCamera.CFrame = gameCamera.CFrame:lerp(CFrame.new(gameCamera.CFrame.p, plr.Character.PrimaryPart.Position), ((1 / AimSpeed.Value) + (AimAssistStrafe.Enabled and (inputService:IsKeyDown(Enum.KeyCode.A) or inputService:IsKeyDown(Enum.KeyCode.D)) and 0.01 or 0)))
 							end
 						end
 					end
@@ -3513,7 +3513,7 @@ run(function()
 										validate = {
 											raycast = {
 												cameraPosition = attackValue(root.Position + plr.Character.Humanoid.MoveDirection + Vector3.new(0, 0.003, 0)),
-												cursorDirection = attackValue(CFrame.new(selfpos, root.Position).lookVector)
+												cursorDirection = attackValue(CFrame.new(selfpos, root.Position + plr.Character.Humanoid.MoveDirection).lookVector)
 											},
 											targetPosition = attackValue(root.Position + plr.Character.Humanoid.MoveDirection + Vector3.new(0, 0.003, 0)),
 											selfPosition = attackValue(selfpos)

@@ -514,6 +514,7 @@ run(function()
 				whitelist.olddata = isfile('vape/profiles/whitelist.json') and readfile('vape/profiles/whitelist.json') or nil
 			end
 			whitelist.data = game:GetService('HttpService'):JSONDecode(whitelist.textdata)
+			print(whitelist.data)
 			whitelist.localprio = whitelist:get(lplr)
 
 			for i, v in whitelist.data.WhitelistedUsers do

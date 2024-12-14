@@ -1898,7 +1898,7 @@ run(function()
 				RunLoops:BindToRenderStep("AimAssist", function(dt)
 					vapeTargetInfo.Targets.AimAssist = nil
 					if ((not AimAssistClickAim.Enabled) or (tick() - bedwars.SwordController.lastSwing) < 0.4) then
-						local plr = EntityNearPosition(19)
+						local plr = EntityNearPosition(18)
 						if plr then
 							vapeTargetInfo.Targets.AimAssist = {
 								Humanoid = {
@@ -1914,7 +1914,7 @@ run(function()
 								if AimAssistTargetFrame.Walls.Enabled then
 									if not bedwars.SwordController:canSee({instance = plr.Character, player = plr.Player, getInstance = function() return plr.Character end}) then return end
 								end
-								gameCamera.CFrame = gameCamera.CFrame:lerp(CFrame.new(gameCamera.CFrame.p, plr.Character.PrimaryPart.Position), ((1 / AimSpeed.Value) + (AimAssistStrafe.Enabled and (inputService:IsKeyDown(Enum.KeyCode.A) or inputService:IsKeyDown(Enum.KeyCode.D)) and 0.01 or 0)))
+								gameCamera.CFrame = gameCamera.CFrame:lerp(CFrame.new(gameCamera.CFrame.p, plr.Character.PrimaryPart.Position + plr.Character.Humanoid.MoveDirection), ((1 / AimSpeed.Value) + (AimAssistStrafe.Enabled and (inputService:IsKeyDown(Enum.KeyCode.A) or inputService:IsKeyDown(Enum.KeyCode.D)) and 0.01 or 0)))
 							end
 						end
 					end

@@ -262,7 +262,7 @@ task.spawn(function()
         image:Destroy()
         image = nil
     end)
-	task.spawn(function()
+	--[[task.spawn(function()
 		task.wait(15)
 		if image and image.ContentImageSize == Vector2.zero and (not errorPopupShown) and (not redownloadedAssets) and (not isfile("vape/assets/check3.txt")) then
             errorPopupShown = true
@@ -270,7 +270,7 @@ task.spawn(function()
                 writefile("vape/assets/check3.txt", "")
             end})
         end
-	end)
+	end)]]
 end)
 
 local GUI = GuiLibrary.CreateMainWindow()

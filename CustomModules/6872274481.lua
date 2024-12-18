@@ -150,14 +150,12 @@ local function warningNotification(title, text, delay)
 end
 
 local function run(func)
-	task.spawn(function()
-		local suc, err = pcall(function()
-			func()
-		end)
-		if not suc then
-			warningNotification('Vape', 'Error: '..err, 10)
-		end
+	local suc, err = pcall(function()
+		func()
 	end)
+	if not suc then
+		warningNotification('Vape', 'Error: '..err, 10)
+	end
 end
 
 local function isFriend(plr, recolor)
@@ -1186,14 +1184,14 @@ run(function()
 	local InventoryUtil = require(replicatedStorage.TS.inventory["inventory-util"]).InventoryUtil
 	local OldGet = getmetatable(Client).Get
 	local OldBreak
-	--[[local bowConstants = {RelX = 0, RelY = 0, RelZ = 0}
+	local bowConstants = {RelX = 0, RelY = 0, RelZ = 0}
 
 	for i,v in debug.getupvalues(KnitClient.Controllers.ProjectileController.enableBeam) do
 		if type(v) == 'table' and rawget(v, 'RelX') then
 			bowConstants = v
 			break
 		end
-	end]]
+	end
 
 	if identifyexecutor == 'Nihon' then
 		bedwars = setmetatable({

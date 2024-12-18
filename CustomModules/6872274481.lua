@@ -150,17 +150,13 @@ local function warningNotification(title, text, delay)
 end
 
 local function run(func)
-	task.spawn(function()
-		local suc, res = pcall(function()
-			func()
-		end);
-		if not suc then
-			warningNotification('Vape', 'An error occured: '..res, 10);
-		end;
-	end);
-
-	return (suc and res)
-end;
+	local suc, err = pcall(function()
+		func()
+	end)
+	if not suc then
+		print(tostring(debug.traceback(err)))
+	end
+end
 
 local function isFriend(plr, recolor)
 	if GuiLibrary.ObjectsThatCanBeSaved["Use FriendsToggle"].Api.Enabled then

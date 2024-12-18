@@ -1391,13 +1391,13 @@ run(function()
 					if suc and plr then
 						if not ({whitelist:get(plr)})[2] then return end
 						if Reach.Enabled then
-							local attackMagnitude = ((entityLibrary.LocalPosition + plr.Character.Humanoid.MoveDirection or entityLibrary.character.HumanoidRootPart.Position + plr.Character.Humanoid.MoveDirection) - attackTable.validate.targetPosition.value).magnitude
+							local attackMagnitude = ((entityLibrary.LocalPosition or entityLibrary.character.HumanoidRootPart.Position) - (attackTable.validate.targetPosition.value + plr.Character.Humanoid.MoveDirection)).magnitude
 							if attackMagnitude > 18 then
 								return nil
 							end
 							attackTable.validate.selfPosition = attackValue(attackTable.validate.selfPosition.value + (attackMagnitude > 14.4 and (CFrame.lookAt(attackTable.validate.selfPosition.value, attackTable.validate.targetPosition.value).lookVector * 4) or Vector3.zero))
 						end
-						store.attackReach = math.floor((attackTable.validate.selfPosition.value - attackTable.validate.targetPosition.value).magnitude * 100) / 100
+						store.attackReach = math.floor((attackTable.validate.selfPosition.value - (attackTable.validate.targetPosition.value + plr.Character.Humanoid.MoveDirection)).magnitude * 100) / 100
 						store.attackReachUpdate = tick() + 1
 					end
 					return originalRemote:SendToServer(attackTable, ...)

@@ -85,7 +85,7 @@ local vapeAssetTable = {
 	["vape/assets/VapeLogo2.png"] = "rbxassetid://13350876307",
 	["vape/assets/VapeLogo4.png"] = "rbxassetid://13350877564"
 }
-local assexecs = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
+
 if inputService:GetPlatform() ~= Enum.Platform.Windows then
 	--mobile exploit fix
 	getgenv().getsynasset = nil
@@ -94,12 +94,7 @@ if inputService:GetPlatform() ~= Enum.Platform.Windows then
 	getsynasset = nil
 	getcustomasset = nil
 end
-local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
-for i,v in pairs(assexecs) do
-    if select(1, identifyexecutor()) == v then
-        getcustomasset = function(location) return vapeAssetTable[location] or "" end
-    end
-end
+local getcustomasset = function(location) return vapeAssetTable[location] or "" end
 local customassetcheck = (getsynasset or getcustomasset) and true
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local delfile = delfile or function(file) writefile(file, "") end

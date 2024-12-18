@@ -70,14 +70,7 @@ if shared.VapeExecuted then
 		["vape/assets/VapeLogo2.png"] = "rbxassetid://13350876307",
 		["vape/assets/VapeLogo4.png"] = "rbxassetid://13350877564"
 	}
-	local getcustomasset = getsynasset or getcustomasset or function(location) return vapeAssetTable[location] or "" end
-	local executors = {'Wave', 'macsploit is the best fucking exploit ever made.', 'Calibri'}
-	for i,v in pairs(executors) do
-		if select(1, identifyexecutor()) == v then
-			getcustomasset = function(location) return vapeAssetTable[location] or "" end
-		end
-	end
-
+	local getcustomasset = function(location) return vapeAssetTable[location] or "" end
 	local customassetcheck = (getsynasset or getcustomasset) and true
 	local requestfunc = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request or function() end
 	local isfile = isfile or function(file)

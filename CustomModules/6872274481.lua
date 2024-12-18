@@ -3510,7 +3510,7 @@ run(function()
 									end
 									local selfpos = selfrootpos + (killaurarange.Value > 14 and (selfrootpos - (root.Position + plr.Character.Humanoid.MoveDirection)).magnitude > 14.4 and (CFrame.lookAt(selfrootpos, (root.Position + plr.Character.Humanoid.MoveDirection)).lookVector * ((selfrootpos - (root.Position + plr.Character.Humanoid.MoveDirection)).magnitude - 14)) or Vector3.zero)
 									bedwars.SwordController.lastAttack = workspace:GetServerTimeNow()
-									store.attackReach = math.floor((selfrootpos - (root.Position + plr.Character.Humanoid.MoveDirection).magnitude * 100) / 100
+									store.attackReach = math.floor((selfrootpos - (root.Position + plr.Character.Humanoid.MoveDirection)).magnitude * 100) / 100
 									store.attackReachUpdate = tick() + 1
 									killaurarealremote:FireServer({
 										weapon = sword.tool,
@@ -3521,7 +3521,7 @@ run(function()
 												cameraPosition = attackValue(root.Position + plr.Character.Humanoid.MoveDirection),
 												cursorDirection = attackValue(CFrame.new(selfpos, root.Position + plr.Character.Humanoid.MoveDirection).lookVector)
 											},
-											targetPosition = attackValue(root.Position + plr.Character.Humanoid.MoveDirection + Vector3.new(0, 0.003, 0)),
+											targetPosition = attackValue(root.Position + plr.Character.Humanoid.MoveDirection),
 											selfPosition = attackValue(selfpos)
 										}
 									})									

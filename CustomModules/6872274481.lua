@@ -154,7 +154,7 @@ local function run(func)
 		func()
 	end)
 	if not suc then
-		print(tostring(debug.traceback(err)))
+		warningNotification('Vape', 'Error: '..err, 10)
 	end
 end
 

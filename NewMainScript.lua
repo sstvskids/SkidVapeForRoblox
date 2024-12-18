@@ -32,7 +32,7 @@ local function displayErrorPopup(text, func)
 end
 
 local function vapeGithubRequest(scripturl)
-	if not isfile("vape/"..scripturl) then
+	if not isfile("skidvape/"..scripturl) then
 		local suc, res
 		task.delay(15, function()
 			if not res and not errorPopupShown then 
@@ -40,15 +40,15 @@ local function vapeGithubRequest(scripturl)
 				displayErrorPopup("The connection to github is taking a while, Please be patient.")
 			end
 		end)
-		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..readfile("skidvape/commithash.txt").."/"..scripturl, true) end)
 		if not suc or res == "404: Not Found" then
-			displayErrorPopup("Failed to connect to github : vape/"..scripturl.." : "..res)
+			displayErrorPopup("Failed to connect to github : skidvape/"..scripturl.." : "..res)
 			error(res)
 		end
 		if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
-		writefile("vape/"..scripturl, res)
+		writefile("skidvape/"..scripturl, res)
 	end
-	return readfile("vape/"..scripturl)
+	return readfile("skidvape/"..scripturl)
 end
 
 if not shared.VapeDeveloper then 
@@ -61,32 +61,32 @@ if not shared.VapeDeveloper then
 		end
 	end
 	if commit then
-		if isfolder("vape") then 
-			if ((not isfile("vape/commithash.txt")) or (readfile("vape/commithash.txt") ~= commit or commit == "main")) then
-				for i,v in pairs({"vape/Universal.lua", "vape/MainScript.lua", "vape/GuiLibrary.lua"}) do 
+		if isfolder("skidvape") then 
+			if ((not isfile("skidvape/commithash.txt")) or (readfile("skidvape/commithash.txt") ~= commit or commit == "main")) then
+				for i,v in pairs({"skidvape/Universal.lua", "skidvape/MainScript.lua", "skidvape/GuiLibrary.lua"}) do 
 					if isfile(v) and readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
 						delfile(v)
 					end 
 				end
-				if isfolder("vape/CustomModules") then 
-					for i,v in pairs(listfiles("vape/CustomModules")) do 
+				if isfolder("skidvape/CustomModules") then 
+					for i,v in pairs(listfiles("skidvape/CustomModules")) do 
 						if isfile(v) and readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
 							delfile(v)
 						end 
 					end
 				end
-				if isfolder("vape/Libraries") then 
-					for i,v in pairs(listfiles("vape/Libraries")) do 
+				if isfolder("skidvape/Libraries") then 
+					for i,v in pairs(listfiles("skidvape/Libraries")) do 
 						if isfile(v) and readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
 							delfile(v)
 						end 
 					end
 				end
-				writefile("vape/commithash.txt", commit)
+				writefile("skidvape/commithash.txt", commit)
 			end
 		else
-			makefolder("vape")
-			writefile("vape/commithash.txt", commit)
+			makefolder("skidvape")
+			writefile("skidvape/commithash.txt", commit)
 		end
 	else
 		displayErrorPopup("Failed to connect to github, please try using a VPN.")

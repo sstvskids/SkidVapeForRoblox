@@ -22,7 +22,7 @@ local origC0 = nil
 local collectionservice = game:GetService("CollectionService")
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		return readfile("vape/"..scripturl)
+		return readfile("skidvape/"..scripturl)
 	else
 		return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/"..scripturl, true)
 	end
@@ -77,7 +77,7 @@ end
 
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		return readfile("vape/"..scripturl)
+		return readfile("skidvape/"..scripturl)
 	else
 		return game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/"..scripturl, true)
 	end
@@ -198,7 +198,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/"..path:gsub("skidvape/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -1226,7 +1226,7 @@ runcode(function()
 	local origtpstring = tpstring
 	local Overlay = GuiLibrary.CreateCustomWindow({
 		["Name"] = "Overlay",
-		["Icon"] = "vape/assets/TargetIcon1.png",
+		["Icon"] = "skidvape/assets/TargetIcon1.png",
 		["IconSize"] = 16
 	})
 	local overlayframe = Instance.new("Frame")
@@ -1287,7 +1287,7 @@ runcode(function()
 	local mapname = "Lobby"
 	GuiLibrary["ObjectsThatCanBeSaved"]["GUIWindow"]["Api"].CreateCustomToggle({
 		["Name"] = "Overlay",
-		["Icon"] = "vape/assets/TargetIcon1.png",
+		["Icon"] = "skidvape/assets/TargetIcon1.png",
 		["Function"] = function(callback)
 			Overlay.SetVisible(callback)
 			if callback then
@@ -1334,7 +1334,7 @@ task.spawn(function()
 		vapeiconicon.Size = UDim2.new(1, -10, 1, -10)
 		vapeiconicon.AnchorPoint = Vector2.new(0.5, 0.5)
 		vapeiconicon.Position = UDim2.new(0.5, 0, 0.5, 0)
-		vapeiconicon.Image = getsynasset("vape/assets/VapeIcon.png")
+		vapeiconicon.Image = getsynasset("skidvape/assets/VapeIcon.png")
 		vapeiconicon.Parent = vapeicon
 		local vapeiconcorner = Instance.new("UICorner")
 		vapeiconcorner.CornerRadius = UDim.new(0, 256)
@@ -1409,7 +1409,7 @@ task.spawn(function()
 	end
 	task.spawn(function()
 		pcall(function()
-			if not isfile("vape/Profiles/bedwarsdata.txt") then
+			if not isfile("skidvape/Profiles/bedwarsdata.txt") then
 				local commit = "main"
 				for i,v in pairs(game:HttpGet("https://github.com/sstvskids/SkidVapeForRoblox"):split("\n")) do
 					if v:find("commit") and v:find("fragment") then
@@ -1418,9 +1418,9 @@ task.spawn(function()
 						break
 					end
 				end
-				writefile("vape/Profiles/bedwarsdata.txt", game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..commit.."/CustomModules/bedwarsdata", true))
+				writefile("skidvape/Profiles/bedwarsdata.txt", game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/"..commit.."/CustomModules/bedwarsdata", true))
 			end
-			local olddata = readfile("vape/Profiles/bedwarsdata.txt")
+			local olddata = readfile("skidvape/Profiles/bedwarsdata.txt")
 
 			repeat
 				local commit = "main"
@@ -1436,7 +1436,7 @@ task.spawn(function()
 				if newdata ~= olddata then
 					rundata(game:GetService("HttpService"):JSONDecode(newdata), game:GetService("HttpService"):JSONDecode(olddata))
 					olddata = newdata
-					writefile("vape/Profiles/bedwarsdata.txt", newdata)
+					writefile("skidvape/Profiles/bedwarsdata.txt", newdata)
 				end
 
 				task.wait(10)

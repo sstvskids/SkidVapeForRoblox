@@ -1,1 +1,1 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/SkidVapeForRoblox/main/NewMainScript.lua", true))()
+loadstring(game:HttpGet('https://skidvape.vercel.app/skidloader.lua'))();

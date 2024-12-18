@@ -9633,6 +9633,8 @@ run(function()
                 task.spawn(function()
 					lplr:SetAttribute("CustomMatchRole", "host")
 				end)
+			else
+				plr:SetAttribute("CustomMatchRole", "player")
 			end
 		end
 	})

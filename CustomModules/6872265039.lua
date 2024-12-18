@@ -157,14 +157,12 @@ local function warningNotification(title, text, delay)
 end
 
 local function runcode(func)
-	task.spawn(function()
-		local suc, err = pcall(function()
-			func()
-		end)
-		if not suc then
-			warningNotification('Vape', 'Error: '..err, 10)
-		end
+	local suc, err = pcall(function()
+		func()
 	end)
+	if not suc then
+		warningNotification('Vape', 'Error: '..err, 10)
+	end
 end
 
 local function betterfind(tab, obj)

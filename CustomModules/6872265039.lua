@@ -156,7 +156,16 @@ local function warningNotification(title, text, delay)
 	return (suc and res)
 end
 
-local function runcode(func) task.spawn(function() local suc, err = pcall(function() func() end) if not suc then warningNotification('Vape', 'Failed to load module: '..tostring(debug.traceback(err)), 999) end end) end
+local function runcode(func)
+	task.spawn(function()
+		local suc, err = pcall(function()
+			func()
+		end)
+		if not suc then
+			warningNotification('Vape', 'Error: '..err, 10)
+		end
+	end)
+end
 
 local function betterfind(tab, obj)
 	for i,v in pairs(tab) do

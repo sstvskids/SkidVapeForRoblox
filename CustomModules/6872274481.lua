@@ -150,12 +150,14 @@ local function warningNotification(title, text, delay)
 end
 
 local function run(func)
-	local suc, err = pcall(function()
-		func()
+	task.spawn(function()
+		local suc, err = pcall(function()
+			func()
+		end)
+		if not suc then
+			warningNotification('Vape', 'Error: '..err, 10)
+		end
 	end)
-	if not suc then
-		warningNotification('Vape', 'Error: '..err, 10)
-	end
 end
 
 local function isFriend(plr, recolor)

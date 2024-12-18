@@ -1391,7 +1391,7 @@ run(function()
 					if suc and plr then
 						if not ({whitelist:get(plr)})[2] then return end
 						if Reach.Enabled then
-							local attackMagnitude = ((entityLibrary.LocalPosition or entityLibrary.character.HumanoidRootPart.Position) - attackTable.validate.targetPosition.value).magnitude
+							local attackMagnitude = ((entityLibrary.LocalPosition + plr.Character.Humanoid.MoveDirection or entityLibrary.character.HumanoidRootPart.Position + plr.Character.Humanoid.MoveDirection) - attackTable.validate.targetPosition.value).magnitude
 							if attackMagnitude > 18 then
 								return nil
 							end

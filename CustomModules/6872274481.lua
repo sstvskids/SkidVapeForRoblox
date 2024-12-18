@@ -9632,7 +9632,7 @@ run(function()
 					lplr:SetAttribute("CustomMatchRole", "host")
 				end)
 			else
-				plr:SetAttribute("CustomMatchRole", "player")
+				lplr:SetAttribute("CustomMatchRole", "player")
 			end
 		end
 	})

@@ -9274,7 +9274,7 @@ run(function()
         Name = "CustomPacks",
         Function = function(callback) 
             if callback then
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/txtpacks/refs/heads/main"..Packs.Value..".lua"))()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/txtpacks/refs/heads/main/"..Packs.Value..".lua"))()
 				repeat task.wait() 
 					for i,v in lplr.Character:GetDescendants() do
 						pcall(function()

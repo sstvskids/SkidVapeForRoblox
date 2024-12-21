@@ -9267,94 +9267,35 @@ run(function()
 end)
 
 run(function()
-    local transformed = false
     local CustomPacks = {Enabled = false}
-    local PackSelection = {Value = "VioletDreams"}
-
-    local packfunctions = {
-        VioletDreams = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/VioletsDreams.lua"))()   
-            end)
-        end,
-        
-        PastaaWare = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Enlightened.lua"))()   
-            end)
-        end,
-
-        Wichtiger = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Wichtiger.lua"))()   
-            end)
-        end,
-
-        Fury = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Fury-16X.lua"))()   
-            end)
-        end,
-
-        
-        Onyx = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Onyx.lua"))()   
-            end)
-        end,
-
-        Makima = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Makima.lua"))()   
-            end)
-        end,
-
-		Marin = function() 
-			task.spawn(function()
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Marin-Kitsawaba.lua"))()   
-			end)
-		end,
-
-        Prime = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Prime.lua"))()   
-            end)
-        end,
-
-
-        MidnightCottonCandy = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/MidnightCottonCandy.lua"))()   
-            end)
-        end,
-
-        Inferno = function() 
-            task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/OcassionalTrollage/WeDoNOTEnjoyTrolling/main/Inferno.lua"))()   
-            end)
-        end
-    }
+    local Packs = {Value = "VioletDreams"}
 
     CustomPacks = wingui.utility({
-        ["Name"] = "CustomPacks",
-        ["Function"] = function(callback) 
-            if callback then 
-                if not transformed then
-                    transformed = true
-                    packfunctions[PackSelection["Value"]]()
-                end
+        Name = "CustomPacks",
+        Function = function(callback) 
+            if callback then
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/txtpacks/refs/heads/main"..Packs.Value..".lua"))()
+				repeat task.wait()
+					for i, v in lplr.Character:GetDescendants() do
+						pcall(function()
+							if v:IsA('Sword') or v:IsA('axe') or v:IsA('pickaxe') then
+								v.CanCollide = false;
+							end;
+						end)
+					end
+				until not CustomPacks.Enabled
             else
-                warningNotification("TexturePacks", "Pack disabled next game.", 10)
+                warningNotification("Vape", "Packs will be disabled next game!", 10)
             end
         end,
-        ["ExtraText"] = function()
-            return PackSelection["Value"]
+        ExtraText = function()
+            return Packs.Value;
         end
     })
-    PackSelection = CustomPacks.CreateDropdown({
-        ["Name"] = "Pack",
-        ["Function"] = function() end,
-        ["List"] = {"VioletDreams", "PastaaWare", "Onyx", "Fury", "Wichtiger", "Makima", "Marin", "Prime", "MidnightCottonCandy", "Inferno"}
+    Packs = CustomPacks.CreateDropdown({
+        Name = "Pack",
+        Function = function() end,
+        List = {"VioletDreams", "PastaaWare", "Onyx", "Fury", "Wichtiger", "Makima", "Marin", "Prime", "MidnightCottonCandy", "Inferno"}
     })
 end)
 

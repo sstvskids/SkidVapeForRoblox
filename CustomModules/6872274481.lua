@@ -9275,8 +9275,8 @@ run(function()
         Function = function(callback) 
             if callback then
 				loadstring(game:HttpGet("https://raw.githubusercontent.com/sstvskids/txtpacks/refs/heads/main"..Packs.Value..".lua"))()
-				repeat task.wait()
-					for i, v in lplr.Character:GetDescendants() do
+				repeat task.wait() 
+					for i,v in lplr.Character:GetDescendants() do
 						pcall(function()
 							if v:IsA('Sword') or v:IsA('axe') or v:IsA('pickaxe') then
 								v.CanCollide = false;

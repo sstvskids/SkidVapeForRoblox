@@ -50,35 +50,33 @@ local function vapeGithubRequest(scripturl)
 	return readfile("vape/"..scripturl)
 end
 
-if not shared.VapeDeveloper then 
-	local commit = "main"
-	for i,v in pairs(game:HttpGet("https://github.com/sstvskids/SkidVapeForRoblox"):split("\n")) do 
-		if v:find("commit") and v:find("fragment") then 
-			local str = v:split("/")[5]
-			commit = str:sub(0, str:find('"') - 1)
-			break
-		end
-	end
+if not shared.VapeDeveloper then
+	local _, subbed = pcall(function()
+		return game:HttpGet('https://github.com/7GrandDadPGN/VapeV4ForRoblox')
+	end)
+	local commit = subbed:find('currentOid')
+	commit = commit and subbed:sub(commit + 13, commit + 52) or nil
+	commit = commit and #commit == 40 and commit or 'main'
 	if commit then
-		if isfolder("vape") then 
+		if isfolder("vape") then
 			if ((not isfile("vape/commithash.txt")) or (readfile("vape/commithash.txt") ~= commit or commit == "main")) then
-				for i,v in pairs({"vape/Universal.lua", "vape/MainScript.lua", "vape/GuiLibrary.lua"}) do 
+				for i,v in pairs({"vape/Universal.lua", "vape/MainScript.lua", "vape/GuiLibrary.lua"}) do
 					if isfile(v) and readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
 						delfile(v)
-					end 
-				end
-				if isfolder("vape/CustomModules") then 
-					for i,v in pairs(listfiles("vape/CustomModules")) do 
-						if isfile(v) and readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
-							delfile(v)
-						end 
 					end
 				end
-				if isfolder("vape/Libraries") then 
-					for i,v in pairs(listfiles("vape/Libraries")) do 
+				if isfolder("vape/CustomModules") then
+					for i,v in pairs(listfiles("vape/CustomModules")) do
 						if isfile(v) and readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
 							delfile(v)
-						end 
+						end
+					end
+				end
+				if isfolder("vape/Libraries") then
+					for i,v in pairs(listfiles("vape/Libraries")) do
+						if isfile(v) and readfile(v):find("--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.") then
+							delfile(v)
+						end
 					end
 				end
 				writefile("vape/commithash.txt", commit)

@@ -9278,7 +9278,7 @@ run(function()
 				repeat task.wait() 
 					for i,v in lplr.Character:GetDescendants() do
 						pcall(function()
-							if v:IsA('Sword') or v:IsA('axe') or v:IsA('pickaxe') then
+							if v.Name:find('Sword') or v.Name:find('axe') or v.Name:find('pickaxe') then
 								v.CanCollide = false;
 							end;
 						end)

@@ -4706,9 +4706,15 @@ run(function()
 						SafeWalkRaycast.FilterDescendantsInstances = {lplr.Character}
 						local ray = workspace:Raycast(entityLibrary.character.HumanoidRootPart.Position + (vec * 0.5), Vector3.new(0, -1000, 0), SafeWalkRaycast)
 						if not ray then
-							if workspace:Raycast(entityLibrary.character.HumanoidRootPart.Position, Vector3.new(0, -((entityLibrary.character.Humanoid.HipHeight + (entityLibrary.character.HumanoidRootPart.Size.Y / 2)) + 1), 0), SafeWalkRaycast) then
-								vec = Vector3.zero
-							end
+                            local groundRay = workspace:Raycast(entityLibrary.character.HumanoidRootPart.Position, Vector3.new(0, -((entityLibrary.character.Humanoid.HipHeight + (entityLibrary.character.HumanoidRootPart.Size.Y / 2)) + 1), 0), SafeWalkRaycast)
+                            if groundRay and groundRay.Instance then
+                                local closest = groundRay.Instance:GetClosestPointOnSurface(entityLibrary.character.HumanoidRootPart.Position)
+                                if not closest then
+                                    vec = Vector3.zero
+                                end
+                            else
+                                vec = Vector3.zero
+                            end
 						end
 					end
 					return oldmove(Self, vec, facecam)

@@ -157,13 +157,11 @@ local function warningNotification(title, text, delay)
 end
 
 local function runcode(func)
-	local suc, err = pcall(function()
-		func()
-	end)
+	local suc, err = pcall(func)
 	if not suc then
-		warningNotification('Vape', 'Error: '..err, 10)
-	end
-end
+		warningNotification('Vape', 'Error: '..err, 10);
+	end;
+end;
 
 local function betterfind(tab, obj)
 	for i,v in pairs(tab) do

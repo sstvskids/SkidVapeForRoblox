@@ -150,13 +150,11 @@ local function warningNotification(title, text, delay)
 end
 
 local function run(func)
-	local suc, err = pcall(function()
-		func()
-	end)
+	local suc, err = pcall(func)
 	if not suc then
-		warningNotification('Vape', 'Error: '..err, 10)
-	end
-end
+		warningNotification('Vape', 'Error: '..err, 10);
+	end;
+end;
 
 local function isFriend(plr, recolor)
 	if GuiLibrary.ObjectsThatCanBeSaved["Use FriendsToggle"].Api.Enabled then

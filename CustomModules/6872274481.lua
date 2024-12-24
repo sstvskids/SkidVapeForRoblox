@@ -9612,94 +9612,36 @@ run(function()
     })
 end)																																																																																																																																																																																																																																															
 
---[[run(function()
-	local SkyScytheInstakill = {Enabled = false}
-	SkyScytheInstakill = wingui.exploit({
-		Name = "SkyScytheInstakill",
-		Function = function(callback)
-			if callback then
-				task.spawn(function()
-					repeat task.wait()
-						local item = getItemNear("sky_scythe")
-						if item and bedwars.CombatController then
-							bedwars.Client:Get("SkyScytheSpin"):SendToServer({})
-						end
-					until not insta.Enabled
-				end)
-			end
-		end
-	})
-end)]]
-
 run(function()
 	local NoNameTag = {Enabled = false}
 	NoNameTag = wingui.render({
 		Name = "NoNameTag",
 		Function = function(callback)
 			if callback then
-				RunLoops:BindToHeartbeat('NoNametag', function()
-					pcall(function()
-						task.wait(0.001)
-						lplr.character.Head.Nametag:Destroy()
-					end)
-				end)
+				lplr.character.Head.Nametag.Enabled = false;
 			else
-				RunLoops:UnbindFromHeartbeat('NoNametag')
+				lplr.character.Head.Nametag.Enabled = true;
 			end
 		end,
 		HoverText = "Hides your nametag"
 	})
 end)
 
---[[run(function()
-	local ScytheExploit = {Enabled = false}
-	local args = {
-		[1] = {
-			["shopItem"] = {
-				["lockAfterPurchase"] = true,
-				["itemType"] = "wood_scythe",
-				["price"] = 0,
-				["requireInInventoryToTierUp"] = true,
-				["nextTier"] = "stone_scythe",
-				["superiorItems"] = {
-					[1] = "stone_scythe"
-				},
-				["currency"] = "iron",
-				["amount"] = 20,
-				["category"] = "Combat",
-				["spawnWithItems"] = {
-					[1] = "wood_scythe"
-				},
-				["ignoredByKit"] = {
-					[1] = "barbarian",
-					[2] = "dasher",
-					[3] = "frost_hammer_kit",
-					[4] = "tinker",
-					[5] = "summoner",
-					[6] = "ice_queen",
-					[7] = "ember",
-					[8] = "lumen",
-					[9] = "summoner"
-				}
-			},
-			["shopId"] = "1_item_shop"
-		}
-	}
-	
-	ScytheExploit = wingui.exploit({
-		Name = "ScytheExploit",
+run(function()
+	local RemoveKillFeed = {Enabled = false};
+	local KillFeed = lplr.PlayerGui.KillFeedGui;
+	RemoveKillFeed = wingui.render({
+		Name = 'RemoveFeed',
 		Function = function(calling)
 			if calling then
-				task.spawn(function()
-					repeat task.wait(1.5)
-						game:GetService("ReplicatedStorage"):WaitForChild("rbxts_include"):WaitForChild("node_modules"):WaitForChild("@rbxts"):WaitForChild("net"):WaitForChild("out"):WaitForChild("_NetManaged"):WaitForChild("BedwarsPurchaseItem"):InvokeServer(unpack(args))
-					until not ScytheExploit.Enabled
-				end)
-			end
+				KillFeed.Enabled = false;
+			else
+				KillFeed.Enabled = true;
+			end;
 		end,
-		HoverText = "A risky method of buying scythes\nCould get you banned"
-	})
-end)]]
+		HoverText = 'Removes the disgusting feed from your eyes.'
+	});
+end)
 
 run(function()
 	store.TPString = shared.vapeoverlay or nil
@@ -9963,25 +9905,9 @@ run(function()
 	ReachCorner.CornerRadius = UDim.new(0, 4)
 	ReachCorner.Parent = ReachLabel
 end)
-
-run(function()
-	local RemoveKillFeed = {}
-	RemoveKillFeed = GuiLibrary.CreateLegitModule({
-		Name = "RemoveKillFeed",
-		Function = function(callback)
-			if callback then 
-				task.spawn(function()
-					lplr.PlayerGui.KillFeedGui.Parent = game.Workspace
-				end)
-			else
-				game.Workspace.KillFeedGui.Parent = lplr.PlayerGui
-			end
-		end,
-		HoverText = "Removes KillFeed"
-	})
-end)
 																																										
 warningNotification("Skid-Vape Next-Gen", "Logged in as "..lplr.Name.." ("..lplr.UserId..")", 6.25)
+warningNotification('Vape', 'Make sure to have a jolly christmas with the rewrite! (soon)', 8)
 print("Skid-Vxpe | BEDWARS.lua")
 
 task.spawn(function()

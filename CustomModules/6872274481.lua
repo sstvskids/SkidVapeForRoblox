@@ -9620,13 +9620,18 @@ run(function()
 		Name = "NoNameTag",
 		Function = function(callback)
 			if callback then
-				repeat task.wait()
-					if entityLibrary.isAlive then
+				RunLoops:BindToHeartbeat('NoNametag', function()
+					pcall(function()
+						task.wait()
 						lplr.character.Head.Nametag.Enabled = false;
-					end;
-				until not callback
+					end)
+				end)
 			else
-				lplr.character.Head.Nametag.Enabled = true;
+				RunLoops:UnbindFromHeartbeat('NoNametag', function()
+					pcall(function()
+						lplr.character.Head.Nametag.Enabled = true;
+					end)
+				end)
 			end
 		end,
 		HoverText = "Hides your nametag"

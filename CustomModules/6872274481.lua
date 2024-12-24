@@ -9627,11 +9627,8 @@ run(function()
 					end)
 				end)
 			else
-				RunLoops:UnbindFromHeartbeat('NoNametag', function()
-					pcall(function()
-						lplr.character.Head.Nametag.Enabled = true;
-					end)
-				end)
+				RunLoops:UnbindFromHeartbeat('NoNametag')
+				lplr.character.Head.Nametag.Enabled = true;
 			end
 		end,
 		HoverText = "Hides your nametag"

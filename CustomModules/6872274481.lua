@@ -9622,14 +9622,18 @@ run(function()
 			if callback then
 				RunLoops:BindToHeartbeat('NoNametag', function()
 					task.spawn(function()
-						task.wait()
-						lplr.character.Head.Nametag.Enabled = false;
+						if lplr.character.Head.Nametag then
+							task.wait();
+							lplr.character.Head.Nametag.Enabled = false;
+						end;
 					end)
 				end)
 			else
 				task.spawn(function()
 					RunLoops:UnbindFromHeartbeat('NoNametag')
-					lplr.character.Head.Nametag.Enabled = true;
+					if lplr.character.Head.Nametag then
+						lplr.character.Head.Nametag.Enabled = true;
+					end;
 				end)
 			end
 		end,

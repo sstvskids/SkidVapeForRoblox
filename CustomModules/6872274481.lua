@@ -9621,7 +9621,9 @@ run(function()
 		Function = function(callback)
 			if callback then
 				repeat task.wait()
-					lplr.character.Head.Nametag.Enabled = false;
+					if entityLibrary.isAlive then
+						lplr.character.Head.Nametag.Enabled = false;
+					end;
 				until not callback
 			else
 				lplr.character.Head.Nametag.Enabled = true;

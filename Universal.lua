@@ -6562,10 +6562,10 @@ run(function()
 	})
 end)
 
---[[run(function()
+run(function()
 	local AntiLogger = {Enabled = false};
 	local AntiLogMethod = {Value = "Hook"};
-	getgenv().skidrestore = function(v) restorefunction(v) or restorefunc(v); end;
+	local skidrestore = function(v) return restorefunction(v) or restorefunc(v); end
 	local request = http_request or request or HttpPost or syn.request or fluxus.request;
 	local blockedrequests : table = {'discord', 'webhook', 'ipv4', 'ipv6', 'paypal', 'roblox', 'voidware', 'darkscripts', 'egorikusa'};
 	local blockedmanualrequests : table = {ObjectList = {}};
@@ -6605,7 +6605,7 @@ end)
 						oldfunc = nil;
 					end;
 				elseif AntiLogMethod.Value == "Request" then
-					skidrestore(getgenv().request);
+					skidrestore(getgenv().request or request);
 				end;
 			end;
 		end,
@@ -6621,7 +6621,7 @@ end)
 		TempText = "requests to block",
 		Function = function() end
 	})
-end);]]
+end);
 
 run(function()
 	local InfiniteJump = {Enabled = false};

@@ -9618,7 +9618,9 @@ run(function()
 		Name = "NoNameTag",
 		Function = function(callback)
 			if callback then
-				lplr.character.Head.Nametag.Enabled = false;
+				repeat task.wait()
+					lplr.character.Head.Nametag.Enabled = false;
+				until not callback
 			else
 				lplr.character.Head.Nametag.Enabled = true;
 			end
@@ -9907,7 +9909,7 @@ run(function()
 end)
 																																										
 warningNotification("Skid-Vape Next-Gen", "Logged in as "..lplr.Name.." ("..lplr.UserId..")", 6.25)
-warningNotification('Vape', 'Make sure to have a jolly christmas with the rewrite! (soon)', 8)
+warningNotification('Vape', 'Make sure to have a jolly christmas with the Vape Rewrite! (soon)', 8)
 print("Skid-Vxpe | BEDWARS.lua")
 
 task.spawn(function()

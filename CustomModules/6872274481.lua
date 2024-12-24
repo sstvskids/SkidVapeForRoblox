@@ -9574,7 +9574,9 @@ run(function()
 					lplr:SetAttribute("CustomMatchRole", "host")
 				end)
 			else
-				lplr:SetAttribute("CustomMatchRole", "player")
+				task.spawn(function()
+					lplr:SetAttribute("CustomMatchRole", "player")
+				end)
 			end
 		end
 	})

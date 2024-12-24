@@ -9590,7 +9590,7 @@ run(function()
         HoverText = "Sort of a instant-win (by skidbula) (fuck the skids man especially erco)",
         Function = function(callback)
             if callback then
-                pcall(function()
+                task.spawn(function()
                     local TeleportService = game:GetService("TeleportService")
                     local e2 = TeleportService:GetLocalPlayerTeleportData()
                     local e = game.placeId
@@ -9621,14 +9621,16 @@ run(function()
 		Function = function(callback)
 			if callback then
 				RunLoops:BindToHeartbeat('NoNametag', function()
-					pcall(function()
+					task.spawn(function()
 						task.wait()
 						lplr.character.Head.Nametag.Enabled = false;
 					end)
 				end)
 			else
-				RunLoops:UnbindFromHeartbeat('NoNametag')
-				lplr.character.Head.Nametag.Enabled = true;
+				task.spawn(function()
+					RunLoops:UnbindFromHeartbeat('NoNametag')
+					lplr.character.Head.Nametag.Enabled = true;
+				end)
 			end
 		end,
 		HoverText = "Hides your nametag"

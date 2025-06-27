@@ -52,7 +52,7 @@ end
 
 -- me when laziness gets the best of you
 for _, v in {'SilentAim', 'Reach', 'MouseTP', 'AutoClicker', 'HitBoxes', 'LongJump', 'Killaura', 'TriggerBot', 'AutoLeave', 'ClientKickDisabler', 'AntiVoid'} do
-	GuiLibrary.RemoveObject(v..'ObjectsButton')
+	GuiLibrary.RemoveObject(v)
 end
 
 warningNotification('Vape', 'solara vs xeno: battle of the crap executors!!', 3)

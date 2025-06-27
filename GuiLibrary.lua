@@ -847,11 +847,12 @@ if shared.VapeExecuted then
 	end
 
 	GuiLibrary["RemoveObject"] = function(objname)
-		GuiLibrary.ObjectsThatCanBeSaved[objname]["Object"]:Remove()
-		if GuiLibrary.ObjectsThatCanBeSaved[objname]["Type"] == "OptionsButton" then
-			GuiLibrary.ObjectsThatCanBeSaved[objname]["ChildrenObject"].Name = "RemovedChildren"
+		local obj = objname..'ObjectsButton'
+		GuiLibrary.ObjectsThatCanBeSaved[obj]["Object"]:Remove()
+		if GuiLibrary.ObjectsThatCanBeSaved[obj]["Type"] == "OptionsButton" then
+			GuiLibrary.ObjectsThatCanBeSaved[obj]["ChildrenObject"].Name = "RemovedChildren"
 		end
-		GuiLibrary.ObjectsThatCanBeSaved[objname] = nil
+		GuiLibrary.ObjectsThatCanBeSaved[obj] = nil
 	end
 
 	GuiLibrary["CreateMainWindow"] = function()

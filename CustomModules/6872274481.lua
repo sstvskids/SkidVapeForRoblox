@@ -1868,7 +1868,12 @@ run(function()
 	end
 end)
 
-GuiLibrary.RemoveObject("SilentAimOptionsButton")
+
+for _, v in {'SilentAim', 'Reach', 'MouseTP', 'Phase', 'AutoClicker', 'Spider', 'LongJump', 'HitBoxes', 'Killaura', 'TriggerBot', 'AutoLeave', 'Speed', 'Fly', 'ClientKickDisabler', 'NameTags', 'SafeWalk', 'Blink', 'FOVChanger', 'AntiVoid', 'SongBeats', 'TargetStrafe'} do
+	GuiLibrary.RemoveObject(v)
+end
+
+--[[GuiLibrary.RemoveObject("SilentAimOptionsButton")
 GuiLibrary.RemoveObject("ReachOptionsButton")
 GuiLibrary.RemoveObject("MouseTPOptionsButton")
 GuiLibrary.RemoveObject("PhaseOptionsButton")
@@ -1888,7 +1893,7 @@ GuiLibrary.RemoveObject("BlinkOptionsButton")
 GuiLibrary.RemoveObject("FOVChangerOptionsButton")
 GuiLibrary.RemoveObject("AntiVoidOptionsButton")
 GuiLibrary.RemoveObject("SongBeatsOptionsButton")
-GuiLibrary.RemoveObject("TargetStrafeOptionsButton")
+GuiLibrary.RemoveObject("TargetStrafeOptionsButton")]]
 
 run(function()
 	local AimAssist = {Enabled = false}

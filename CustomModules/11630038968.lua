@@ -29,7 +29,7 @@ local vapeEvents = setmetatable({}, {
 })
 local vapeInjected = true
 local entitylib = shared.vapeentity
-local targetinfo = vape.Libraries.targetinfo
+local targetinfo = shared.VapeTargetInfo
 
 local bd = {}
 local store = {
